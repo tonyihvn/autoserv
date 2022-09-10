@@ -55,7 +55,6 @@ Route::get('/users', [App\Http\Controllers\PersonnelController::class, 'Users'])
 
 Route::get('/edit-personnel/{id}', [App\Http\Controllers\PersonnelController::class, 'edit'])->name('edit-personnel')->middleware('role:Admin,Super');
 Route::get('/add-personnel', [App\Http\Controllers\PersonnelController::class, 'create'])->name('add-personnel')->middleware('role:Admin,Super');
-
 Route::post('/newpersonnel', [App\Http\Controllers\PersonnelController::class, 'store'])->name('newpersonnel')->middleware('role:Admin,Super');
 Route::post('/psfuform', [App\Http\Controllers\HomeController::class, 'psfuForm'])->name('psfuform')->middleware('role:Admin,Super,Front-Desk');
 Route::get('/psfu', [App\Http\Controllers\HomeController::class, 'psfu'])->name('psfu')->middleware('role:Admin,Super,Front-Desk');
