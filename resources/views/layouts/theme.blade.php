@@ -97,10 +97,6 @@
 			</div>
 
 			<div class="container-fluid" style="width: 100%">
-
-
-
-
 				<form class="navbar-form navbar-left" action="{{ route('searchjobs') }}" method="post">
 					@csrf
 					<div class="input-group">
@@ -139,9 +135,9 @@
 
 							<ul class="dropdown-menu notifications">
 								@foreach ($mytasks as $ts)
-									<li><a href="/tasks" class="notification-item"><span class="dot bg-warning"></span>{{$ts->title}} | <i class="lnr lnr-clock"></i>{{$ts->date}}</a></li>
+									<li><a href="{{url('tasks')}}" class="notification-item"><span class="dot bg-warning"></span>{{$ts->title}} | <i class="lnr lnr-clock"></i>{{$ts->date}}</a></li>
 								@endforeach
-								<li><a href="/tasks" class="more">See all notifications</a></li>
+								<li><a href="{{url('tasks')}}" class="more">See all notifications</a></li>
 							</ul>
 						</li>
 						@endauth
@@ -154,14 +150,14 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="lnr lnr-user"></i> <span>@auth {{ Auth::user()->name }} @endauth </span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li class="roledlink Admin Super Front-Desk"><a class="btn btn-success update-pro" href="/newjob" title="New Customer" target="_blank" style="color: white; font-weight: bold;"><span class="fa fa-user-plus"></span> <span>New Customer</span></a></li>
-								<li class="roledlink Admin Super"><a href="/my_profile/{{$login_user->id ?? ''}}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="/tasks"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+								<li class="roledlink Admin Super Front-Desk"><a class="btn btn-success update-pro" href="{{url('newjob')}}" title="New Customer" target="_blank" style="color: white; font-weight: bold;"><span class="fa fa-user-plus"></span> <span>New Customer</span></a></li>
+								<li class="roledlink Admin Super"><a href="{{url('my_profile/'.$login_user->id ?? '')}}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="{{url('tasks')}}"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 
 								<li class="roledlink Admin Super" style="visibility:hidden !important;"><a href="#"  data-toggle="modal" data-target="#settings"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="/help"><i class="lnr lnr-bubble"></i> Basic Use</a></li>
-								<li><a href="/security"><i class="lnr lnr-lock"></i> Security</a></li>
-								<li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="{{url('help')}}"><i class="lnr lnr-bubble"></i> Basic Use</a></li>
+								<li><a href="{{url('security')}}"><i class="lnr lnr-lock"></i> Security</a></li>
+								<li><a href="{{url('logout')}}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 
@@ -177,16 +173,16 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="/home" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="{{url('home')}}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 
 
 						<li class="roledlink Front-Desk Admin Followup Finance Super Spare-Parts" style="visibility:hidden;">
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-users"></i> <span>Customers</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
 								<ul class="nav">
-									<li><a href="/newjob" class="roledlink Admin Front-Desk Spare-Parts Super">Add New Customer</a></li>
-									<li><a href="/customers" class="roledlink Admin Front-Desk Spare-Parts Super">All Customers</a></li>
-									<li><a href="/vehicles" class="roledlink Admin Front-Desk Super Spare-Parts">All Vehicles</a></li>
+									<li><a href="{{url('newjob')}}" class="roledlink Admin Front-Desk Spare-Parts Super">Add New Customer</a></li>
+									<li><a href="{{url('customers')}}" class="roledlink Admin Front-Desk Spare-Parts Super">All Customers</a></li>
+									<li><a href="{{url('vehicles')}}" class="roledlink Admin Front-Desk Super Spare-Parts">All Vehicles</a></li>
 
 								</ul>
 							</div>
@@ -195,18 +191,32 @@
 							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-briefcase"></i> <span>Jobs</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages3" class="collapse ">
 								<ul class="nav">
-									<li><a href="/newjob" class="roledlink Front-Desk Admin Super">New Job</a></li>
-									<li><a href="/jobs" class="roledlink Front-Desk Admin Super Finance">Pending Jobs</a></li>
-									<li><a href="/completedjobs" class="roledlink Front-Desk Admin Super Finance">Completed Jobs</a></li>
+									<li><a href="{{url('newjob')}}" class="roledlink Front-Desk Admin Super">New Job</a></li>
+									<li><a href="{{url('jobs')}}" class="roledlink Front-Desk Admin Super Finance">Pending Jobs</a></li>
+									<li><a href="{{url('completedjobs')}}" class="roledlink Front-Desk Admin Super Finance">Completed Jobs</a></li>
 								</ul>
 							</div>
 						</li>
+
+                        <li class="roledlink Spare-parts Admin Super" style="visibility:hidden;">
+							<a href="#subPages6" data-toggle="collapse" class="collapsed"><i class="fa fa-phone"></i> <span>Inventory</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages6" class="collapse ">
+								<ul class="nav">
+									<li><a href="{{url('parts')}}" class="roledlink Front-Desk Admin Super">Send SMS Messages</a></li>
+									<li><a href="{{url('supplies')}}" class="roledlink Front-Desk Admin Super">Sent Messages</a></li>
+									<li><a href="{{url('sales')}}" class="roledlink Front-Desk Finance Admin Super">Tasks/Inbox</a></li>
+								</ul>
+							</div>
+						</li>
+
 						<li class="roledlink Admin Finance Super" style="visibility:hidden;">
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="fa fa-dollar"></i> <span>Payments</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
-									<li><a href="/payments" class="roledlink Cashier Finance Admin Super">Payments</a></li>
-									<li><a href="/expenditures" class="roledlink Cashier Finance Admin Super">Expenditures</a></li>
+                                    <li><a href="{{url('payments')}}" class="roledlink Cashier Finance Admin Super">Payments</a></li>
+
+									<li><a href="{{url('transactions')}}" class="roledlink Cashier Finance Admin Super">Transactions</a></li>
+									<li><a href="{{url('expenditures')}}" class="roledlink Cashier Finance Admin Super">Expenditures</a></li>
 								</ul>
 							</div>
 						</li>
@@ -215,9 +225,9 @@
 							<a href="#subPages5" data-toggle="collapse" class="collapsed"><i class="fa fa-handshake-o"></i> <span>Post Service</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages5" class="collapse ">
 								<ul class="nav">
-									<li><a href="/reminders" class="roledlink Front-Desk Admin Super">Reminders</a></li>
-									<li><a href="/psfu" class="roledlink Front-Desk Admin Super">Post Service Followup</a></li>
-									<li><a href="/posreports" class="roledlink Front-Desk Admin Super">PSFU Reports Reports</a></li>
+									<li><a href="{{url('reminders')}}" class="roledlink Front-Desk Admin Super">Reminders</a></li>
+									<li><a href="{{url('psfu')}}" class="roledlink Front-Desk Admin Super">Post Service Followup</a></li>
+									<li><a href="{{url('posreports')}}" class="roledlink Front-Desk Admin Super">PSFU Reports Reports</a></li>
 								</ul>
 							</div>
 						</li>
@@ -226,9 +236,9 @@
 							<a href="#subPages6" data-toggle="collapse" class="collapsed"><i class="fa fa-phone"></i> <span>Communication</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages6" class="collapse ">
 								<ul class="nav">
-									<li><a href="/communications" class="roledlink Front-Desk Admin Super">Send SMS Messages</a></li>
-									<li><a href="/sentmessages" class="roledlink Front-Desk Admin Super">Sent Messages</a></li>
-									<li><a href="/tasks" class="roledlink Front-Desk Finance Admin Super">Tasks/Inbox</a></li>
+									<li><a href="{{url('communications')}}" class="roledlink Front-Desk Admin Super">Send SMS Messages</a></li>
+									<li><a href="{{url('sentmessages')}}" class="roledlink Front-Desk Admin Super">Sent Messages</a></li>
+									<li><a href="{{url('tasks')}}" class="roledlink Front-Desk Finance Admin Super">Tasks/Inbox</a></li>
 								</ul>
 							</div>
 						</li>
@@ -237,9 +247,9 @@
 							<a href="#subPages7" data-toggle="collapse" class="collapsed"><i class="fa fa-gear"></i> <span>Settings</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages7" class="collapse ">
 								<ul class="nav">
-									<li><a href="/personnels" class="roledlink Admin Super">Personnel</a></li>
-									<li><a href="/users" class="roledlink Admin Super">Users</a></li>
-									<li><a href="/backup" class="roledlink Admin Finance Front-Desk  Super">Backup</a></li>
+									<li><a href="{{url('personnels')}}" class="roledlink Admin Super">Personnel</a></li>
+									<li><a href="{{url('users')}}" class="roledlink Admin Super">Users</a></li>
+									<li><a href="{{url('backup')}}" class="roledlink Admin Finance Front-Desk  Super">Backup</a></li>
 									<li class="roledlink Admin Super">
 										<form method="POST" action="http://server:89/customlogin" target="_blank">
 													<!-- {{$login_user->email}} -->
@@ -717,9 +727,9 @@
 			});
 
 			// ADDED LABOUR IN VAT
-			var vat = ((sumAmount+labour+sundry)/100)*vatPercent
+			// var vat = ((sumAmount+labour+sundry)/100)*vatPercent
 
-			if(parseFloat(oldtotalamount) == parseFloat(sumAmount+vat+labour+sundry)){
+			if(parseFloat(oldtotalamount) == parseFloat((sumAmount+labour))){
 				sundry = 0;
 			}
 
@@ -727,19 +737,22 @@
 				sundry = sundrycost;
 			}
 
-			var totalAmount = parseFloat(sumAmount+vat+sundry+labour);
+			var totalAmount = parseFloat(sumAmount+sundry+labour);
 
 			if(discountpercent>0){
-				discount = (totalAmount/100)*discountpercent
-				totalAmount = totalAmount-discount
+				discount = (totalAmount/100)*discountpercent;
+				totalAmount = parseFloat(totalAmount-discount);
 			}
 
+            // CALCULATE VAT
+			var vat = (totalAmount/100)*vatPercent;
+
+            var totalAmount = parseFloat(totalAmount+vat);
 
 			$("#vatcost").val(vat);
 			$("#sundrycost").val(sundry);
 			$("#discountcost").val(discount);
 			$("#totalamount").val(totalAmount);
-
 		});
 
 
@@ -761,10 +774,8 @@
 		$('#body').on("input", function(){
 			var maxlength = $(this).attr("maxlength");
 			var currentLength = $(this).val().length;
-
 			$("#charcounter").text(currentLength + " characters");
 			$("#pagecounter").text(Math.ceil(currentLength/160) + " pages");
-
 
 			if( currentLength >= maxlength ){
 				$("#error").text("You have reached the maximum number of characters.");
@@ -786,7 +797,6 @@
 			if(mainaccount==""){
 				$("#mainaccount").val($(this).val())
 			}
-
 		});
 
 		function protect() {
@@ -814,13 +824,10 @@
 
 			if(option.val()){
 				// alert(option+"Found")
-
 				var ask = window.confirm("The name '"+option.val()+"' that you entered already exists. Go to this Customer's Vehicles instead to continue?");
 				if (ask) {
 					// window.alert("This post was successfully deleted.");
-
 					window.location.href = "/customer-vehicles/"+option.data('customerid');
-
 				}
 			}
 

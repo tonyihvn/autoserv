@@ -44,6 +44,15 @@ Route::get('/reminders', [App\Http\Controllers\HomeController::class, 'reminders
 Route::get('/communications', [App\Http\Controllers\HomeController::class, 'communications'])->name('communications')->middleware('role:Admin,Super,Front-Desk');
 Route::post('/sendsms', [App\Http\Controllers\HomeController::class, 'sendSMS'])->name('sendsms')->middleware('role:Admin,Super,Front-Desk');
 Route::get('/sentmessages', [App\Http\Controllers\HomeController::class, 'sentSMS'])->name('sentmessages')->middleware('role:Admin,Super,Front-Desk');
+// TRANSACTIONS
+Route::get('/transactions', [App\Http\Controllers\TransactionsController::class, 'index'])->name('transactions')->middleware('role:Finance,Admin,Super');
+Route::post('/addtransaction', [App\Http\Controllers\TransactionsController::class, 'store'])->name('addtransaction')->middleware('role:Finance,Admin,Super');
+Route::get('/delete-trans/{id}', [App\Http\Controllers\TransactionsController::class, 'destroy'])->name('delete-trans')->middleware('role:Finance,Super');
+
+// ACCOUNT HEADS
+Route::get('/account-heads', [App\Http\Controllers\AccountheadsController::class, 'index'])->name('account-heads')->middleware('role:Finance,Admin,Super');
+Route::post('/addaccounthead', [App\Http\Controllers\AccountheadsController::class, 'store'])->name('addaccounthead')->middleware('role:Finance,Admin,Super');
+Route::get('/delete-acch/{id}', [App\Http\Controllers\AccountheadsController::class, 'destroy'])->name('delete-acch')->middleware('role:Super');
 
 // HELP AND SECURITY
 Route::get('/help', [App\Http\Controllers\HomeController::class, 'help'])->name('help');
@@ -58,6 +67,19 @@ Route::get('/add-personnel', [App\Http\Controllers\PersonnelController::class, '
 Route::post('/newpersonnel', [App\Http\Controllers\PersonnelController::class, 'store'])->name('newpersonnel')->middleware('role:Admin,Super');
 Route::post('/psfuform', [App\Http\Controllers\HomeController::class, 'psfuForm'])->name('psfuform')->middleware('role:Admin,Super,Front-Desk');
 Route::get('/psfu', [App\Http\Controllers\HomeController::class, 'psfu'])->name('psfu')->middleware('role:Admin,Super,Front-Desk');
+
+
+// PARTS
+Route::get('/parts', [App\Http\Controllers\PartsController::class, 'index'])->name('parts');
+Route::get('/add-part', [App\Http\Controllers\PartsController::class, 'create'])->name('add-part');
+Route::post('save-part', [App\Http\Controllers\PartsController::class, 'store'])->name('save-part');
+Route::get('/edit-part/{partid}', [App\Http\Controllers\PartsController::class, 'edit'])->name('edit-part');
+Route::put('/update-part', [App\Http\Controllers\PartsController::class, 'update'])->name('update-part');
+Route::delete('/delete-part/{part}', [App\Http\Controllers\PartsController::class, 'destroy'])->name('delete-part');
+
+// SUPPLIES
+Route::get('/supplies', [App\Http\Controllers\PartsController::class, 'partSupplies'])->name('supplies');
+
 
 // CONTACTS AND JOBS
 Route::get('/customers', [App\Http\Controllers\ContactsController::class, 'index'])->name('customers')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
@@ -78,7 +100,7 @@ Route::get('/completedjobs', [App\Http\Controllers\JobsController::class, 'compl
 Route::get('/customer-jobs/{customerid}', [App\Http\Controllers\JobsController::class, 'customerJobs'])->name('customer-jobs')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
 Route::get('/vehicle-jobs/{vregno}', [App\Http\Controllers\JobsController::class, 'vehicleJobs'])->name('vehicle-jobs')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
 
-Route::get('/customer-vehicles/{customerid}', [App\Http\Controllers\VehicleController::class, 'customerVehicles'])->name('customer-vehicles')->middleware('role:Front-Desk,Admin,Finance,Supe,Spare-Parts');
+Route::get('/customer-vehicles/{customerid}', [App\Http\Controllers\VehicleController::class, 'customerVehicles'])->name('customer-vehicles')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
 
 Route::get('/newjob', [App\Http\Controllers\JobsController::class, 'create'])->name('newjob')->middleware('role:Front-Desk,Admin,Super');
 Route::get('/newcjob/{customerid}', [App\Http\Controllers\JobsController::class, 'newCustomerJob'])->name('newcjob')->middleware('role:Front-Desk,Admin,Super');
