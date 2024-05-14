@@ -661,6 +661,30 @@
 		}
 
 		// ADD PARTS LIST
+
+        function updateId(pnid){
+            var val = $('#pn'+pnid).val();
+            var pid = $('#parts option').filter(function() {
+                return this.value == val;
+            }).data('pid');
+
+            var instock = $('#parts option').filter(function() {
+                return this.value == val;
+            }).data('instock');
+
+            var price = $('#parts option').filter(function() {
+                return this.value == val;
+            }).data('price');
+
+
+            /* if value doesn't match an option, xyz will be undefined*/
+            var pidd = pid ? pid : '';
+            $("#pnid"+pnid).val(pidd);
+            $("#instock"+pnid).html("In Stock: "+instock);
+            $("#r"+pnid).val(price);
+            $("#a"+pnid).val(price);
+        };
+
 		function addPl(){
 			// plid=plid+1;
 
@@ -669,7 +693,7 @@
 			var newid = parseInt(plid);
 			newid+=1;
 
-			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input type="text" class="form-control partname" name="partname[]" placeholder="Part Name"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
+			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="partslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
 		}
 
 		// REMOVE PARTS LIST
@@ -696,7 +720,7 @@
 			}
 		});
 
-		$(document).on('input click', '.quantity,.amount,.rate,#labour,#discountpercent,.btnNext,#sundrycost,.premover,.sundry,.vat', function () {
+		$(document).on('input click change', '.quantity,.amount,.rate,#labour,#discountpercent,.btnNext,#sundrycost,.premover,.sundry,.vat', function () {
 			$('.rate').each(function(i, obj) {
 				var id = $(this).attr('id').substring(1);
 				// alert(id);
@@ -706,12 +730,12 @@
 				$("#a"+id).val(rate*quantity);
 
 			});
-			var vatPercent =  parseFloat($('input[name="vat"]:checked').val());
-			var sundry =  parseFloat($('input[name="sundry"]:checked').val());
-			var labour =  parseFloat($("#labour").val());
-			var sundrycost =  parseFloat($("#sundrycost").val());
-			var oldtotalamount =  parseFloat($("#oldtotalamount").val());
-			var discountpercent =  parseFloat($("#discountpercent").val());
+			var vatPercent =  parseFloat($('input[name="vat"]:checked').val()) || 0;
+			var sundry =  parseFloat($('input[name="sundry"]:checked').val()) || 0;
+			var labour =  parseFloat($("#labour").val()) || 0;
+			var sundrycost =  parseFloat($("#sundrycost").val()) || 0;
+			var oldtotalamount =  parseFloat($("#oldtotalamount").val()) || 0;
+			var discountpercent =  parseFloat($("#discountpercent").val()) || 0;
 
 			// alert(oldtotalamount);
 
@@ -743,6 +767,7 @@
 				discount = (totalAmount/100)*discountpercent;
 				totalAmount = parseFloat(totalAmount-discount);
 			}
+
 
             // CALCULATE VAT
 			var vat = (totalAmount/100)*vatPercent;

@@ -11,8 +11,25 @@ use App\Models\diagnosis;
 use App\Models\User;
 use App\Models\partsorder;
 use App\Models\payments;
+use App\Models\parts;
 use Illuminate\Http\Request;
 // use PDF;
+
+class Job {
+    public $id = 0;
+    public $jobno = 0;
+    public $jobid=0;
+    public $amount = 0;
+    public $labour = 0;
+    public $vat=0;
+    public $sundry = 0;
+    public $discount = 0;
+    public $serviceorder = [];
+    public $contact = [];
+    public $partsorder = [];
+    public $diagnosis = [];
+    public $sale = [];
+}
 
 class JobsController extends Controller
 {
@@ -65,10 +82,11 @@ class JobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         $jobno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
-
+        $parts = parts::select('id','part_name','selling_price')->get();
         /*$clist = "";
         foreach($contacts as $con){
             $clist.="'".$con->name."',";
@@ -76,7 +94,8 @@ class JobsController extends Controller
         $clist = substr($clist, 0, -1);
         */
         $jobno=$jobno+1;
-        return view('new-customer', compact('jobno'));
+        $new_job = new Job();
+        return view('new-customer', compact('jobno','new_job','parts'));
     }
 
     public function newCustomerJob($customerid)
@@ -216,7 +235,10 @@ class JobsController extends Controller
             'quantity'=>$request->quantity[$i],
             'pdate'=>date('Y-m-d'),
             'amount'=>$request->amount[$i],
+            'pid'=>$request->pnid[$i],
             ]);
+
+
         }
 
         $diag = diagnosis::updateOrCreate(['jobno'=>$jobno],$request->only(

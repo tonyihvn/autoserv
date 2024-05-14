@@ -14,10 +14,8 @@
                             $editjobno = "";
                         }
                         if(!isset($job)){
-                            // $job = \App\Models\jobs::where('id',9008)->first();
 
-                            // if($job->id==9008){
-                                $job = [];
+                                $job = $new_job;
                                 $job->id = 0;
                                 $job->jobno = $jobno;
 
@@ -25,7 +23,7 @@
                                 $job->serviceorder = [];
                                 $job->diagnosis = [];
                                 $job->sale = [];
-                            // }
+
                             $customerid = "LACT".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
                         }else{
                             $jobno = $job->id;
@@ -422,7 +420,7 @@
                                         </div>
 
                                     </div>
-                                    @if(null !== $job->partsorder)
+                                    @if(!empty($job->partsorder))
 
                                         @php $pi = 1; @endphp
 
@@ -465,29 +463,38 @@
                                         @endforeach
                                     @else
                                         @php $pi = 1; @endphp
+                                        <datalist id="partslist">
+                                            @foreach ($parts as $pas)
+                                                <option value="{{$pas->part_name}}" data-pid="{{ $pas->id }}" data-price="{{$pas->selling_price}}"  data-instock="{{ $pas->stock->quantity_in_stock }}">
+                                            @endforeach
+                                        </datalist>
+
                                         <div class="row form-row partslist" id="{{$pi}}">
 
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
-                                                <input type="text" class="form-control partname" name="partname[]" placeholder="Part Name">
+                                                    <input list="partslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Part Name">
+                                                    <input type="hidden" name="pnid[]" id="pnid{{$pi}}">
+                                                    <span><small id="instock{{$pi}}"></small></span>
+
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-2">
                                                 <div class="form-group">
-                                                <input type="number" class="form-control quantity" step="0.01" id="q{{$pi}}"  name="quantity[]" value="1">
+                                                <input type="number" class="form-control quantity" id="q{{$pi}}"  name="quantity[]" value="1">
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-2">
                                                 <div class="form-group">
-                                                <input type="number" class="form-control rate" step="0.01" id="r{{$pi}}" name="rate[]" value="1">
+                                                <input type="number" class="form-control rate" id="r{{$pi}}" name="rate[]" value="1">
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-3">
                                                 <div class="form-group">
-                                                <input type="number" class="form-control amount" step="0.01" id="a{{$pi}}" name="amount[]" value="0">
+                                                <input type="number" class="form-control amount" id="a{{$pi}}" name="amount[]" value="0">
                                                 </div>
                                             </div>
 
