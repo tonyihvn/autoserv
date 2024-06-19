@@ -123,15 +123,7 @@
                         <tbody>
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Organization:</td>
-                                <td>{{$job->contact->organization}}</td>
-                                <td style="text-align: right; font-weight: bold;"> Reg. No:</td>
-                                <td>{{$vehicle->vregno}}</td>
-                            </tr>
-                            <tr>
-                                <td scope="row" style="text-align: right; font-weight: bold;">Vin/Chasis No:</td>
-                                <td>{{$vehicle ? $vehicle->chasisno : ''}}</td>
-                                <td style="text-align: right; font-weight: bold;">Odometer Reading:</td>
-                                <td>{{$job->odometer }}</td>
+                                <td colspan="3">{{$job->contact->organization}}</td>
                             </tr>
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Phone Number:</td>
@@ -139,26 +131,37 @@
                                 <td style="text-align: right; font-weight: bold;">E-mail:</td>
                                 <td>{{$job->contact->email}}</td>
                             </tr>
-                            <tr>
-                                <td scope="row" style="text-align: right; font-weight: bold;">Vehicle Make:</td>
-                                <td>{{$vehicle->modelname}}</td>
-                                <td style="text-align: right; font-weight: bold;">Model Number:</td>
-                                <td>{{$vehicle->modelno}}</td>
-                            </tr>
+
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Address:</td>
                                 <td colspan="3">{{$job->contact->address}}</td>
 
                             </tr>
+                            @if($title!="SALES")
+                                <tr>
+                                    <td scope="row" style="text-align: right; font-weight: bold;">Vin/Chasis No:</td>
+                                    <td>{{$vehicle ? $vehicle->chasisno : ''}}</td>
+                                    <td style="text-align: right; font-weight: bold;">Odometer Reading:</td>
+                                    <td>{{$job->odometer ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="text-align: right; font-weight: bold;">Vehicle Make/Model</td>
+                                    <td>{{$vehicle->modelname ?? '' }} / {{$vehicle->modelno ?? ''}}</td>
+                                    <td style="text-align: right; font-weight: bold;">Reg. No:</td>
+                                    <td>{{$vehicle->vregno ?? ''}}</td>
+                                </tr>
+                            @endif
+
                         </tbody>
                     </table>
                     <table width="100%" style="font-size: 0.9em !important; width:95%" class="table table-striped table-bordered  table-condensed" align="center">
 
                             <tr style="color: ">
-                                <th>Job Details/Spare Parts</th>
+
+                                <th>Decription</th>
                                 <th>Quantity</th>
-                                <th>Results</th>
-                                @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+
+                                @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
                                     <th>Rate</th>
                                     <th>Amount</th>
                                 @endif
@@ -172,7 +175,7 @@
                                         <td>{{$sa->quantity}}
                                         </td>
                                         <td></td>
-                                        @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+                                        @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
 
                                             <td>{{number_format($sa->amount/$sa->quantity,2)}}</td>
                                             <td><b>{{number_format($sa->amount,2)}}</b></td>
@@ -194,14 +197,14 @@
                                         <td>{{str_replace('-','',$po->partsname)}}  {{ $po->partsno!="-" && $po->partsno!=""  ? $po->partsno : " "}}</td>
                                         <td>{{$po->quantity}}
                                         </td>
-                                        @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+                                        @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
                                             <td>{{$rate}}</td>
                                             <td><b>{{number_format($po->amount,2)}}</b></td>
                                         @endif
                                     </tr>
                                 @endif
                             @endforeach
-                            @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+                            @if(($title=="INVOICE") || ($title=="ESTIMATE")  || ($title=="SALES"))
 
                                 <tr>
                                     <td colspan="3" style="font-weight: bold;">Labour:</td>
@@ -267,27 +270,27 @@
                                     <td colspan="4">
                                         <div style="text-align: left" style="height: 100%">
                                             @if(($title=="INVOICE"))
-                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>KOJO AUTO SERVICE CENTRE LTD</b><br>
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>LAC TRUCKS LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
-                                                ACCOUNT NAME: <b>Kojo Autos Service Centre Ltd</b><br>
-                                                ACCOUNT NUMBER: <b>1012747804</b><br>
+                                                ACCOUNT NAME: <b>LAC TRUCKS</b><br>
+                                                ACCOUNT NUMBER: <b>11111111</b><br>
                                                 BANK NAME: <b>Zenith Bank</b><br>
-                                                SORT CODE: <b>057080183</b>
-                                                TIN NUMBER: <b>11190736-0001</b>
+                                                SORT CODE: <b>111111</b>
+                                                TIN NUMBER: <b>11111111-0001</b>
                                             @endif
 
                                             @if(($title=="ESTIMATE"))
                                                 The above listed parts/items will be used to service the vehicle.
                                                 <hr>
-                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>KOJO AUTO SERVICE CENTRE LTD</b><br>
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>LAC TRUCKS LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
-                                                ACCOUNT NAME: <b>Kojo Autos Service Centre Ltd</b><br>
-                                                ACCOUNT NUMBER: <b>1012747804</b><br>
+                                                ACCOUNT NAME: <b>LAC TRUCKS</b><br>
+                                                ACCOUNT NUMBER: <b>11111111</b><br>
                                                 BANK NAME: <b>Zenith Bank</b><br>
-                                                SORT CODE: <b>057080183</b>
-                                                TIN NUMBER: <b>11190736-0001</b>
+                                                SORT CODE: <b>111111</b>
+                                                TIN NUMBER: <b>11111111-0001</b>
                                             @endif
 
                                             @if(($title=="JOB INSTRUCTION"))

@@ -13,25 +13,25 @@
                             <input type="hidden" name="customerid" value="{{$job->customerid}}">
                             <input type="hidden" name="jobno" value="{{$job->jobno}}">
                             <input type="hidden" name="invoiceno" value="{{$job->jid}}">
-                            <input type="hidden" name="title" value="{{$job->serviceorder[0]->title}}">
+                            <input type="hidden" name="title" value="{{$job->serviceorder[0]->title ?? $job->description}}">
                             <div>
-                                <div class="row form-row">                                
+                                <div class="row form-row">
                                     <div class="form-group col-md-4">
                                     <label for="amount">Total Amount Paid</label>
-                                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" value="{{$job->amount}}" readonly>                                  
+                                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" value="{{$job->amount}}" readonly>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="amountpaid">Amount Paid</label>
-                                        <input type="number" name="amountpaid" id="amountpaid" class="form-control" placeholder="Amount Paid"  value="{{$job->amount}}">                                  
+                                        <input type="number" name="amountpaid" id="amountpaid" class="form-control" placeholder="Amount Paid"  value="{{$job->amount}}">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="dated">Date of Payment</label>
-                                        <input type="date" name="dated" id="dated" class="form-control" placeholder="Date of Payment">                                  
+                                        <input type="text" name="dated" id="dated" class="form-control date" placeholder="Date of Payment">
                                     </div>
-                                    
+
                                 </div>
 
-                                <div class="row form-row">                                
+                                <div class="row form-row">
                                     <div class="form-group col-md-4">
                                     <label for="paymethod">Payment Method</label>
                                     <select name="paymethod" id="paymethod" class="form-control">
@@ -45,10 +45,10 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="particulars">Payment Ref/Particulars</label>
-                                        <input type="text" name="particulars" id="particulars" class="form-control" placeholder="e.g. Teller No, Mobile Transfer REf">                                  
+                                        <input type="text" name="particulars" id="particulars" class="form-control" placeholder="e.g. Teller No, Mobile Transfer REf">
                                     </div>
-                                    
-                               
+
+
 
                                     <div class="form-group col-md-2">
                                         <label>Credit</label>
@@ -56,7 +56,7 @@
                                             <input type="radio" id="Yes"
                                             name="credit" value="Yes">
                                             <span for="Yes">Yes</span>
-                                        
+
                                             <input type="radio" id="No" checked
                                             name="credit" value="No">
                                             <span for="No">No</span>
@@ -64,8 +64,8 @@
                                     </div>
 
 
-                                    
-                                    
+
+
                                 </div>
                                 <div style="text-align: right;">
                                     <button type="submit" class="btn btn-primary">Make Payment</button>
@@ -73,6 +73,6 @@
                             </div>
                         </form>
                 </div>
-            </div>        
+            </div>
     </div>
 @endsection

@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('mytasks', tasks::where('assigned_to',Auth::user()->id)->where('status','!=','Completed')->paginate(10));
                 $view->with('allcontacts', contacts::select('id','name','customerid','organization')->get());
 
-                // $users = User::select('name','id')->get();
+                $view->with('allusers', User::select('name','id')->get());
                 // $view->with('hmembers', User::select('status')->get());
 
             }

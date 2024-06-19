@@ -70,7 +70,7 @@ class TasksController extends Controller
             'member'=>$request->assigned_to
         ]);
 
-        $tasks = tasks::paginate(50);
+        $tasks = tasks::all();
         if($request->phone_number!=""){
 
             $recipients = $request->phone_number;
@@ -91,7 +91,7 @@ class TasksController extends Controller
 
             $message = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=sendmsg&sessionid=".$sessionid."&message=".urlencode($body)."&sender=REMINDER&sendto=".$recipients."&msgtype=0");
         }
-        return redirect()->back()->with(['tasks'=>$tasks]);
+        return redirect()->back()->with(['tasks'=>$tasks,'message'=>'Task sent successfully!']);
 
     }
 

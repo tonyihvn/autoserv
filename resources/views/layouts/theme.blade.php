@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>KOJO Autos | Dashboard</title>
+	<title>Autoserve ERP | Dashboard</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -199,12 +199,14 @@
 						</li>
 
                         <li class="roledlink Spare-parts Admin Super" style="visibility:hidden;">
-							<a href="#subPages6" data-toggle="collapse" class="collapsed"><i class="fa fa-phone"></i> <span>Inventory</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages6" class="collapse ">
+							<a href="#subPages8" data-toggle="collapse" class="collapsed"><i class="fa fa-list"></i> <span>Sales/Inventory</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages8" class="collapse ">
 								<ul class="nav">
+                                    <li><a href="{{url('new-sales')}}" class="roledlink Front-Desk Admin Super">New Sales</a></li>
 									<li><a href="{{url('parts')}}" class="roledlink Front-Desk Admin Super">Automobile Parts</a></li>
 									<li><a href="{{url('supplies')}}" class="roledlink Front-Desk Admin Super">Supplies</a></li>
 									<li><a href="{{url('sales')}}" class="roledlink Front-Desk Finance Admin Super">Sales</a></li>
+                                    <li><a href="{{url('deliveries')}}" class="roledlink Front-Desk Finance Admin Super">Deliveries</a></li>
 								</ul>
 							</div>
 						</li>
@@ -213,10 +215,11 @@
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="fa fa-dollar"></i> <span>Payments</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
+									<li><a href="{{url('transactions')}}" class="roledlink Cashier Finance Admin Super">All Transactions</a></li>
                                     <li><a href="{{url('payments')}}" class="roledlink Cashier Finance Admin Super">Payments</a></li>
+									{{-- <li><a href="{{url('expenditures')}}" class="roledlink Cashier Finance Admin Super">Expenditures</a></li> --}}
+                                    <li><a href="{{url('account-heads')}}" class="roledlink Cashier Finance Admin Super">Account Heads</a></li>
 
-									<li><a href="{{url('transactions')}}" class="roledlink Cashier Finance Admin Super">Transactions</a></li>
-									<li><a href="{{url('expenditures')}}" class="roledlink Cashier Finance Admin Super">Expenditures</a></li>
 								</ul>
 							</div>
 						</li>
@@ -250,14 +253,6 @@
 									<li><a href="{{url('personnels')}}" class="roledlink Admin Super">Personnel</a></li>
 									<li><a href="{{url('users')}}" class="roledlink Admin Super">Users</a></li>
 									<li><a href="{{url('backup')}}" class="roledlink Admin Finance Front-Desk  Super">Backup</a></li>
-									<li class="roledlink Admin Super">
-										<form method="POST" action="http://server:89/customlogin" target="_blank">
-													<!-- {{$login_user->email}} -->
-				\									<input name="email" value="george@kojoautos.com" type="hidden">
-													<input type="hidden" name="password" value="Olugbemiga1">
-													<button type="submit">Spare Parts ERP</button>
-										</form>
-									</li>
 								</ul>
 							</div>
 						</li>
@@ -279,6 +274,13 @@
 							<i class="fa fa-check-circle"></i> {!!Session::get('message')!!}
 						</div>
 					@endif
+
+                    @if (Session::get('error'))
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+							<i class="fa fa-check-circle"></i> {!!Session::get('error')!!}
+						</div>
+					@endif
 					@yield('content')
 
 					<!----------------------------END YIELD PAGE CONTENT -->
@@ -290,7 +292,7 @@
 		<div class="clearfix"></div>
 		<footer>
 			<div class="container-fluid">
-				<p class="copyright">&copy; {{date("Y")}} <a href="https://www.kentonsolution.com" target="_blank">Kenton Solution </a>. All Rights Reserved.</p>
+				<p class="copyright">&copy; {{date("Y")}} <a href="https://www.gintecservices.com.ng" target="_blank">Gintec Global Services </a>. All Rights Reserved.</p>
 			</div>
 		</footer>
 	</div>
@@ -664,15 +666,15 @@
 
         function updateId(pnid){
             var val = $('#pn'+pnid).val();
-            var pid = $('#parts option').filter(function() {
+            var pid = $('#productslist option').filter(function() {
                 return this.value == val;
             }).data('pid');
 
-            var instock = $('#parts option').filter(function() {
+            var instock = $('#productslist option').filter(function() {
                 return this.value == val;
             }).data('instock');
 
-            var price = $('#parts option').filter(function() {
+            var price = $('#productslist option').filter(function() {
                 return this.value == val;
             }).data('price');
 
@@ -693,11 +695,26 @@
 			var newid = parseInt(plid);
 			newid+=1;
 
-			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="partslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
+			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="productslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
 		}
 
 		// REMOVE PARTS LIST
 		function removePl(plid){
+			$('#'+plid).remove();
+		}
+
+        function addPr(){
+			// plid=plid+1;
+			$(this).text("+ Add More Products");
+			var plid = $('div .productslist:last').attr('id');
+			var newid = parseInt(plid);
+			newid+=1;
+
+			$("#productsales").append('<div class="row form-row productslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="productslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
+		}
+
+		// REMOVE PARTS LIST
+		function removePr(plid){
 			$('#'+plid).remove();
 		}
 
@@ -853,6 +870,24 @@
 				if (ask) {
 					// window.alert("This post was successfully deleted.");
 					window.location.href = "/customer-vehicles/"+option.data('customerid');
+				}
+			}
+
+		});
+
+        $("#nameTrigger").on('blur',function(e){
+			var option = $('#names option').filter(function() {
+				return this.value === $("#nameTrigger").val();
+
+			});
+
+			if(option.val()){
+				// alert(option+"Found")
+
+				var ask = window.confirm("The name: "+option.val()+"-"+ option.data('customerid')+" that you entered already exists. Select Products for sale instead?");
+				if (ask) {
+                    $("#customerid").val(option.data('customerid'));
+                    $('.nav-tabs > .active').next('li').find('a').trigger('click');
 				}
 			}
 

@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table" id="products">
                         <thead>
                             <tr>
                                 <th>Part Name</th>

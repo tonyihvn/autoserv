@@ -5,7 +5,7 @@
 
     <h3 class="page-title">{{$jobs->first()->contact->name}} | <small style="color: green">Jobs on {{$jobs->first()->vregno}}</small></h3>
 
-    <div style="text-align: right;"><a href="/newvjob/{{$jobs->first()->contact->customerid}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Job</a></div>
+    <div style="text-align: right;"><a href="/newvjob/{{$jobs->first()->contact->customerid}}/{{$jobs->first()->vregno}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Job</a></div>
     <div class="row">
             <div class="panel">
                <small style="margin-left: 25px;;">Last Invoice No: <b style="text-align: center; color: green;">{{$lastinvoiceno}}</b></small>

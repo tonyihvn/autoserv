@@ -463,7 +463,7 @@
                                         @endforeach
                                     @else
                                         @php $pi = 1; @endphp
-                                        <datalist id="partslist">
+                                        <datalist id="productslist">
                                             @foreach ($parts as $pas)
                                                 <option value="{{$pas->part_name}}" data-pid="{{ $pas->id }}" data-price="{{$pas->selling_price}}"  data-instock="{{ $pas->stock->quantity_in_stock }}">
                                             @endforeach
@@ -473,7 +473,7 @@
 
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
-                                                    <input list="partslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Part Name">
+                                                    <input list="productslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Part Name">
                                                     <input type="hidden" name="pnid[]" id="pnid{{$pi}}">
                                                     <span><small id="instock{{$pi}}"></small></span>
 

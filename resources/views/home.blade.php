@@ -168,24 +168,37 @@ g text{
                                 <tbody>
                                     @foreach ($reminders as $rem)
                                     @php
-                                    $now = time(); // or your date as well
-                                    $lasts_date = strtotime($rem->dated);
-                                    $datediff = $now - $lasts_date;
+                                        $now = time(); // or your date as well
+                                        $due = "";
+                                        $style = "";
+                                        if($rem->next_due!=""){
+                                            // IF NEXT DUE IS PROVIDED
+                                            $days_ahead = strtotime($rem->next_due);
+                                            $days_ahead_diff = $days_ahead-$now;
+                                            $num_days_ahead = round($days_ahead_diff / (60 * 60 * 24));
 
-                                    $dayspast = round($datediff / (60 * 60 * 24));
+                                            if($num_days_ahead<0){
+                                                $due = "Overdue By: ".$num_days_ahead." days";
+                                                $style='style="background-color: #FFD580 !important"';
+                                            }else{
+                                                $due = "Due in Next ".$num_days_ahead." days";
+                                            }
+                                        }else{
+                                            // IF NEXT DUE IS NOT PROVIDED
+                                            $lasts_date = strtotime($rem->dated);
+                                            $datediff = $now - $lasts_date;
+                                            $dayspast = round($datediff / (60 * 60 * 24));
 
-                                    $due = "";
-                                    $style = "";
-                                    if($dayspast > 90){
-                                        $days = $dayspast-90;
-                                        $due = "Overdue By: ".$days." days";
-                                        $style='style="background-color: #FFD580 !important"';
-                                    }
-                                    else if($dayspast < 90){
-                                        $days = 90-$dayspast;
-                                        $due = "Due in Next ".$days." days";
-                                    }
-
+                                            if($dayspast > 90){
+                                                $days = $dayspast-90;
+                                                $due = "Overdue By: ".$days." days";
+                                                $style='style="background-color: #FFD580 !important"';
+                                            }
+                                            else if($dayspast < 90){
+                                                $days = 90-$dayspast;
+                                                $due = "Due in Next ".$days." days";
+                                            }
+                                        }
                                     @endphp
                                         <tr {!!$style!!}>
 
@@ -199,7 +212,7 @@ g text{
 
                                             <td>
                                                 <a href="/invoice/{{$rem->jobno}}/invoice" target="_blank" class="label label-warning roledlink Super Front-Desk">View Job</a>
-                                                <a href="/psfu/{{$rem->jobno}}" target="_blank" class="label label-success">PSFU</a>
+                                                <a href="/jobpsfu/{{$rem->jobno}}" target="_blank" class="label label-success">PSFU</a>
                                             </td>
 
                                         </tr>
@@ -230,7 +243,7 @@ g text{
 
                                         <tr>
                                             <td><a href="/tasks"><b>{{$task->title}}</b></a></td>
-                                            <td>{{is_numeric($task->member)?$allcontacts->where('id',$task->member)->first()->name:$task->member}}</td>
+                                            <td>{{is_numeric($task->member)?$allusers->where('id',$task->member)->first()->name:$task->member}}</td>
                                             <td>{{$task->date}}</td>
                                             <td>{{$task->status}}</td>
                                         </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\parts;
 use App\Models\supplies;
+use App\Models\stock;
 
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class PartsController extends Controller
             'quantity_in_stock'=>0
         ]);
 
-        return redirect()->route('parts')->with('success', 'Part created successfully.');
+        return redirect()->route('parts')->with('message', 'Part created successfully.');
     }
 
     public function edit($partid)
@@ -46,14 +47,14 @@ class PartsController extends Controller
 
         $part->update($request->all());
 
-        return redirect()->route('parts')->with('success', 'Part updated successfully.');
+        return redirect()->route('parts')->with('message', 'Part updated successfully.');
     }
 
     public function destroy($partid)
     {
         parts::find($partid)->delete();
 
-        return redirect()->route('parts')->with('success', 'Part deleted successfully.');
+        return redirect()->route('parts')->with('message', 'Part deleted successfully.');
     }
 
     public function addSupply()
@@ -65,15 +66,15 @@ class PartsController extends Controller
     public function saveSupply(Request $request){
         // $supply->load('part'); // Load the related part
 
-        
+
         // Increase stock
         $part = parts::where('id',$request->part_id)->first();
-
+        supplies::create($request->all());
         $part->stock()->increment('quantity_in_stock', $request->quantity_supplied);
 
-        $supplies = supplies::create($request->all());
-        
-        return view('supplies', compact('supplies'));
+        $supplies = supplies::all();
+
+        return view('supplies', compact('supplies'))->with('message', 'Supply record saved successfully.');
     }
 
     public function partSupplies()

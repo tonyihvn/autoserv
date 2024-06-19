@@ -26,7 +26,6 @@
                                     }
 
                             }
-
                     @endphp
 
                        <form method="POST" action="{{ route('addnewcustomer') }}">
@@ -36,8 +35,6 @@
                             <input type="hidden" name="editjobno" value="{{$editjobno}}">
                             <input type="hidden" name="jobid" value="">
                             <input type="hidden" name="newcjob" value="newcjob">
-
-
 
                         @csrf
                         <ul class="nav nav-tabs" id="jobordertabs">
@@ -303,11 +300,18 @@
                                     </div>
 
                                         @php $pi = 1; @endphp
+                                        <datalist id="productslist">
+                                            @foreach ($parts as $pas)
+                                                <option value="{{$pas->part_name}}" data-pid="{{ $pas->id }}" data-price="{{$pas->selling_price}}"  data-instock="{{ $pas->stock->quantity_in_stock }}">
+                                            @endforeach
+                                        </datalist>
                                         <div class="row form-row partslist" id="{{$pi}}">
 
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
-                                                <input type="text" class="form-control partname" name="partname[]" placeholder="Part Name">
+                                                    <input list="productslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Product Name">
+                                                    <input type="hidden" name="pnid[]" id="pnid{{$pi}}">
+                                                    <span><small id="instock{{$pi}}"></small></span>
                                                 </div>
                                             </div>
 

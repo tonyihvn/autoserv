@@ -67,6 +67,7 @@ Route::get('/add-personnel', [App\Http\Controllers\PersonnelController::class, '
 Route::post('/newpersonnel', [App\Http\Controllers\PersonnelController::class, 'store'])->name('newpersonnel')->middleware('role:Admin,Super');
 Route::post('/psfuform', [App\Http\Controllers\HomeController::class, 'psfuForm'])->name('psfuform')->middleware('role:Admin,Super,Front-Desk');
 Route::get('/psfu', [App\Http\Controllers\HomeController::class, 'psfu'])->name('psfu')->middleware('role:Admin,Super,Front-Desk');
+Route::get('/jobpsfu/{jobno}', [App\Http\Controllers\HomeController::class, 'jobPSFU'])->name('jobpsfu')->middleware('role:Admin,Super,Front-Desk');
 
 
 // PARTS
@@ -74,13 +75,19 @@ Route::get('/parts', [App\Http\Controllers\PartsController::class, 'index'])->na
 Route::get('/add-part', [App\Http\Controllers\PartsController::class, 'create'])->name('add-part');
 Route::post('save-part', [App\Http\Controllers\PartsController::class, 'store'])->name('save-part');
 Route::get('/edit-part/{partid}', [App\Http\Controllers\PartsController::class, 'edit'])->name('edit-part');
-Route::put('/update-part', [App\Http\Controllers\PartsController::class, 'update'])->name('update-part');
-Route::delete('/delete-part/{part}', [App\Http\Controllers\PartsController::class, 'destroy'])->name('delete-part');
+Route::post('/update-part', [App\Http\Controllers\PartsController::class, 'update'])->name('update-part');
+Route::get('/delete-part/{part}', [App\Http\Controllers\PartsController::class, 'destroy'])->name('delete-part');
 
 // SUPPLIES
 Route::get('/supplies', [App\Http\Controllers\PartsController::class, 'partSupplies'])->name('supplies');
 Route::get('/add-supply', [App\Http\Controllers\PartsController::class, 'addSupply'])->name('add-supply');
 Route::post('save-supply', [App\Http\Controllers\PartsController::class, 'saveSupply'])->name('save-supply');
+
+
+// PART/PRODUCT SALES
+Route::get('/sales', [App\Http\Controllers\PartsorderController::class, 'index'])->name('sales');
+Route::get('/new-sales', [App\Http\Controllers\JobsController::class, 'newSales'])->name('new-sales')->middleware('role:Front-Desk,Admin,Super');
+Route::post('/add-sales', [App\Http\Controllers\JobsController::class, 'addSales'])->name('add-sales')->middleware('role:Front-Desk,Admin,Super');
 
 
 // CONTACTS AND JOBS
@@ -113,6 +120,10 @@ Route::post('/addjobno', [App\Http\Controllers\JobsController::class, 'addJobno'
 Route::get('/invoice/{jobno}/{type}', [App\Http\Controllers\JobsController::class, 'printInvoice'])->name('invoice')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
 Route::post('/filterjobs', [App\Http\Controllers\JobsController::class, 'filterJobs'])->name('filterjobs')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
 
+// DELIVERIES
+Route::resource('deliveries', App\Http\Controllers\DeliveryController::class);
+Route::post('actualDelivery',[App\Http\Controllers\DeliveryController::class,'actualDelivery'])->name('actualDelivery');
+Route::get('/delivery_note/{did}',[App\Http\Controllers\DeliveryController::class,'deliveryNote'])->name('delivery-note');
 
 Route::post('/changedate', [App\Http\Controllers\JobsController::class, 'changedate'])->name('changedate')->middleware('role:Admin,Super,Front-Desk');
 

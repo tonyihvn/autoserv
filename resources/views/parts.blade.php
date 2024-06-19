@@ -1,6 +1,8 @@
 @extends('layouts.theme')
 
 @section('content')
+@php $pagetype="report"; $sn=1; @endphp
+
     <h3 class="page-title">Edit | <small style="color: green">All Parts</small></h3>
     <div class="row">
             <div class="panel">
@@ -8,7 +10,7 @@
                     <a href="{{url('add-part')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> Add New Part</a>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table" id="products">
                         <thead>
                             <tr>
                                 <th>Part Name</th>
@@ -37,6 +39,11 @@
                                     <!-- Add other columns here -->
                                     <td>
                                         {{$part->stock->quantity_in_stock}}
+                                    </td>
+                                    <td>
+                                        <a href="{{url('edit-part/'.$part->id)}}" class="btn btn-xs btn-primary">Edit</a>
+                                        <a href="{{url('delete-part/'.$part->id)}}" class="btn btn-xs btn-danger">Delete</a>
+
                                     </td>
                                 </tr>
                             @endforeach
