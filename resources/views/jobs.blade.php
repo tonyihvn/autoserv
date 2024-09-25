@@ -64,7 +64,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$job->id}}">
                                                 <div class="col-md-8">
-                                                    <input type="number" name="jid" id="jid" placeholder="Enter Job No">
+                                                    <input type="number" name="jid" id="jid" placeholder="Enter Job No" value="{{$lastinvoiceno+1}}">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button class="btn btn-primary btn-xs">Save</button>

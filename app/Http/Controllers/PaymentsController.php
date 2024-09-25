@@ -54,7 +54,7 @@ class PaymentsController extends Controller
             'status'=>"Done"
         ]);
 
-        return redirect()->back()->with(['message'=>'The payment for invoice no: '.$request->invoiceno.' saved successfully! <br> <a href="/invoice/'.$request->jobno.'/receipt" class="btn btn-primary">Print Invoice</a>']);
+        return redirect()->back()->with(['message'=>'The payment for invoice no: '.$request->invoiceno.' saved successfully! <br> <a href="/invoice/'.$request->jobno.'/receipt" class="btn btn-primary">Print Receipt</a>']);
     }
 
     /**
@@ -71,7 +71,7 @@ class PaymentsController extends Controller
     public function newPayment($invoiceno)
     {
         $job = jobs::where('jid',$invoiceno)->first();
-       
+
         return view('make-payment', compact('job'));
     }
 

@@ -26,6 +26,19 @@ class TransactionsController extends Controller
         return view('transactions', compact('transactions','users','accountheads','jobs'));
     }
 
+    public function Transactions(request $request)
+    {
+        $from = date('Y-m-d', strtotime($request->from));
+        $to = date('Y-m-d', strtotime($request->to));
+
+        $accountheads = accountheads::all();
+        $jobs = jobs::select('id','jid','customerid')->where('jid','>',0)->where('status','Pending')->get();
+        $transactions = transactions::whereBetween('dated',  [$from, $to])->orderBy('id','desc')->paginate(50);
+        $users = User::select('id','name')->get();
+
+        return view('transactions', compact('transactions','users','accountheads','jobs'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

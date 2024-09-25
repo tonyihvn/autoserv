@@ -119,6 +119,8 @@ Route::post('/addnewcustomer', [App\Http\Controllers\JobsController::class, 'sto
 Route::post('/addjobno', [App\Http\Controllers\JobsController::class, 'addJobno'])->name('addjobno')->middleware('role:Admin,Super,Front-Desk');
 Route::get('/invoice/{jobno}/{type}', [App\Http\Controllers\JobsController::class, 'printInvoice'])->name('invoice')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
 Route::post('/filterjobs', [App\Http\Controllers\JobsController::class, 'filterJobs'])->name('filterjobs')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
+Route::post('/filterTransactions', [App\Http\Controllers\TransactionsController::class, 'filterTransactions'])->name('filterTransactions')->middleware('role:Admin,Super,Finance');
+
 
 // DELIVERIES
 Route::resource('deliveries', App\Http\Controllers\DeliveryController::class);

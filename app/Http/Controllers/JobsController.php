@@ -74,7 +74,8 @@ class JobsController extends Controller
 
         $jobno = $job->jobno;
         $editjobno = $job->jobno;
-        return view('new-customer', compact('job','vehicle','jobno','contacts','editjobno'));
+        $parts = parts::select('id','part_name','selling_price')->with('stock')->get();
+        return view('new-customer', compact('job','vehicle','jobno','contacts','editjobno','parts'));
     }
 
     /**
@@ -92,12 +93,6 @@ class JobsController extends Controller
             $jobno=$jobno->jobno+1;
         }
         $parts = parts::select('id','part_name','selling_price')->get();
-        /*$clist = "";
-        foreach($contacts as $con){
-            $clist.="'".$con->name."',";
-        }
-        $clist = substr($clist, 0, -1);
-        */
 
         $new_job = new Job();
         return view('new-customer', compact('jobno','new_job','parts'));
@@ -107,7 +102,6 @@ class JobsController extends Controller
     {
         $parts = parts::select('id','part_name','selling_price')->with('stock')->get();
         $vehicles = vehicle::select('id','vregno')->get();
-
         return view('new-sales', compact('parts','vehicles'));
     }
 
@@ -147,6 +141,8 @@ class JobsController extends Controller
             'description'=>'SALES',
             'dated'=>$request->dated,
             'jid'=>$request->jid,
+            'odometer'=>$request->vin,
+            'next_due'=>$request->nextservicedate
         ]);
 
         $totalamount = 0;
@@ -166,7 +162,7 @@ class JobsController extends Controller
             }
 
 
-            $sale = partsorder::updateOrCreate(['jobno'=>$request->jobno, 'partsname'=>$request->partname[$i]],[
+            partsorder::updateOrCreate(['jobno'=>$request->jobno, 'partsname'=>$request->partname[$i]],[
             'customerid'=>$customerid,
             'jobno'=>$jobno,
             'partsname'=>$request->partname[$i],
@@ -182,14 +178,19 @@ class JobsController extends Controller
         $job->amount = $totalamount;
         $job->save();
 
-        $parts = parts::select('id','part_name','selling_price')->get();
+        parts::select('id','part_name','selling_price')->get();
+
         return redirect()->route('sales')->with(['message'=>'The Product Sales was success, please, proceed to payment']);
     }
 
-
     public function newCustomerJob($customerid)
     {
-        $jobno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
+        $jobcheck = jobs::select('jobno')->orderBy('id','desc')->get();
+        if($jobcheck->count()==0){
+            $jobno = 0;
+        }else{
+            $jobno = $jobcheck->first()->jobno;
+        }
         $contact = contacts::select('name','customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
         $parts = parts::select('id','part_name','selling_price')->get();
         $jobno=$jobno+1;
@@ -199,8 +200,12 @@ class JobsController extends Controller
 
     public function newVehicleJob($customerid,$vid)
     {
-
-        $jobno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
+        $jobcheck = jobs::select('jobno')->orderBy('id','desc')->get();
+        if(count($jobcheck)==0){
+            $jobno = 0;
+        }else{
+            $jobno = $jobcheck->first()->jobno;
+        }
         $vehicleinfo = vehicle::where('id',$vid)->first();
         $parts = parts::select('id','part_name','selling_price')->get();
         $new_job = new Job();
@@ -217,9 +222,7 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-
         $jno = jobs::select('jobno')->orderBy('id','desc')->first();
-
         if($jno==null){
             $jobno = 0;
         }else{
@@ -305,9 +308,7 @@ class JobsController extends Controller
                 'nextservicedate'=>date('Y-m-d', strtotime($request->ddate. ' + 90 days')),
                 'status'=>$status
             ]);
-
         }else{
-
             serviceorder::updateOrCreate(['jobno'=>$jobno],[
                 'customerid'=>$request->customerid,
                 'jobno'=>$jobno,
@@ -319,12 +320,10 @@ class JobsController extends Controller
                 'nextservicedate'=>date('Y-m-d',strtotime($request->nextservicedate)),
                 'status'=>$status
             ]);
-
         }
         partsorder::where('jobno',$jobno)->delete();
 
         for ($i=0; $i < count($request->partname); $i++) {
-
             if($request->pnid[$i]==""){
                 $part = parts::create([
                     'part_name'=>$request->partname[$i],
@@ -336,7 +335,6 @@ class JobsController extends Controller
             }else{
                 $partid = $request->pnid[$i];
             }
-
             $sale = partsorder::updateOrCreate(['jobno'=>$jobno, 'partsname'=>$request->partname[$i]],[
             'customerid'=>$request->customerid,
             'jobno'=>$jobno,
@@ -346,8 +344,6 @@ class JobsController extends Controller
             'amount'=>$request->amount[$i],
             'pid'=>$partid
             ]);
-
-
         }
 
         $diag = diagnosis::updateOrCreate(['jobno'=>$jobno],$request->only(
@@ -366,9 +362,7 @@ class JobsController extends Controller
         $diag->jobno = $jobno;
         $diag->save();
 
-        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/invoice/'.$jobno.'/estimate" class="btn btn-primary">Print Job Estimate</a> OR <br> <a href="/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
-
-
+        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/invoice/'.$jobno.'/estimate" class="btn btn-success">Print Job Estimate</a> OR <a href="/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
     }
 
     public function addJobno(Request $request)

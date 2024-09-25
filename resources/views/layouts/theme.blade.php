@@ -692,6 +692,10 @@
 
 			$(this).text("+ Add More Parts");
 			var plid = $('div .partslist:last').attr('id');
+
+            if(plid==null){
+                plid = 0;
+            }
 			var newid = parseInt(plid);
 			newid+=1;
 

@@ -13,11 +13,27 @@
     <h3 class="page-title">Financial | <small style="color: green">Transactions</small></h3>
     <div class="row">
             <div class="panel" style="width:100% !important; position: relative;">
+
+                <h6>Filter Transactions by Duration</h6>
+                <form method="POST" action="{{ route('filterTransactions') }}" class="row" style="width: 50%; margin: auto;">
+                    @csrf
+
+                        <div class="col-md-4">
+                            <label for="from">From</label>
+                            <input name="from" id="from" class="form-control" type="text" placeholder="Choose Date">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="to">To</label>
+                            <input name="to" id="to" class="form-control" type="text" placeholder="Choose Date">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">.</label>
+                            <button class="form-control btn btn-success" type="submit">Filter Transactions</button>
+                        </div>
+                </form>
+
                 <div class="panel-heading" style="text-align: center">
-
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#transaction"> <i class="fa fa-plus"></i> Add New</a>
-
-
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#transaction"> <i class="fa fa-plus"></i> Add New Transaction</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped" style="width: 100%;" id="products">
