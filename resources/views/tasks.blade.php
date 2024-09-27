@@ -48,7 +48,7 @@
                         </tbody>
                     </table>
                     <div style="text-align: right">
-                        {{href="{{url('/->links("pagination::bootstrap-4")}}
+                        {{$tasks->links("pagination::bootstrap-4")}}
                     </div>
                 </div>
             </div>
