@@ -40,7 +40,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = jobs::where('status','Pending')->with('payment')->orderBy('dated','desc')->orderBy('status','desc')->paginate(400);
+        $jobs = jobs::where('status','!=','Done')->with('payment')->orderBy('dated','desc')->orderBy('status','desc')->paginate(400);
         $lastinvoiceno = jobs::max('jid');
         return view('jobs', compact('jobs','lastinvoiceno'));
     }
@@ -109,7 +109,7 @@ class JobsController extends Controller
     {
 
         if($request->customerid=="New"){
-            $customerid = "LACT".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
+            $customerid = "AWHS".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
             contacts::create([
                 'name'=>$request->name,
                 'organization'=>$request->organixation,
@@ -275,11 +275,11 @@ class JobsController extends Controller
 
         if($request->servicename!==null){
             $description = $request->servicename[0];
-            $status = "Pending";
+            $status = $request->sstatus;
             $dated = date('Y-m-d');
         }else{
             $description = $request->diagnosis;
-            $status = "Pending";
+            $status = $request->status;
             $dated = date('Y-m-d');
         }
         $job->vregno = $request->vregno;
