@@ -94,7 +94,8 @@
                                 </tr>
                                 <tr>
                                         <td colspan="4">
-                                        <img  src="{{ asset('/images/kjfooter.jpg') }}" alt="{{$settings->motto}}" style="width: 100%; height: 20px;">
+                                            <hr>
+                                        {{-- <img  src="{{ asset('/images/kjfooter.jpg') }}" alt="{{$settings->motto}}" style="width: 100%; height: 20px;"> --}}
                                         </td>
                                 </tr>
                             </tbody>
