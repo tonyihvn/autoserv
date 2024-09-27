@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <div class="form-group">
-                                          <label for="frameno">Frame Number</label>
+                                          <label for="frameno">Chasis Number</label>
                                           <input type="text"
                                             class="form-control" name="frameno" id="frameno" placeholder="Frame Number" value="{{$vehicle ? $vehicle->frameno:''}}">
                                         </div>
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
-                                          <label for="chasisno">Chasis/VIN Number</label>
+                                          <label for="chasisno">VIN Number</label>
                                           <input type="text"
                                             class="form-control" name="chasisno" id="chasisno" placeholder="Chasis Number" value="{{$vehicle ? $vehicle->chasisno:''}}">
                                         </div>
@@ -132,14 +132,13 @@
 
                             <div class="tab-pane" id="tab3">
 
-
                                <div class="row form-row">
                                     <div class="form-group col-md-6">
                                         <label for="servicename">Service Name</label>
                                         <div>
 
                                         <input type="text" id="servicename" value="Routine Maintenance" placeholder="Routine Maintenance"
-                                        name="servicename" class="form-control" >
+                                        name="servicename[]" class="form-control" >
                                         </div>
                                     </div>
 
@@ -148,7 +147,7 @@
                                         <div>
 
                                         <input type="text" id="description" placeholder="Description"
-                                        name="description" class="form-control" >
+                                        name="description[]" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
@@ -186,9 +185,12 @@
                                     <div class="form-group col-md-3">
                                         <label for="sstatus">Status</label>
                                         <div>
-
-                                        <input type="text" id="sstatus" placeholder="Completed"
-                                        name="sstatus" class="form-control" >
+                                        <select name="sstatus" id="sstatus" class="pending">
+                                            <option value="Just Arrived">Just Arrived</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
                                         </div>
                                     </div>
                                 </div>
@@ -224,8 +226,8 @@
 
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
-                                          <label for="requests">Customer Requests</label>
-                                          <textarea class="form-control" name="requests" id="requests" rows="3"></textarea>
+                                          <label for="request">Customer Requests</label>
+                                          <textarea class="form-control" name="requests" id="request" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -269,9 +271,12 @@
                                     <div class="form-group col-md-3">
                                         <label for="status">Status</label>
                                         <div>
-
-                                        <input type="text" id="status" value="" placeholder="Completed"
-                                        name="status" class="form-control" >
+                                        <select name="status" id="status" class="pending">
+                                            <option value="Just Arrived">Just Arrived</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
                                         </div>
                                     </div>
                                 </div>

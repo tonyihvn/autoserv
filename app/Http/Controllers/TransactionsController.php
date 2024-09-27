@@ -26,7 +26,7 @@ class TransactionsController extends Controller
         return view('transactions', compact('transactions','users','accountheads','jobs'));
     }
 
-    public function Transactions(request $request)
+    public function filterTransactions(request $request)
     {
         $from = date('Y-m-d', strtotime($request->from));
         $to = date('Y-m-d', strtotime($request->to));
