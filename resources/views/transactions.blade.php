@@ -60,6 +60,7 @@
                                     <td>{{$transact->id}}</td>
                                     <td>{{$transact->title}}</td>
                                     <td>{{number_format($transact->amount,2)}}</td>
+                                    <td></td>
                                     <td>{{$transact->accounthead->title}} <br> <small><i>{{$transact->accounthead->category}}</i></small></td>
                                     <td>{{$transact->dated}}</td>
                                     <td>{{strtoupper($transact->reference_no)}}</td>
@@ -82,6 +83,7 @@
                                 <td>#</td>
                                 <td>Title</td>
                                 <td>Amount</td>
+                                <td></td>
                                 <td>Account Head</td>
                                 <td>Date</td>
                                 <td>Invoice No</td>
@@ -171,7 +173,7 @@
                         <label for="from"  class="control-label">From/Sender</label>
 
                         <select class="form-control" name="from" id="from">
-                            <option value="LACTrucks">LACTrucks Management</option>
+                            <option value="1">LACTrucks Management</option>
                             <option value="Others">Others</option>
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -182,7 +184,7 @@
                     <div class="form-group col-md-6">
                         <label for="to"  class="control-label">To/Receiver</label>
                         <select class="form-control" name="to" id="to">
-                            <option value="LACTrucks">LACTrucks Management</option>
+                            <option value="1">LACTrucks Management</option>
                             <option value="Others">Others</option>
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -196,7 +198,7 @@
                         <label for="approved_by"  class="control-label">Approved By</label>
 
                         <select class="form-control" name="approved_by" id="approved_by">
-                            <option value="LACTrucks">LACTrucks Management</option>
+                            <option value="1">LACTrucks Management</option>
                             <option value="Others">Others</option>
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -207,7 +209,7 @@
                     <div class="form-group col-md-6">
                         <label for="recorded_by"  class="control-label">Delivered / Recorded By</label>
                         <select class="form-control" name="recorded_by" id="recorded_by">
-                            <option value="LACTrucks">LACTrucks Management</option>
+                            <option value="1">LACTrucks Management</option>
                             <option value="Others">Others</option>
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>

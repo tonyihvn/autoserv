@@ -310,10 +310,10 @@
                         <table width="100%" style="font-size:9px !important; width:95%" class="table table-condensed" align="center" border="1">
                             <tr>
                                 <td>
-                                    {!! $job->diagnosis->problems!="" ? "<p style='border-bottom: solid 1px grey'><b>Problems</b>: ".$job->diagnosis->problems."</p>" : '' !!}
-                                    {!! $job->diagnosis->causes!="" ? "<p style='border-bottom: solid 1px grey'><b>Causes</b>: ".$job->diagnosis->causes."</p>" : '' !!}
-                                    {!! $job->diagnosis->request!="" ? "<p style='border-bottom: solid 1px grey'><b>Owner's Request</b>: ".$job->diagnosis->request."</p>" : '' !!}
-                                    {!! $job->diagnosis->instructions!="" ? "<p style='border-bottom: solid 1px grey'><b>Instructions</b>: ".$job->diagnosis->instructions."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Problems</b>: ".$job->diagnosis->problems."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Causes</b>: ".$job->diagnosis->causes."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Owner's Request</b>: ".$job->diagnosis->request."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Instructions</b>: ".$job->diagnosis->instructions."</p>" : '' !!}
                                 </td>
                             </tr>
                         </table>
