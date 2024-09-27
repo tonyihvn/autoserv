@@ -35,10 +35,10 @@
                                     <td>{{is_numeric($task->assigned_to)?$users->where('id',$task->assigned_to)->first()->name:$task->assigned_to}}</td>
 
                                     <td>
-                                        <a href="/inprogresstask/{{$task->id}}" class="label label-warning">In Progress</a>
-                                        <a href="/completetask/{{$task->id}}" class="label label-success">Completed</a>
+                                        <a href="{{url('/inprogresstask/'$task->id)}}" class="label label-warning">In Progress</a>
+                                        <a href="{{url('/completetask/'$task->id)}}" class="label label-success">Completed</a>
 
-                                        <a href="/delete-task/{{$task->id}}" class="label label-danger"  onclick="return confirm('Are you sure you want to delete this record? {{$task->title}}?')">Delete</a>
+                                        <a href="{{url('/delete-task/'$task->id)}}" class="label label-danger"  onclick="return confirm('Are you sure you want to delete this record? {{$task->title}}?')">Delete</a>
                                     </td>
 
                                 </tr>

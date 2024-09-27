@@ -5,11 +5,11 @@
 
     <h3 class="page-title">Members | <small style="color: green">All Members</small></h3>
     <div class="row">
-        
-       
-        
+
+
+
             <div class="panel">
-              
+
                 <div class="panel-body">
                     <table class="table  responsive-table" id="products">
                         <thead>
@@ -30,7 +30,7 @@
                                 <tr
                                     @if ($member->gender=="Female")
                                         style="background-color: azure !important;"
-                                    @endif                                
+                                    @endif
                                 >
                                     <td>{{$member->id}}</td>
                                     <td>{{$member->name}}</td>
@@ -43,22 +43,22 @@
                                     <td>{{$member->location}}</td>
                                     <td width="90">
                                         <div class="btn-group">
-                                            <a href="/edit-member/{{$member->id}}" class="label label-primary left"><i class="lnr lnr-pencil"></i></a>
-                                            <a href="/member/{{$member->id}}/" class="label label-success"><i class="lnr lnr-eye"></i></a>
+                                            <a href="{{url('/edit-member/'.$member->id)}}" class="label label-primary left"><i class="lnr lnr-pencil"></i></a>
+                                            <a href="{{url('/member/'.$member->id)}}/" class="label label-success"><i class="lnr lnr-eye"></i></a>
                                         </div>
                                     </td>
-                                   
+
                                 </tr>
                             @endforeach
-                            
-                            
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
-        
+
     </div>
-    
-        
-    
+
+
+
 @endsection

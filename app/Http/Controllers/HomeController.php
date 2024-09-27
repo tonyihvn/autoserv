@@ -145,7 +145,7 @@ class HomeController extends Controller
       // system("ping -c 1 google.com", $response);
       if(!checkdnsrr('google.com'))
       {
-          return redirect()->back()->with(['message'=>'Please connect your internet before going to communications page <a href="/communications">Retry</a>']);
+          return redirect()->back()->with(['message'=>'Please connect your internet before going to communications page <a href="{{url(\'/communications\')}}">Retry</a>']);
       }else{
         $smspassword = env('AUTOSERVE_SMS');
         $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=AUTOSERVE&subacctpwd=".$smspassword);
@@ -201,7 +201,7 @@ class HomeController extends Controller
       // system("ping -c 1 google.com", $response);
       if(!checkdnsrr('google.com'))
       {
-          return redirect()->back()->with(['message'=>'Please connect your internect before going to communications page <a href="/communications">Retry</a>']);
+          return redirect()->back()->with(['message'=>'Please connect your internect before going to communications page <a href="{{url(\'/communications\')}}">Retry</a>']);
       }else{
         $smspassword = env('AUTOSERVE_SMS');
         $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=KOJOAUTOS&subacctpwd=".$smspassword);
@@ -265,7 +265,7 @@ class HomeController extends Controller
       // system("ping -c 1 google.com", $response);
       if(!checkdnsrr('google.com'))
       {
-          return redirect()->back()->with(['message'=>'Please connect your internect before going to communications page <a href="/communications">Retry</a>']);
+          return redirect()->back()->with(['message'=>'Please connect your internect before going to communications page <a href="/awh/communications">Retry</a>']);
       }else{
 
         $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=KOJOAUTOS&subacctpwd=@@prayer22");
@@ -334,7 +334,7 @@ class HomeController extends Controller
       // system("ping -c 1 google.com", $response);
       if(!checkdnsrr('google.com'))
       {
-          return redirect()->back()->with(['message'=>'Please connect your internet before going to communications page <a href="/communications">Retry</a>']);
+          return redirect()->back()->with(['message'=>'Please connect your internet before going to communications page <a href="/awh/communications">Retry</a>']);
       }else{
 
         // $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=KOJOAUTOS&subacctpwd=@@prayer22");

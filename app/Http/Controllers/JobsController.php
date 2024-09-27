@@ -362,7 +362,7 @@ class JobsController extends Controller
         $diag->jobno = $jobno;
         $diag->save();
 
-        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/invoice/'.$jobno.'/estimate" class="btn btn-success">Print Job Estimate</a> OR <a href="/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
+        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/awh/invoice/'.$jobno.'/estimate" class="btn btn-success">Print Job Estimate</a> OR <a href="/awh/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
     }
 
     public function addJobno(Request $request)

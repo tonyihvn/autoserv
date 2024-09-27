@@ -36,10 +36,10 @@
                                     <td>{{$veh->chasisno}}</td>
 
                                     <td>
-                                        <a href="/newvjob/{{$veh->customerid}}/{{$veh->id}}" class="label label-primary">New Job</a>
-                                        <a href="/vehicle-jobs/{{$veh->vregno}}" class="label label-warning">Jobs</a>
-                                        <a href="/edit-vehicle/{{$veh->id}}" class="label label-info">Edit</a>
-                                        <a href="/delete/{{$veh->id}}/vehicle" class="label label-danger"  onclick="return confirm('Are you sure you want to delete this record? {{$veh->vregno}}?')">Delete</a>
+                                        <a href="{{url('/newvjob/'.$veh->customerid.'/'.$veh->id)}}" class="label label-primary">New Job</a>
+                                        <a href="{{url('/vehicle-jobs/'.$veh->vregno)}}" class="label label-warning">Jobs</a>
+                                        <a href="{{url('/edit-vehicle/'.$veh->id)}}" class="label label-info">Edit</a>
+                                        <a href="{{url('/delete/'.$veh->id)}}/vehicle" class="label label-danger"  onclick="return confirm('Are you sure you want to delete this record? {{$veh->vregno}}?')">Delete</a>
                                     </td>
 
                                 </tr>

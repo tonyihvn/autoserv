@@ -92,7 +92,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="clear: both !important;">
 			<div class="brand">
-				<a href="/"><img  src="/images/{{$settings->logo}}" alt="{{$settings->motto}}" class="img-responsive logo" style="height: 35px !important; float: left;"></a> {{$settings->ministry_name}}
+				<a href="{{url('/')}}"><img  src="/images/{{$settings->logo}}" alt="{{$settings->motto}}" class="img-responsive logo" style="height: 35px !important; float: left;"></a> {{$settings->ministry_name}}
 				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-menu"></i></button>
 			</div>
 
@@ -142,7 +142,7 @@
 						</li>
 						@endauth
 						<li>
-							<a href="/"><i class="lnr lnr-home"></i> <span>Home</span></a>
+							<a href="{{url('/')}}"><i class="lnr lnr-home"></i> <span>Home</span></a>
 
 						</li>
 

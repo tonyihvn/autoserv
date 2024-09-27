@@ -4,7 +4,7 @@
 @php $pagetype="report"; $sn=1; @endphp
 
     <h3 class="page-title">Personnel | <small style="color: green">All Staffs</small></h3>
-    <div style="text-align: right;"><a href="/add-personnel" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Staff</a></div>
+    <div style="text-align: right;"><a href="{{url('/add-personnel')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Staff</a></div>
 
     <div class="row">
             <div class="panel">
@@ -39,11 +39,11 @@
                                     <td>{{$per->dob}}</td>
 
                                     <td>
-                                        <a href="/edit-personnel/{{$per->id}}" target="_blank" class="label label-primary">Edit</a>
+                                        <a href="{{url('/edit-personnel/'.$per->id)}}" target="_blank" class="label label-primary">Edit</a>
 
-                                        <a href="/transactions/" target="_blank" class="label label-warning roledlink Finance Super">Pay {{date("M")}}'s Salary </a>
-                                        <a href="/tasks" target="_blank" class="label label-info">Assign Task</a>
-                                        <a href="/delete/{{$per->id}}/payments" class="label label-danger roledlink Super Admin"  onclick="return confirm('Are you sure you want to delete this record? {{$per->surname}}\'s account?')">Delete</a>
+                                        <a href="{{url('/transactions/')}}" target="_blank" class="label label-warning roledlink Finance Super">Pay {{date("M")}}'s Salary </a>
+                                        <a href="{{url('/tasks')}}" target="_blank" class="label label-info">Assign Task</a>
+                                        <a href="{{url('/delete/'.$per->id.'/payments')}}" class="label label-danger roledlink Super Admin"  onclick="return confirm('Are you sure you want to delete this record? {{$per->surname}}\'s account?')">Delete</a>
                                     </td>
 
                                 </tr>

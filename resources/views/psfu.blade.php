@@ -83,7 +83,7 @@
                                     <td>{{$rem->contact->name ? $rem->contact->name : $rem->customerid}}<br><small>{{$rem->contact->organization ? $rem->contact->organization : ''}}</small></td>
                                     <td>{{$rem->contact->telephoneno ? $rem->contact->telephoneno : ''}}</td>
                                     <td>{{$rem->vregno}}</td>
-                                    <td><a href="/invoice/{{$rem->jobno}}/invoice">{{$rem->jid}}</a></td>
+                                    <td><a href="{{url('/invoice/'.$rem->jobno.'/invoice')}}">{{$rem->jid}}</a></td>
                                     <td>
                                         <form action="{{ route('psfuform') }}" method="POST">
                                             <input type="hidden" name="customerid" value="{{$rem->customerid}}">
