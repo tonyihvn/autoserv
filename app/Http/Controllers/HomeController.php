@@ -41,7 +41,12 @@ class HomeController extends Controller
     public function index()
     {
         $countvehicles = vehicle::count();
-        $countpjobs = jobs::where('status','Pending')->count();
+        $alljobs = jobs::where('status','Pending')->get();
+        if(!empty($countpjobs)){
+            $countpjobs = $alljobs->count();
+        }else{
+            $countpjobs = 0;
+        }
         $countcustomers = contacts::count();
 
 
