@@ -270,10 +270,10 @@
                                     <td colspan="4">
                                         <div style="text-align: left" style="height: 100%">
                                             @if(($title=="INVOICE"))
-                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>LAC TRUCKS LTD</b><br>
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
-                                                ACCOUNT NAME: <b>LAC TRUCKS</b><br>
+                                                ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
                                                 ACCOUNT NUMBER: <b>11111111</b><br>
                                                 BANK NAME: <b>Zenith Bank</b><br>
                                                 SORT CODE: <b>111111</b>
@@ -283,10 +283,10 @@
                                             @if(($title=="ESTIMATE"))
                                                 The above listed parts/items will be used to service the vehicle.
                                                 <hr>
-                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>LAC TRUCKS LTD</b><br>
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
-                                                ACCOUNT NAME: <b>LAC TRUCKS</b><br>
+                                                ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
                                                 ACCOUNT NUMBER: <b>11111111</b><br>
                                                 BANK NAME: <b>Zenith Bank</b><br>
                                                 SORT CODE: <b>111111</b>
