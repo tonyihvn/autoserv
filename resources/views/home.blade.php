@@ -103,7 +103,7 @@ g text{
                                     <h3><span class="badge badge-pill bg-danger">{{number_format($countcustomers,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
-                                    <a href="/newjob" class="btn btn-primary">Add New</a>
+                                    <a href="{{ url('/newjob')}}" class="btn btn-primary">Add New</a>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ g text{
                                     <h3><span class="badge badge-pill bg-warning">{{number_format($countvehicles,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
-                                    <a href="/vehicles" class="btn btn-primary">View All</a>
+                                    <a href="{{ url('/vehicles')}}" class="btn btn-primary">View All</a>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@ g text{
                                     <h3><span class="badge badge-pill bg-success">{{number_format($countpjobs,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
-                                    <a href="/newjob" class="btn btn-primary">New Job</a>
+                                    <a href="{{ url('/newjob')}}" class="btn btn-primary">New Job</a>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ g text{
                     <div class="row form-row">
                         <div class="col-md-6">
 
-                            <h4>Schedules / Service Reminders | <small style="color: green">(+-)30 Days</small> <a class="btn btn-sm btn-primary" href="/reminders">View All Reminders</a></h4>
+                            <h4>Schedules / Service Reminders | <small style="color: green">(+-)30 Days</small> <a class="btn btn-sm btn-primary" href="{{ url('/reminders')}}">View All Reminders</a></h4>
                             <table class="table table-bordered responsive-table" id="products" style="font-size: 0.7em !important">
                                 <thead>
                                     <tr>
@@ -211,8 +211,8 @@ g text{
 
 
                                             <td>
-                                                <a href="/invoice/{{$rem->jobno}}/invoice" target="_blank" class="label label-warning roledlink Super Front-Desk">View Job</a>
-                                                <a href="/jobpsfu/{{$rem->jobno}}" target="_blank" class="label label-success">PSFU</a>
+                                                <a href="{{ url('/invoice/'.$rem->jobno.'/invoice')}}" target="_blank" class="label label-warning roledlink Super Front-Desk">View Job</a>
+                                                <a href="{{ url('/jobpsfu/'.$rem->jobno)}}" target="_blank" class="label label-success">PSFU</a>
                                             </td>
 
                                         </tr>
@@ -242,7 +242,7 @@ g text{
                                     @foreach ($mytasks as $task)
 
                                         <tr>
-                                            <td><a href="/tasks"><b>{{$task->title}}</b></a></td>
+                                            <td><a href="{{ url('/tasks')}}"><b>{{$task->title}}</b></a></td>
                                             <td>{{is_numeric($task->member)?$allusers->where('id',$task->member)->first()->name:$task->member}}</td>
                                             <td>{{$task->date}}</td>
                                             <td>{{$task->status}}</td>
