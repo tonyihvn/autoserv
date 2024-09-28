@@ -29,7 +29,7 @@ class Role
             if($user->role === $role)
                 return $next($request);
         }
-        return redirect()->refresh()->with(['message'=>'You don\'t have the permission to visit the clicked link']);
+        return redirect()->back()->with(['message'=>'You don\'t have the permission to visit the clicked link']);
         // return redirect('/');
 
 
