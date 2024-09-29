@@ -82,4 +82,13 @@ class PartsController extends Controller
         $supplies = supplies::all();
         return view('supplies', compact('supplies'));
     }
+
+    public function deleteSupply($sid)
+    {
+        $supply = supplies::where('id',$sid)->first();
+        // $partid = $supply->part_id;
+        $qsupplied = $supply->quantity_supplied;
+        $supply->part->stock()->decrement('quantity_in_stock', $qsupplied);
+        return redirect()->back()->with(['message'=>'The Supply record has been deleted successfully']);
+    }
 }

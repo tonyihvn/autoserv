@@ -82,6 +82,7 @@ Route::get('/delete-part/{part}', [App\Http\Controllers\PartsController::class, 
 Route::get('/supplies', [App\Http\Controllers\PartsController::class, 'partSupplies'])->name('supplies');
 Route::get('/add-supply', [App\Http\Controllers\PartsController::class, 'addSupply'])->name('add-supply');
 Route::post('save-supply', [App\Http\Controllers\PartsController::class, 'saveSupply'])->name('save-supply');
+Route::get('/delete-supply/{sid}', [App\Http\Controllers\PartsController::class, 'deleteSupply'])->name('delete-supply');
 
 
 // PART/PRODUCT SALES

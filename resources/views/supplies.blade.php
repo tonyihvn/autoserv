@@ -37,7 +37,7 @@
                                     <td>{{ $supply->payment_made}}</td>
                                     <!-- Add other columns here -->
                                     <td>
-                                        <a href="#" class="roled-link Admin">Delete</a>
+                                        <a href="{{url('delete-supply/'.$supply->id)}}" class="roled-link Admin btn btn-xs btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

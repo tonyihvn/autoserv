@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="category">Category</label>
+                                <label for="category">Location</label>
                                 <input type="text" name="category" id="category" class="form-control" value="{{$part->category}}">
                             </div>
 

@@ -11,7 +11,7 @@
 
                     <form action="{{ route('save-part') }}" method="POST">
                         @csrf
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -71,11 +71,11 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="category">Category</label>
+                                    <label for="category">Location</label>
                                     <input type="text" name="category" id="category" class="form-control">
                                 </div>
                             </div>
@@ -86,12 +86,12 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Add Part</button>
                             <a href="{{ route('parts') }}" class="btn btn-secondary">Cancel</a>
                         </div>
-                    </form>                    
+                    </form>
 
                 </div>
             </div>

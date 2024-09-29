@@ -21,7 +21,7 @@
                                 <th>Cost Price</th>
                                 <th>Selling Price</th>
                                 <th>Qty In Stock</th>
-                                <!-- Add other columns here -->
+                                <th>Location</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,6 +40,7 @@
                                     <td>
                                         {{$part->stock->quantity_in_stock}}
                                     </td>
+                                    <td>{{$part->category}}</td>
                                     <td>
                                         <a href="{{url('edit-part/'.$part->id)}}" class="btn btn-xs btn-primary">Edit</a>
                                         <a href="{{url('delete-part/'.$part->id)}}" class="btn btn-xs btn-danger">Delete</a>
