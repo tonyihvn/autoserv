@@ -13,6 +13,7 @@
                     <table class="table" id="products">
                         <thead>
                             <tr>
+                                <th>SID</th>
                                 <th>Part Name</th>
                                 <th>Part Number</th>
                                 <th>Description</th>
@@ -28,6 +29,7 @@
                         <tbody>
                             @foreach($parts as $part)
                                 <tr>
+                                    <td>{{$part->id}}</td>
                                     <td>{{ $part->part_name }}</td>
                                     <td>{{ $part->part_no }}</td>
                                     <td>{{ $part->description }}</td>
