@@ -61,7 +61,7 @@
                                     <td>{{$transact->title}}</td>
                                     <td>{{number_format($transact->amount,2)}}</td>
                                     <td></td>
-                                    <td>{{$transact->accounthead->title ?? ''}} <br> <small><i>{{$transact->accounthead->category}}</i></small></td>
+                                    <td>{{$transact->accounthead->title ?? ''}} <br> <small><i>{{$transact->accounthead->category ?? ''}}</i></small></td>
                                     <td>{{$transact->dated}}</td>
                                     <td>{{strtoupper($transact->reference_no)}}</td>
                                     <td>{{$transact->detail}}</td>
