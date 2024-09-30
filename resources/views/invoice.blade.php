@@ -275,10 +275,9 @@
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
                                                 ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
-                                                ACCOUNT NUMBER: <b>11111111</b><br>
-                                                BANK NAME: <b>Zenith Bank</b><br>
-                                                SORT CODE: <b>111111</b>
-                                                TIN NUMBER: <b>11111111-0001</b>
+                                                ACCOUNT NUMBER: <b>5747052450</b><br>
+                                                BANK NAME: <b>MONIEPOINT MFB Bank</b>
+
                                             @endif
 
                                             @if(($title=="ESTIMATE"))
@@ -288,10 +287,12 @@
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
                                                 ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
-                                                ACCOUNT NUMBER: <b>11111111</b><br>
-                                                BANK NAME: <b>Zenith Bank</b><br>
-                                                SORT CODE: <b>111111</b>
-                                                TIN NUMBER: <b>11111111-0001</b>
+                                                ACCOUNT NUMBER: <b>5747052450</b><br>
+                                                BANK NAME: <b>MONIEPOINT MFB Bank</b>
+
+                                                ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
+                                                ACCOUNT NUMBER: <b>6104066909</b><br>
+                                                BANK NAME: <b>OPAY</b>
                                             @endif
 
                                             @if(($title=="JOB INSTRUCTION"))

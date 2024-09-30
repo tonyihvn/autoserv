@@ -203,9 +203,9 @@
 							<div id="subPages8" class="collapse ">
 								<ul class="nav">
                                     <li><a href="{{url('new-sales')}}" class="roledlink Front-Desk Admin Super">New Sales</a></li>
-									<li><a href="{{url('parts')}}" class="roledlink Front-Desk Admin Super">Automobile Parts</a></li>
-									<li><a href="{{url('supplies')}}" class="roledlink Front-Desk Admin Super">Supplies</a></li>
-									<li><a href="{{url('sales')}}" class="roledlink Front-Desk Finance Admin Super">Sales</a></li>
+									<li><a href="{{url('parts')}}" class="roledlink Front-Desk Admin Super Spare-Parts">Automobile Parts</a></li>
+									<li><a href="{{url('supplies')}}" class="roledlink Front-Desk Admin Super Spare-Parts">Supplies</a></li>
+									<li><a href="{{url('sales')}}" class="roledlink Front-Desk Finance Admin Super Spare-Parts">Sales</a></li>
                                     <li><a href="{{url('deliveries')}}" class="roledlink Front-Desk Finance Admin Super">Deliveries</a></li>
 								</ul>
 							</div>
