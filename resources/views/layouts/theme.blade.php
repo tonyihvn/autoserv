@@ -198,7 +198,7 @@
 							</div>
 						</li>
 
-                        <li class="roledlink Spare-parts Admin Super" style="visibility:hidden;">
+                        <li class="roledlink Spare-Parts Admin Super" style="visibility:hidden;">
 							<a href="#subPages8" data-toggle="collapse" class="collapsed"><i class="fa fa-list"></i> <span>Sales/Inventory</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages8" class="collapse ">
 								<ul class="nav">
