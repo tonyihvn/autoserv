@@ -35,7 +35,7 @@
                                     <td>{{$pay->invoiceno}}</td>
 
                                     <td><b>{{number_format($pay->amountpaid,2)}}</b></td>
-                                    <td>{{$pay->amount-$pay->amountpaid}}</td>
+                                    <td>{{$pay->amount-$pay->jobs->payment->sum('amountpaid')}}</td>
 
                                     <td>
                                         <a href="{{url('/invoice/'.$pay->jobno.'/receipt')}}" target="_blank" class="label label-primary roledlink Finance Super">Receipt</a>

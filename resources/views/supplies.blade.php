@@ -37,7 +37,7 @@
                                     <td>{{ $supply->payment_made}}</td>
                                     <!-- Add other columns here -->
                                     <td>
-                                        <a href="{{url('delete-supply/'.$supply->id)}}" class="roled-link Admin btn btn-xs btn-danger">Delete</a>
+                                        <a href="{{url('delete-supply/'.$supply->id)}}" class="roled-link Admin btn btn-xs btn-danger" onclick="return confirm('Are you sure, you want to delete the supply record, Note: your stock will reduce?')">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

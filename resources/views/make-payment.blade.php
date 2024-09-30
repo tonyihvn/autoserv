@@ -17,12 +17,12 @@
                             <div>
                                 <div class="row form-row">
                                     <div class="form-group col-md-4">
-                                    <label for="amount">Total Amount Paid</label>
+                                    <label for="amount">Total Amount</label>
                                     <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" value="{{$job->amount}}" readonly>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="amountpaid">Amount Paid</label>
-                                        <input type="number" name="amountpaid" id="amountpaid" class="form-control" placeholder="Amount Paid"  value="{{$job->amount}}">
+                                        <label for="amountpaid">Amount to Pay</label>
+                                        <input type="number" name="amountpaid" id="amountpaid" class="form-control" placeholder="Amount Paid"  value="{{$amounttopay}}">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="dated">Date of Payment</label>

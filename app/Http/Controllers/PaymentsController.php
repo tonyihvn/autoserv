@@ -71,8 +71,13 @@ class PaymentsController extends Controller
     public function newPayment($invoiceno)
     {
         $job = jobs::where('jid',$invoiceno)->first();
+        $amounttopay = $job->amount;
+            if (isset($job->payment) && !empty($job->payment)){
+                $amounttopay = $job->amount - $job->payment->sum('amountpaid');
+            }
 
-        return view('make-payment', compact('job'));
+
+        return view('make-payment', compact('job','amounttopay'));
     }
 
     /**

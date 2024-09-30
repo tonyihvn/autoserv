@@ -57,7 +57,7 @@
                                     <td>Total Amount Paid:</td>
                                     <td><del style="text-decoration-style: double;">N</del>{{number_format($job->amountpaid,2)}}</td>
                                     <td>Balance:</td>
-                                    <td><del style="text-decoration-style: double;">N</del>{{number_format($job->amount-$job->amountpaid,2)}}</td>
+                                    <td><del style="text-decoration-style: double;">N</del>{{number_format($job->amount - $job->jobs->payment->sum('amountpaid'),2)}}</td>
                                 </tr>
 
                                 <tr>

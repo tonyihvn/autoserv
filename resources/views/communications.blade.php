@@ -5,16 +5,16 @@
 
     <h3 class="page-title">SMS | <small style="color: green">Send Bulk SMS</small></h3>
     <div class="row">
-            
+
             <div class="card col-md-6 col-md-offset-3">
                 <div class="card-body">
-                   
+
                     @isset($message)
                         <div class="alert alert-dismissable alert-info">Your message was sent successfully!</div>
                     @endisset
-                    
+
                     <div  style="text-align: right !important"><span class="label label-danger">Credit Balance: <b>{{ $creditbalance }}</b> </span></div>
-                    
+
                     <form method="POST" action="{{ route('sendsms') }}">
                         @csrf
                         <input type="hidden" name="senderid" value="GREETINGS">
@@ -22,12 +22,12 @@
                             <label for="recipients">Recipients</label>
                             <input type="text" name="recipients" id="recipients" class="form-control" placeholder="e.g. 234803333333,2349000000,...">
                         </div>
-        
+
                         <div class="form-group">
                             <label for="body">Body</label>
                             <textarea type="text" name="body" id="body" class="form-control" rows="4" maxlength="500"></textarea>
                         </div>
-        
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Send SMS') }}
@@ -36,14 +36,14 @@
 
                         <div><span style="text-align: left; color: green"  id="charcounter"></span> | <span style="text-align: center"  id="pagecounter"></span> | <span style="text-align: right"  id="charleft"></span></div>
                         <div id="error" style="color: red"></div>
-        
-                          
+
+
                     </form>
                 </div>
             </div>
-        
+
             <div class="panel">
-              
+
                 <div class="panel-body">
                     <table class="table  responsive-table" id="products">
                         <thead>
@@ -57,7 +57,7 @@
                             @foreach ($reminders as $rem)
                                 @php
                                 $number = "";
-                                    if(isset($mnumber->contact)){
+                                    if(isset($rem->telephoneno)){
                                         $number = $rem->telephoneno;
                                         if ($number!==null && substr($number,0,1)=="0") {
                                             $number = "234".ltrim($number,'0');
@@ -69,21 +69,22 @@
                                         @isset($rem->telephoneno)
                                             <input type="checkbox" id="{{$number}}" onclick="addnumber({{$number}})" class="checkboxes">
                                         @endisset
+
                                     </td>
                                     <td>{{$rem->name ? $rem->name : $rem->customerid}}<br><small>{{$rem->organization ? $rem->organization : ''}}</small></td>
                                     <td>{{$rem->telephoneno ? $rem->telephoneno : ''}}</td>
-                                    
+
                                 </tr>
                             @endforeach
-                            
-                            
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
-        
+
     </div>
-    
-        
-    
+
+
+
 @endsection

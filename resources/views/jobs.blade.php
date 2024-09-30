@@ -51,7 +51,6 @@
                             @foreach ($jobs as $job)
 
                                 <tr>
-
                                     <td><b>{{$job->contact ? $job->contact->name : $job->customerid}} / <br>{{$job->contact ? $job->contact->organization : ''}}</b>
                                     </td>
                                     <td>{{$job->vregno ? $job->vregno : ''}}</td>
@@ -83,9 +82,8 @@
                                         <a href="{{ url('/invoice/'.$job->jobno)}}/estimate" target="_blank" class="label label-info">Estimate</a>
                                         <a href="{{ url('/invoice/'.$job->jobno)}}/instruction" target="_blank" class="label label-info">Instruction</a>
 
-                                        @if($job->jid>0 && $job->status=="Pending")
                                             <a href="{{ url('/new-payment/'.$job->jid)}}" target="_blank" class="label label-primary roledlink Finance Admin Super">Make Payment</a>
-                                        @endif
+
                                         <a href="{{ url('/invoice/'.$job->jobno)}}/receipt" target="_blank" class="label label-primary">Receipt</a>
                                         <a href="#"  data-toggle="modal" data-target="#invoicedate" id="{{$job->jobno}}" onClick="changeDate({{$job->jobno}})" class="label label-warning roledlink Super Admin">Change Date</a>
                                         <a href="{{ url('/delete/'.$job->id)}}/jobs" class="label label-danger roledlink Super Admin"  onclick="return confirm('Are you sure you want to delete this record? {{$job->description}}?')">Delete</a>

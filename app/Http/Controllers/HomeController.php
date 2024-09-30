@@ -100,7 +100,7 @@ class HomeController extends Controller
 
         if($request->email==""){
 
-            $email = "admin@nigeriaqualtb.com";
+            $email = "admin@autoserve.com";
             $password = Hash::make("prayer22");
         }else{
             $email = $request->email;
@@ -148,7 +148,7 @@ class HomeController extends Controller
           return redirect()->back()->with(['message'=>'Please connect your internet before going to communications page <a href="{{url(\'/communications\')}}">Retry</a>']);
       }else{
         $smspassword = env('AUTOSERVE_SMS');
-        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=AUTOSERVE&subacctpwd=".$smspassword);
+        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=CRMAPP&subacctpwd=".$smspassword);
         $sessionid = ltrim(substr($session,3),' ');
 
         \Cookie::queue('sessionidd', $sessionid, 30);
@@ -204,7 +204,7 @@ class HomeController extends Controller
           return redirect()->back()->with(['message'=>'Please connect your internect before going to communications page <a href="{{url(\'/communications\')}}">Retry</a>']);
       }else{
         $smspassword = env('AUTOSERVE_SMS');
-        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=KOJOAUTOS&subacctpwd=".$smspassword);
+        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=CRMAPP&subacctpwd=".$smspassword);
         $sessionid = ltrim(substr($session,3),' ');
 
         \Cookie::queue('sessionidd', $sessionid, 30);
@@ -216,7 +216,7 @@ class HomeController extends Controller
         // $members = User::select('name','status','ministry','phone_number')->get();
 
         $nextfrom = date('Y-m-d', strtotime('-120 days'));
-          $nextto = date('Y-m-d', strtotime('-60 days'));
+        $nextto = date('Y-m-d', strtotime('-60 days'));
 
           $reminders = jobs::select('dated','jobno','customerid')->whereBetween('dated',[$nextfrom,$nextto])
           ->has('contact')
@@ -268,7 +268,7 @@ class HomeController extends Controller
           return redirect()->back()->with(['message'=>'Please connect your internect before going to communications page <a href="/awh/communications">Retry</a>']);
       }else{
 
-        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=KOJOAUTOS&subacctpwd=@@prayer22");
+        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=CRMAPP&subacctpwd=@@prayer22");
         $sessionid = ltrim(substr($session,3),' ');
 
         \Cookie::queue('sessionidd', $sessionid, 30);
@@ -285,7 +285,11 @@ class HomeController extends Controller
         */
 
         $nextfrom = date('Y-m-d', strtotime('-120 days'));
-          $nextto = date('Y-m-d', strtotime('-60 days'));
+          $nextto = date('Y-m-d', strtotime('+60 days'));
+
+        //   $from = date('Y-m-d', strtotime('-100 days'));
+
+        // $to = date('Y-m-d');
 
           $reminders = jobs::select('dated','jobno','customerid','jid','vregno')->whereBetween('dated',[$nextfrom,$nextto])
           ->where('status','Done')
@@ -329,24 +333,21 @@ class HomeController extends Controller
     public function jobPSFU($jobno)
     {
       ini_set('allow_url_fopen',1);
-
-      $response = null;
       // system("ping -c 1 google.com", $response);
       if(!checkdnsrr('google.com'))
       {
           return redirect()->back()->with(['message'=>'Please connect your internet before going to communications page <a href="/awh/communications">Retry</a>']);
       }else{
 
-        // $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=KOJOAUTOS&subacctpwd=@@prayer22");
-        // $sessionid = ltrim(substr($session,3),' ');
+        $smspassword = env('AUTOSERVE_SMS');
+        $session = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=login&owneremail=gcictng@gmail.com&subacct=CRMAPP&subacctpwd=".$smspassword);
+        $sessionid = ltrim(substr($session,3),' ');
 
-        // \Cookie::queue('sessionidd', $sessionid, 30);
+        \Cookie::queue('sessionidd', $sessionid, 30);
 
-        // $cbal = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=querybalance&sessionid=".$sessionid);
-        $cbal = 100;
+        $cbal = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=querybalance&sessionid=".$sessionid);
+        // $cbal = 100;
         $creditbalance = ltrim(substr($cbal,3),' ');
-
-
 
           $reminders = jobs::select('dated','jobno','customerid','jid','vregno')->where('jobno',$jobno)->get();
 
@@ -379,12 +380,18 @@ class HomeController extends Controller
           'vregno',
           'discussion',
           'outcome',
+          'satisfied',
+            'treatment',
+            'waitedlong',
+            'explained',
+            'ready',
+            'timescore',
+            'impressed',
+            'recommend'
         ));
         $status = "In Progress";
         if($request->outcome=="Satisfactory"){
           $status = "Done";
-        }else{
-          $status = $request->status;
         }
         $psfu->status = $status;
         $psfu->psfudate = date("Y-m-d H:m:s");

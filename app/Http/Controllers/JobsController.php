@@ -40,14 +40,14 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = jobs::where('status','!=','Done')->with('payment')->orderBy('dated','desc')->orderBy('status','desc')->paginate(400);
+        $jobs = jobs::where('status','!=','Done')->orderBy('dated','desc')->paginate(400);
         $lastinvoiceno = jobs::max('jid');
         return view('jobs', compact('jobs','lastinvoiceno'));
     }
 
     public function completedJobs()
     {
-        $jobs = jobs::where('status','Done')->with('payment')->orderBy('dated','desc')->orderBy('status','desc')->paginate(400);
+        $jobs = jobs::where('status','Done')->orderBy('dated','desc')->paginate(400);
         $lastinvoiceno = jobs::max('jid');
         return view('jobs', compact('jobs','lastinvoiceno'));
     }
@@ -511,7 +511,9 @@ class JobsController extends Controller
         // }
 
         if($type=="receipt"){
+
             $job = payments::where('jobno',$jobno)->orderBy('id','desc')->first();
+
             $vregno = "";
         }
 
