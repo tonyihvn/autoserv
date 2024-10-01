@@ -42,7 +42,7 @@ class HomeController extends Controller
     {
         $countvehicles = vehicle::count();
         $alljobs = jobs::where('status','!=','Done')->get();
-        if(!empty($countpjobs)){
+        if(!empty($alljobs)){
             $countpjobs = $alljobs->count();
         }else{
             $countpjobs = 0;
