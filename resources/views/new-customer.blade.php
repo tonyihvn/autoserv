@@ -241,44 +241,55 @@
                                    @foreach ($job->serviceorder as $so)
                                         <div class="row form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="servicename">Service Name</label>
-
                                                 <input list="servicelist" value="{{$so ? $so->servicename:''}}" placeholder="Periodic Maintenance"
                                                 name="servicename[]" class="form-control" id="sn{{$so->id}}"  onchange="getServiceCost({{$so->id}})">
 
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="description">Description</label>
                                                 <div>
-
-                                                <input type="text" id="description" value="{{$so ? $so->description:''}}" placeholder="Description"
+                                                <input type="text" value="{{$so ? $so->description:''}}" placeholder="Description"
                                                 name="description[]" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
                                    @endforeach
                                @else
-                                    <div class="row form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="servicename">Service Name</label>
-                                            <div>
-
-                                            <input list="servicelist" value="Periodic Maintenance" placeholder="Periodic Maintenance"
-                                            name="servicename[]" class="form-control" id="sn{{$srv->id}}"  onchange="getServiceCost({{$srv->id}})" >
+                                    <div id="services">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="servicename">Service Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="description">Description</label>
                                             </div>
                                         </div>
+                                            @php
+                                                $si = 1;
+                                            @endphp
+                                            <div class="row form-row serviceslist" id="{{$si}}">
+                                                <div class="form-group col-md-6">
 
-                                        <div class="form-group col-md-6">
-                                            <label for="description">Description</label>
-                                            <div>
+                                                    <div>
 
-                                            <input type="text" id="description" placeholder="Description"
-                                            name="description[]" class="form-control" value="Periodic Service and Maintenance" >
+                                                    <input list="servicelist" value="Periodic Maintenance" placeholder="Periodic Maintenance"
+                                                    name="servicename[]" class="form-control" id="sn{{$srv->id}}"  onchange="getServiceCost({{$srv->id}})" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <div>
+
+                                                    <input type="text" id="description" placeholder="Description"
+                                                    name="description[]" class="form-control" value="Periodic Service and Maintenance" >
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                @endif
+
+                               <div style="text-align: center !important;"><span class="btn btn-success" onclick="addService()">Add More Services</span></div>
+
 
                                 <div class="row form-row">
                                     <div class="form-group col-md-3">
@@ -534,7 +545,7 @@
 
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
-                                        <input type="number" step="0.01" class="form-control" name="labour" id="labour" value="{{$job->labour ? $job->labour : 0}}">
+                                        <input type="number" class="form-control" name="labour" id="labour" value="{{$job->labour ? $job->labour : 0}}">
                                         </div>
                                     </div>
 
@@ -562,7 +573,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
-                                        <input type="number" step="0.01" class="form-control" name="sundrycost" id="sundrycost" value="{{$job->sundry ? $job->sundry : 0}}">
+                                        <input type="number" class="form-control" name="sundrycost" id="sundrycost" value="{{$job->sundry ? $job->sundry : 0}}">
                                         </div>
                                     </div>
                                 </div>
@@ -580,7 +591,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
-                                        <input type="number" step="0.01" class="form-control" name="discountcost" id="discountcost" value="{{$job->discount ? $job->discount : 0}}" readonly>
+                                        <input type="number" class="form-control" name="discountcost" id="discountcost" value="{{$job->discount ? $job->discount : 0}}" readonly>
                                         </div>
                                     </div>
                                 </div>

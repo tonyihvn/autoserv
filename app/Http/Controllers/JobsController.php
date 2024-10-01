@@ -314,17 +314,19 @@ class JobsController extends Controller
                 'status'=>$status
             ]);
         }else{
-            serviceorder::updateOrCreate(['jobno'=>$jobno],[
-                'customerid'=>$request->customerid,
-                'jobno'=>$jobno,
-                'servicename'=>$request->servicename[0],
-                'description'=>$request->description[0],
-                'mileage'=>$request->mileage,
-                'amount'=>$request->labour,
-                'sdate'=>date('Y-m-d'),
-                'nextservicedate'=>date('Y-m-d',strtotime($request->nextservicedate)),
-                'status'=>$status
-            ]);
+            foreach($request->servicename as $key => $srv){
+                serviceorder::updateOrCreate(['jobno'=>$jobno],[
+                    'customerid'=>$request->customerid,
+                    'jobno'=>$jobno,
+                    'servicename'=>$request->servicename[$key],
+                    'description'=>$request->description[$key],
+                    'mileage'=>$request->mileage,
+                    'amount'=>$request->labour,
+                    'sdate'=>date('Y-m-d'),
+                    'nextservicedate'=>date('Y-m-d',strtotime($request->nextservicedate)),
+                    'status'=>$status
+                ]);
+            }
         }
         if($request->partname!==null){
             partsorder::where('jobno',$jobno)->delete();

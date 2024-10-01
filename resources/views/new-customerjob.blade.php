@@ -132,33 +132,44 @@
 
                             <div class="tab-pane" id="tab3">
 
-                               <div class="row form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="servicename">Service Name</label>
-                                        <div>
+                                <datalist id="servicelist">
+                                    @foreach ($services as $srv)
+                                        <option value="{{$srv->servicename}}" data-sid="{{ $srv->id }}" data-servicecost="{{$srv->amount}}">
+                                    @endforeach
+                                </datalist>
 
-                                            <datalist id="servicelist">
-                                                @foreach ($services as $key => $srv)
-                                                    <option value="{{$srv->servicename}}" data-sid="{{ $srv->id }}" data-servicecost="{{$srv->amount}}">
-                                                @endforeach
-                                            </datalist>
-
-                                        <input list="servicelist" value="Routine Maintenance" placeholder="Routine Maintenance"
-                                        name="servicename[]" class="form-control"  id="sn{{$key}}"  onchange="getServiceCost({{$key}})">
+                                <div id="services">
+                                    @php
+                                        $si = 1;
+                                    @endphp
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="servicename">Service Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="description">Description</label>
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-md-6">
-                                        <label for="description">Description</label>
-                                        <div>
+                                    <div class="row form-row serviceslist" id="{{$si}}">
+                                        <div class="form-group col-md-6">
 
-                                        <input type="text" id="description" placeholder="Description"
-                                        name="description[]" class="form-control" >
+                                            <div>
+                                            <input list="servicelist" value="Routine Maintenance" placeholder="Routine Maintenance"
+                                            name="servicename[]" class="form-control"  id="sn{{$si}}"  onchange="getServiceCost({{$si}})">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <div>
+                                            <input type="text" id="description" placeholder="Description"
+                                            name="description[]" class="form-control" >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-
+                                <div style="text-align: center !important;"><span class="btn btn-success" onclick="addService()">Add More Services</span></div>
 
                                 <div class="row form-row">
                                     <div class="form-group col-md-3">

@@ -717,9 +717,29 @@
 			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="productslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
 		}
 
+        function addService(){
+			// plid=plid+1;
+
+			$(this).text("+ Add More Service");
+			var slid = $('div .serviceslist:last').attr('id');
+
+            if(slid==null){
+                slid = 0;
+            }
+			var newsid = parseInt(slid);
+			newsid+=1;
+
+			$("#services").append('<div class="row form-row serviceslist" id="'+newsid+'"><div class="form-group col-md-6"><div><input list="servicelist" value="Routine Maintenance" placeholder="Routine Maintenance" name="servicename[]" class="form-control"  id="sn'+newsid+'"  onchange="getServiceCost('+newsid+')"></div></div><div class="form-group col-md-5"><div><input type="text" placeholder="Description" name="description[]" class="form-control" ></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removeSl('+newsid+')">Remove</span></div></div>');
+		}
+
 		// REMOVE PARTS LIST
 		function removePl(plid){
 			$('#'+plid).remove();
+		}
+
+        // REMOVE SERVICE
+        function removeSl(slid){
+			$('#'+slid).remove();
 		}
 
         function addPr(){
