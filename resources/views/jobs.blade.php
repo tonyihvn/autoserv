@@ -77,7 +77,7 @@
                                     <td>{{$job->status}}</td>
 
                                     <td>
-                                        <a href="{{ url('/edit-job/'.$job->jobno)}}" class="label label-warning roledlink Super Front-Desk Spare-Parts">Edit</a>
+                                        <a href="{{ url('/edit-job/'.$job->jobno)}}" class="label label-warning roledlink Admin Super Front-Desk Spare-Parts">Edit</a>
                                         <a href="{{ url('/invoice/'.$job->jobno)}}/invoice" target="_blank" class="label label-success">Invoice</a>
                                         <a href="{{ url('/invoice/'.$job->jobno)}}/estimate" target="_blank" class="label label-info">Estimate</a>
                                         <a href="{{ url('/invoice/'.$job->jobno)}}/instruction" target="_blank" class="label label-info">Instruction</a>
