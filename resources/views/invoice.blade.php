@@ -285,11 +285,11 @@
                                                 <hr>
                                                 <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
-                                                <b>ACCOUNT DETAILS:</b><br>
+                                                <b>ACCOUNT DETAILS (1):</b><br>
                                                 ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
                                                 ACCOUNT NUMBER: <b>5747052450</b><br>
-                                                BANK NAME: <b>MONIEPOINT MFB Bank</b>
-
+                                                BANK NAME: <b>MONIEPOINT MFB Bank</b> <br>
+                                                <b>ACCOUNT DETAILS (2):</b><br>
                                                 ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
                                                 ACCOUNT NUMBER: <b>6104066909</b><br>
                                                 BANK NAME: <b>OPAY</b>
