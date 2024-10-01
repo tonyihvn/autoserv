@@ -2,7 +2,7 @@
 
 @section('content')
 @php $pagename="namesearch"; $sn=1; @endphp
-    <h3 class="page-title">Help | <small style="color: green">Need Help</small></h3>
+    <h3 class="page-title">Job | <small style="color: green">Create / Edit Job</small></h3>
     <div class="row">
             <div class="panel">
                 <div class="panel-heading">
@@ -231,14 +231,20 @@
 
                             <div class="tab-pane" id="tab3">
 
+                                <datalist id="servicelist">
+                                    @foreach ($services as $srv)
+                                        <option value="{{$srv->servicename}}" data-sid="{{ $srv->id }}" data-servicecost="{{$srv->amount}}">
+                                    @endforeach
+                                </datalist>
+
                                @if ($job->serviceorder!=[])
                                    @foreach ($job->serviceorder as $so)
                                         <div class="row form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="servicename">Service Name</label>
 
-                                                <input type="text" id="servicename" value="{{$so ? $so->servicename:''}}" placeholder="Periodic Maintenance"
-                                                name="servicename[]" class="form-control" >
+                                                <input list="servicelist" value="{{$so ? $so->servicename:''}}" placeholder="Periodic Maintenance"
+                                                name="servicename[]" class="form-control" id="sn{{$so->id}}"  onchange="getServiceCost({{$so->id}})">
 
                                             </div>
 
@@ -258,8 +264,8 @@
                                             <label for="servicename">Service Name</label>
                                             <div>
 
-                                            <input type="text" id="servicename" value="Periodic Maintenance" placeholder="Periodic Maintenance"
-                                            name="servicename[]" class="form-control" >
+                                            <input list="servicelist" value="Periodic Maintenance" placeholder="Periodic Maintenance"
+                                            name="servicename[]" class="form-control" id="sn{{$srv->id}}"  onchange="getServiceCost({{$srv->id}})" >
                                             </div>
                                         </div>
 
@@ -273,7 +279,6 @@
                                         </div>
                                     </div>
                                @endif
-
 
                                 <div class="row form-row">
                                     <div class="form-group col-md-3">
@@ -316,9 +321,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
 
                                 <a class="btn btn-warning btnPrevious" >Previous</a><a class="btn btn-primary btnNext" >Next</a>
 

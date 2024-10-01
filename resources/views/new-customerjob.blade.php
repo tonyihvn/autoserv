@@ -1,7 +1,7 @@
 @extends('layouts.theme')
 
 @section('content')
-    <h3 class="page-title">Help | <small style="color: green">Need Help</small></h3>
+    <h3 class="page-title">Job | <small style="color: green">Create/Edit Job</small></h3>
     <div class="row">
             <div class="panel">
                 <div class="panel-heading">
@@ -137,8 +137,14 @@
                                         <label for="servicename">Service Name</label>
                                         <div>
 
-                                        <input type="text" id="servicename" value="Routine Maintenance" placeholder="Routine Maintenance"
-                                        name="servicename[]" class="form-control" >
+                                            <datalist id="servicelist">
+                                                @foreach ($services as $key => $srv)
+                                                    <option value="{{$srv->servicename}}" data-sid="{{ $srv->id }}" data-servicecost="{{$srv->amount}}">
+                                                @endforeach
+                                            </datalist>
+
+                                        <input list="servicelist" value="Routine Maintenance" placeholder="Routine Maintenance"
+                                        name="servicename[]" class="form-control"  id="sn{{$key}}"  onchange="getServiceCost({{$key}})">
                                         </div>
                                     </div>
 

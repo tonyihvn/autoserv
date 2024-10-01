@@ -687,6 +687,21 @@
             $("#a"+pnid).val(price);
         };
 
+        function getServiceCost(serviceid){
+            var val = $('#sn'+serviceid).val();
+
+            var samount = $('#servicelist option').filter(function() {
+                return this.value == val;
+            }).data('servicecost');
+
+            if (!$.isNumeric(samount)) {
+                samount = 0;
+            }
+
+
+            $("#labour").val(samount);
+        };
+
 		function addPl(){
 			// plid=plid+1;
 

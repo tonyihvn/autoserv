@@ -75,7 +75,8 @@ class JobsController extends Controller
         $jobno = $job->jobno;
         $editjobno = $job->jobno;
         $parts = parts::select('id','part_name','selling_price')->with('stock')->get();
-        return view('new-customer', compact('job','vehicle','jobno','contacts','editjobno','parts'));
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->get()->unique('servicename');
+        return view('new-customer', compact('job','vehicle','jobno','contacts','editjobno','parts','services'));
     }
 
     /**
@@ -93,9 +94,9 @@ class JobsController extends Controller
             $jobno=$jobno->jobno+1;
         }
         $parts = parts::select('id','part_name','selling_price')->get();
-
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->get()->unique('servicename');
         $new_job = new Job();
-        return view('new-customer', compact('jobno','new_job','parts'));
+        return view('new-customer', compact('jobno','new_job','parts','services'));
     }
 
     public function newSales()
@@ -300,10 +301,10 @@ class JobsController extends Controller
             serviceorder::updateOrCreate(['jobno'=>$jobno],[
                 'customerid'=>$request->customerid,
                 'jobno'=>$jobno,
-                'servicename'=>"Diagnosis and Repair",
-                'description'=>$request->diagnosis,
+                'servicename'=>$request->servicename[0],
+                'description'=>$description,
                 'mileage'=>$request->vin,
-                'amount'=>0,
+                'amount'=>$request->labour,
                 'sdate'=>date('Y-m-d'),
                 'nextservicedate'=>date('Y-m-d', strtotime($request->ddate. ' + 90 days')),
                 'status'=>$status
