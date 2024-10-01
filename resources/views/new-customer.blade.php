@@ -45,7 +45,7 @@
                         <ul class="nav nav-tabs" id="jobordertabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Contact Information</a></li>
                             <li><a href="#tab2" data-toggle="tab">Vehicle Details</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Periodic Maintenance</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Service</a></li>
                             <li><a href="#tab4" data-toggle="tab">Vehicle  Diagnosis</a></li>
                             <li><a href="#tab5" data-toggle="tab">Parts / Cost</a></li>
                             <li><a href="#tab6" data-toggle="tab">Additional Confirmations</a></li>
@@ -223,7 +223,7 @@
 
                                 </div>
 
-                                <a class="btn btn-primary btnPrevious">Previous</a><a class="btn btn-primary btnNext" >Periodic Maintenance</a>
+                                <a class="btn btn-primary btnPrevious">Previous</a><a class="btn btn-primary btnNext" >Select Service</a>
 
                                 <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnosis</a>
 

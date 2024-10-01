@@ -155,11 +155,35 @@
 
                         </tbody>
                     </table>
+
+                    @isset($job->serviceorder)
+
+                        <table width="100%" style="font-size: 0.9em !important; width:95%" class="table table-striped table-bordered  table-condensed" align="center">
+
+                            <tr style="color: ">
+
+                                <th>Service Name</th>
+                                <th>Description</th>
+                            </tr>
+
+                            @foreach ($job->serviceorder as $service)
+
+                                <tr>
+                                    <td>{{$service->servicename}}</td>
+                                    <td>{{$service->description}}</td>
+                                </tr>
+
+                            @endforeach
+                        </table>
+
+                    @endisset
+
+
                     <table width="100%" style="font-size: 0.9em !important; width:95%" class="table table-striped table-bordered  table-condensed" align="center">
 
                             <tr style="color: ">
 
-                                <th>Decription</th>
+                                <th>Parts Used (Decription)</th>
                                 <th>Quantity</th>
 
                                 @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
