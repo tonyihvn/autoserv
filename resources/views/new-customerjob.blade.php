@@ -39,7 +39,7 @@
                         @csrf
                         <ul class="nav nav-tabs" id="jobordertabs">
                             <li class="active"><a href="#tab2" data-toggle="tab">Vehicle Details</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Routine Maintenance</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Service</a></li>
                             <li><a href="#tab4" data-toggle="tab">Vehicle  Diagnosis</a></li>
                             <li><a href="#tab5" data-toggle="tab">Parts / Cost</a></li>
                             <li><a href="#tab6" data-toggle="tab">Additional Confirmations</a></li>
@@ -124,7 +124,7 @@
 
                                 </div>
 
-                                <a class="btn btn-primary btnNext" >Routine Maintenance</a>
+                                <a class="btn btn-primary btnNext" >Service</a>
 
                                 <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnosis</a>
 

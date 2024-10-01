@@ -91,7 +91,7 @@
 
                                 </div>
 
-                                <a class="btn btn-primary btnPrevious">Previous</a><a class="btn btn-primary btnNext" >Routine Maintenance</a>
+                                <a class="btn btn-primary btnPrevious">Previous</a><a class="btn btn-primary btnNext" >Service</a>
 
                                 <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnosis</a>
 
