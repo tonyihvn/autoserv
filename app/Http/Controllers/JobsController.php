@@ -194,9 +194,11 @@ class JobsController extends Controller
         }
         $contact = contacts::select('name','customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
         $parts = parts::select('id','part_name','selling_price')->get();
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->get()->unique('servicename');
+
         $jobno=$jobno+1;
         $new_job = new Job();
-        return view('new-customerjob', compact('jobno','customerid','contact','new_job','parts'));
+        return view('new-customerjob', compact('jobno','customerid','contact','new_job','parts','services'));
     }
 
     public function newVehicleJob($customerid,$vid)
@@ -209,10 +211,12 @@ class JobsController extends Controller
         }
         $vehicleinfo = vehicle::where('id',$vid)->first();
         $parts = parts::select('id','part_name','selling_price')->get();
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->get()->unique('servicename');
+
         $new_job = new Job();
         $contact = contacts::select('customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
         $jobno=$jobno+1;
-        return view('new-customerjob', compact('jobno','customerid','contact','vehicleinfo','new_job','parts'));
+        return view('new-customerjob', compact('jobno','customerid','contact','vehicleinfo','new_job','parts','services'));
     }
 
     /**
