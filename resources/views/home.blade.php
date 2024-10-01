@@ -103,7 +103,12 @@ g text{
                                     <h3><span class="badge badge-pill bg-danger">{{number_format($countcustomers,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
-                                    <a href="{{ url('/newjob')}}" class="btn btn-primary">Add New</a>
+                                    @if (Auth::user()->role=="Spare-Parts")
+                                        <a href="{{ url('/customers')}}" class="btn btn-primary">View Clients</a>
+                                    @else
+                                        <a href="{{ url('/newjob')}}" class="btn btn-primary">Add New</a>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -137,7 +142,11 @@ g text{
                                     <h3><span class="badge badge-pill bg-success">{{number_format($countpjobs,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
-                                    <a href="{{ url('/newjob')}}" class="btn btn-primary">New Job</a>
+                                    @if (Auth::user()->role=="Spare-Parts")
+                                        <a href="{{ url('/jobs')}}" class="btn btn-primary">View Jobs</a>
+                                    @else
+                                        <a href="{{ url('/newjob')}}" class="btn btn-primary">New Job</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
