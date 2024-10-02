@@ -281,11 +281,11 @@ class JobsController extends Controller
         if($request->servicename!==null){
             $description = $request->servicename[0];
             $status = $request->sstatus;
-            $dated = date('Y-m-d');
+            $dated = $request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate));
         }else{
             $description = $request->diagnosis;
             $status = $request->status;
-            $dated = date('Y-m-d');
+            $dated = $request->ddate!="" ? date('Y-m-d', strtotime($request->ddate)) : date('Y-m-d', strtotime($request->sdate));
         }
         $job->vregno = $request->vregno;
         $job->description = $description;
@@ -309,7 +309,7 @@ class JobsController extends Controller
                 'description'=>$description,
                 'mileage'=>$request->vin,
                 'amount'=>$request->labour,
-                'sdate'=>date('Y-m-d'),
+                'sdate'=>$request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate)),
                 'nextservicedate'=>date('Y-m-d', strtotime($request->ddate. ' + 90 days')),
                 'status'=>$status
             ]);
@@ -322,7 +322,7 @@ class JobsController extends Controller
                     'description'=>$request->description[$key],
                     'mileage'=>$request->mileage,
                     'amount'=>$request->labour,
-                    'sdate'=>date('Y-m-d'),
+                    'sdate'=>$request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate)),
                     'nextservicedate'=>date('Y-m-d',strtotime($request->nextservicedate)),
                     'status'=>$status
                 ]);
@@ -333,6 +333,7 @@ class JobsController extends Controller
             partsorder::where('jobno',$jobno)->delete();
 
             for ($i=0; $i < count($request->partname); $i++) {
+
                 if($request->partname[$i]!=""){
                     if($request->pnid[$i]==""){
                         $part = parts::create([
@@ -345,7 +346,7 @@ class JobsController extends Controller
                     }else{
                         $partid = $request->pnid[$i];
                     }
-                    $sale = partsorder::updateOrCreate(['jobno'=>$jobno, 'partsname'=>$request->partname[$i]],[
+                    partsorder::updateOrCreate(['jobno'=>$jobno, 'partsname'=>$request->partname[$i]],[
                     'customerid'=>$request->customerid,
                     'jobno'=>$jobno,
                     'partsname'=>$request->partname[$i],
