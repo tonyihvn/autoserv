@@ -329,29 +329,32 @@ class JobsController extends Controller
             }
         }
         if($request->partname!==null){
+
             partsorder::where('jobno',$jobno)->delete();
 
             for ($i=0; $i < count($request->partname); $i++) {
-                if($request->pnid[$i]==""){
-                    $part = parts::create([
-                        'part_name'=>$request->partname[$i],
-                        'selling_price'=>$request->amount[$i]/$request->quantity[$i],
-                    ]);
-                    $partid = $part->id;
+                if($request->partname[$i]!=""){
+                    if($request->pnid[$i]==""){
+                        $part = parts::create([
+                            'part_name'=>$request->partname[$i],
+                            'selling_price'=>$request->amount[$i]/$request->quantity[$i],
+                        ]);
+                        $partid = $part->id;
 
-                    stock::create(['part_id'=>$partid,'quantity_in_stock'=>0]);
-                }else{
-                    $partid = $request->pnid[$i];
+                        stock::create(['part_id'=>$partid,'quantity_in_stock'=>0]);
+                    }else{
+                        $partid = $request->pnid[$i];
+                    }
+                    $sale = partsorder::updateOrCreate(['jobno'=>$jobno, 'partsname'=>$request->partname[$i]],[
+                    'customerid'=>$request->customerid,
+                    'jobno'=>$jobno,
+                    'partsname'=>$request->partname[$i],
+                    'quantity'=>$request->quantity[$i],
+                    'pdate'=>date('Y-m-d'),
+                    'amount'=>$request->amount[$i],
+                    'pid'=>$partid
+                    ]);
                 }
-                $sale = partsorder::updateOrCreate(['jobno'=>$jobno, 'partsname'=>$request->partname[$i]],[
-                'customerid'=>$request->customerid,
-                'jobno'=>$jobno,
-                'partsname'=>$request->partname[$i],
-                'quantity'=>$request->quantity[$i],
-                'pdate'=>date('Y-m-d'),
-                'amount'=>$request->amount[$i],
-                'pid'=>$partid
-                ]);
             }
         }
 
