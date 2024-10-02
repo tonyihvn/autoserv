@@ -273,7 +273,7 @@
                                                     <div>
 
                                                     <input list="servicelist" value="Periodic Maintenance" placeholder="Periodic Maintenance"
-                                                    name="servicename[]" class="form-control" id="sn{{$srv->id}}"  onchange="getServiceCost({{$srv->id}})" >
+                                                    name="servicename[]" class="form-control" id="sn{{$si}}"  onchange="getServiceCost({{$si}})" >
                                                     </div>
                                                 </div>
 
