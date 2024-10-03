@@ -908,7 +908,7 @@
 				var ask = window.confirm("The name: "+option.val()+"-"+ option.data('customerid')+" that you entered already exists. Go to this Customer's Vehicles instead to continue?");
 				if (ask) {
 					// window.alert("This post was successfully deleted.");
-					window.location.href = "/customer-vehicles/"+option.data('customerid');
+					window.location.href = "/awh/customer-vehicles/"+option.data('customerid');
 				}
 			}
 
