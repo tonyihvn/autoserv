@@ -739,7 +739,7 @@
 
         // REMOVE SERVICE
         function removeSl(slid){
-			$('#'+slid).remove();
+			$('#sl'+slid).remove();
 		}
 
         function addPr(){

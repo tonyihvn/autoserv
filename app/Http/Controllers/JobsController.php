@@ -301,11 +301,11 @@ class JobsController extends Controller
         $job->odometer = $request->vin;
         $job->save();
 
-        if($request->servicename[0]==""){
+        if($request->servicename==""){
             serviceorder::updateOrCreate(['jobno'=>$jobno],[
                 'customerid'=>$request->customerid,
                 'jobno'=>$jobno,
-                'servicename'=>$request->servicename[0],
+                'servicename'=>$request->diagnosis,
                 'description'=>$description,
                 'mileage'=>$request->vin,
                 'amount'=>$request->labour,
