@@ -155,7 +155,7 @@
                                         <div class="form-group col-md-6">
 
                                             <div>
-                                            <input list="servicelist" value="Routine Maintenance" placeholder="Routine Maintenance"
+                                            <input list="servicelist" value="" placeholder="Routine Maintenance"
                                             name="servicename[]" class="form-control"  id="sn{{$si}}" onchange="getServiceCost({{$si}})">
                                             </div>
                                         </div>

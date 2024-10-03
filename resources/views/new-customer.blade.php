@@ -272,7 +272,7 @@
 
                                                     <div>
 
-                                                    <input list="servicelist" value="Periodic Maintenance" placeholder="Periodic Maintenance"
+                                                    <input list="servicelist" value="" placeholder="Periodic Maintenance"
                                                     name="servicename[]" class="form-control" id="sn{{$si}}"  onchange="getServiceCost({{$si}})" >
                                                     </div>
                                                 </div>
@@ -281,7 +281,7 @@
                                                     <div>
 
                                                     <input type="text" id="description" placeholder="Description"
-                                                    name="description[]" class="form-control" value="Periodic Service and Maintenance" >
+                                                    name="description[]" class="form-control" value="" >
                                                     </div>
                                                 </div>
                                             </div>
