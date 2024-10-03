@@ -305,7 +305,7 @@ class JobsController extends Controller
             serviceorder::updateOrCreate(['jobno'=>$jobno],[
                 'customerid'=>$request->customerid,
                 'jobno'=>$jobno,
-                'servicename'=>$request->servicename[0],
+                'servicename'=>"",
                 'description'=>$description,
                 'mileage'=>$request->vin,
                 'amount'=>$request->labour,
