@@ -278,6 +278,7 @@ class JobsController extends Controller
             // 'jobno',
         ));
 
+
         if($request->servicename!==null){
             $description = $request->servicename[0];
             $status = $request->sstatus;
@@ -302,6 +303,7 @@ class JobsController extends Controller
         $job->save();
 
         if($request->servicename==""){
+            $servicedate = $request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate));
             serviceorder::updateOrCreate(['jobno'=>$jobno],[
                 'customerid'=>$request->customerid,
                 'jobno'=>$jobno,
@@ -309,11 +311,13 @@ class JobsController extends Controller
                 'description'=>$description,
                 'mileage'=>$request->vin,
                 'amount'=>$request->labour,
-                'sdate'=>$request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate)),
+                'sdate'=>$servicedate,
                 'nextservicedate'=>date('Y-m-d', strtotime($request->ddate. ' + 90 days')),
                 'status'=>$status
             ]);
         }else{
+            $servicedate = $request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate));
+
             foreach($request->servicename as $key => $srv){
                 serviceorder::updateOrCreate(['jobno'=>$jobno],[
                     'customerid'=>$request->customerid,
@@ -322,7 +326,7 @@ class JobsController extends Controller
                     'description'=>$request->description[$key],
                     'mileage'=>$request->mileage,
                     'amount'=>$request->labour,
-                    'sdate'=>$request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate)),
+                    'sdate'=>$servicedate,
                     'nextservicedate'=>date('Y-m-d',strtotime($request->nextservicedate)),
                     'status'=>$status
                 ]);
