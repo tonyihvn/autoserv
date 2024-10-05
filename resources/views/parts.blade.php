@@ -40,7 +40,7 @@
 
                                     <!-- Add other columns here -->
                                     <td>
-                                        {{$part->stock->quantity_in_stock}}
+                                        {{$part->stock->quantity_in_stock ?? ""}}
                                     </td>
                                     <td>{{$part->category}}</td>
                                     <td>
