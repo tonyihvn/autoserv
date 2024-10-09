@@ -299,8 +299,8 @@
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
                                                 ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
-                                                ACCOUNT NUMBER: <b>5747052450</b><br>
-                                                BANK NAME: <b>MONIEPOINT MFB Bank</b>
+                                                ACCOUNT NUMBER: <b>1313454869</b><br>
+                                                BANK NAME: <b>Zenith Bank Plc</b>
 
                                             @endif
 
