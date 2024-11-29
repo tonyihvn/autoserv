@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\followups;
 use App\Models\User;
 use Auth;
+use Artisan;
 
 class TasksController extends Controller
 {
@@ -224,6 +225,22 @@ class TasksController extends Controller
         return redirect()->back()->with(['tasks'=>$tasks,'followups'=>$followups]);
 
     }
+
+    public function Artisan1($command) {
+        $artisan = Artisan::call($command);
+        $output = Artisan::output();
+        return dd($output);
+    }
+
+    public function Artisan2($command, $param) {
+
+        $output = Artisan::call($command.":".$param);
+
+        // $artisan = Artisan::call($command,['flag'=>$param]);
+        // $output = Artisan::output();
+        return dd($output);
+    }
+
 
 
 }

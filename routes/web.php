@@ -135,3 +135,6 @@ Route::get('/payments', [App\Http\Controllers\PaymentsController::class, 'index'
 Route::get('/expenditures', [App\Http\Controllers\ExpenditureController::class, 'index'])->name('expenditures')->middleware('role:Admin,Finance,Super');
 
 Route::get('/delete/{id}/{table}', [App\Http\Controllers\JobsController::class, 'genericDelete'])->name('delete')->middleware('role:Admin,Super');
+// ARTISAN COMMANDS
+Route::get('/artisan1/{command}', [App\Http\Controllers\TasksController::class, 'Artisan1']);
+Route::get('/artisan2/{command}/{param}', [App\Http\Controllers\TasksController::class, 'Artisan2']);

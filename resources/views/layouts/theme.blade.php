@@ -103,7 +103,7 @@
 						<input type="text" name="keyword" list="allcontacts" class="form-control" placeholder="Search Customers, Jon No, Org, CustomerID...">
 						<datalist id="allcontacts">
 							@foreach ($allcontacts as $con)
-								<option value="{!!$con->name!!}" data-customerid="{{$con->customerid}}"">{!!$con->organization!!}</option>
+								<option value="{!!$con->name!!}" data-customerid="{{$con->customerid}}">{!!$con->organization!!}</option>
 							@endforeach
 						</datalist>
 						<span class="input-group-btn"><button type="submit" class="btn btn-primary">Go</button></span>
