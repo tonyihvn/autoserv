@@ -34,7 +34,7 @@
                                 <!----------------------------END YIELD PAGE CONTENT -->
                             </div>
                         </div>
-                        <div class="right" style="background-image: url('{{ asset('images/' . $settings->background) }}'); background-repeat: no-repeat; background-size: cover;">
+                        <div class="right" style="background-image: url('{{ asset('public/images/' . $settings->background) }}'); background-repeat: no-repeat; background-size: cover;">
                             <div class="overlay"></div>
                             <div class="content text">
                                 <h1 class="heading">{{$settings->ministry_name}}</h1>
