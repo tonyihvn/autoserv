@@ -126,15 +126,6 @@ Route::get('/customer-vehicles/{customerid}', [App\Http\Controllers\VehicleContr
 Route::get('/newjob', [App\Http\Controllers\JobsController::class, 'create'])->name('newjob')->middleware('role:Front-Desk,Admin,Super');
 Route::get('/newcjob/{customerid}', [App\Http\Controllers\JobsController::class, 'newCustomerJob'])->name('newcjob')->middleware('role:Front-Desk,Admin,Super');
 Route::get('/newvjob/{customerid}/{vreg}', [App\Http\Controllers\JobsController::class, 'newVehicleJob'])->name('newvjob')->middleware('role:Front-Desk,Admin,Super');
-<<<<<<< HEAD
-Route::get('/edit-job/{jobno}', [App\Http\Controllers\JobsController::class, 'editJob'])->name('edit-job')->middleware('role:Front-Desk,Admin,Super');
-Route::post('/addnewcustomer', [App\Http\Controllers\JobsController::class, 'store'])->name('addnewcustomer')->middleware('role:Admin,Super,Front-Desk');
-Route::post('/addjobno', [App\Http\Controllers\JobsController::class, 'addJobno'])->name('addjobno')->middleware('role:Admin,Super,Front-Desk');
-Route::get('/invoice/{jobno}/{type}', [App\Http\Controllers\JobsController::class, 'printInvoice'])->name('invoice')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
-Route::post('/filterjobs', [App\Http\Controllers\JobsController::class, 'filterJobs'])->name('filterjobs')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
-
-
-=======
 Route::get('/edit-job/{jobno}', [App\Http\Controllers\JobsController::class, 'editJob'])->name('edit-job')->middleware('role:Front-Desk,Admin,Spare-Parts,Super');
 Route::post('/addnewcustomer', [App\Http\Controllers\JobsController::class, 'store'])->name('addnewcustomer')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
 Route::post('/addjobno', [App\Http\Controllers\JobsController::class, 'addJobno'])->name('addjobno')->middleware('role:Admin,Super,Front-Desk');
@@ -148,7 +139,6 @@ Route::resource('deliveries', App\Http\Controllers\DeliveryController::class);
 Route::post('actualDelivery',[App\Http\Controllers\DeliveryController::class,'actualDelivery'])->name('actualDelivery');
 Route::get('/delivery_note/{did}',[App\Http\Controllers\DeliveryController::class,'deliveryNote'])->name('delivery-note');
 
->>>>>>> master
 Route::post('/changedate', [App\Http\Controllers\JobsController::class, 'changedate'])->name('changedate')->middleware('role:Admin,Super,Front-Desk');
 
 // PAYMENTS
@@ -156,9 +146,6 @@ Route::get('/payments', [App\Http\Controllers\PaymentsController::class, 'index'
 Route::get('/expenditures', [App\Http\Controllers\ExpenditureController::class, 'index'])->name('expenditures')->middleware('role:Admin,Finance,Super');
 
 Route::get('/delete/{id}/{table}', [App\Http\Controllers\JobsController::class, 'genericDelete'])->name('delete')->middleware('role:Admin,Super');
-<<<<<<< HEAD
-=======
 // ARTISAN COMMANDS
 Route::get('/artisan1/{command}', [App\Http\Controllers\TasksController::class, 'Artisan1']);
 Route::get('/artisan2/{command}/{param}', [App\Http\Controllers\TasksController::class, 'Artisan2']);
->>>>>>> master
