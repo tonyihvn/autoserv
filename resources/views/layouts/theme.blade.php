@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
 	<title>KOJO Autos | Dashboard</title>
+=======
+	<title>Autoserve ERP | Dashboard</title>
+>>>>>>> master
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -86,13 +90,21 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 <div id="cover"></div>
+=======
+{{-- <div id="cover"></div> --}}
+>>>>>>> master
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="clear: both !important;">
 			<div class="brand">
+<<<<<<< HEAD
 				<a href="/"><img  src="/images/{{$settings->logo}}" alt="{{$settings->motto}}" class="img-responsive logo" style="height: 35px !important; float: left;"></a> {{$settings->ministry_name}}
+=======
+				<a href="{{url('/')}}"><img  src="{{asset('/public/images/'.$settings->logo)}}" alt="{{$settings->motto}}" class="img-responsive logo" style="height: 35px !important; float: left;"></a> {{$settings->ministry_name}}
+>>>>>>> master
 				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-menu"></i></button>
 			</div>
 
@@ -103,7 +115,11 @@
 						<input type="text" name="keyword" list="allcontacts" class="form-control" placeholder="Search Customers, Jon No, Org, CustomerID...">
 						<datalist id="allcontacts">
 							@foreach ($allcontacts as $con)
+<<<<<<< HEAD
 								<option value="{!!$con->name!!}" data-customerid="{{$con->customerid}}"">{!!$con->organization!!}</option>
+=======
+								<option value="{!!$con->name!!}" data-customerid="{{$con->customerid}}">{!!$con->organization!!}</option>
+>>>>>>> master
 							@endforeach
 						</datalist>
 						<span class="input-group-btn"><button type="submit" class="btn btn-primary">Go</button></span>
@@ -142,7 +158,11 @@
 						</li>
 						@endauth
 						<li>
+<<<<<<< HEAD
 							<a href="/"><i class="lnr lnr-home"></i> <span>Home</span></a>
+=======
+							<a href="{{url('/')}}"><i class="lnr lnr-home"></i> <span>Home</span></a>
+>>>>>>> master
 
 						</li>
 
@@ -198,6 +218,7 @@
 							</div>
 						</li>
 
+<<<<<<< HEAD
                         <li class="roledlink Spare-parts Admin Super" style="visibility:hidden;">
 							<a href="#subPages6" data-toggle="collapse" class="collapsed"><i class="fa fa-phone"></i> <span>Inventory</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages6" class="collapse ">
@@ -205,6 +226,17 @@
 									<li><a href="{{url('parts')}}" class="roledlink Front-Desk Admin Super">Send SMS Messages</a></li>
 									<li><a href="{{url('supplies')}}" class="roledlink Front-Desk Admin Super">Sent Messages</a></li>
 									<li><a href="{{url('sales')}}" class="roledlink Front-Desk Finance Admin Super">Tasks/Inbox</a></li>
+=======
+                        <li class="roledlink Spare-Parts Admin Super" style="visibility:hidden;">
+							<a href="#subPages8" data-toggle="collapse" class="collapsed"><i class="fa fa-list"></i> <span>Sales/Inventory</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages8" class="collapse ">
+								<ul class="nav">
+                                    <li><a href="{{url('new-sales')}}" class="roledlink Front-Desk Admin Super">New Sales</a></li>
+									<li><a href="{{url('parts')}}" class="roledlink Front-Desk Admin Super Spare-Parts">Automobile Parts</a></li>
+									<li><a href="{{url('supplies')}}" class="roledlink Front-Desk Admin Super Spare-Parts">Supplies</a></li>
+									<li><a href="{{url('sales')}}" class="roledlink Front-Desk Finance Admin Super Spare-Parts">Sales</a></li>
+                                    <li><a href="{{url('deliveries')}}" class="roledlink Front-Desk Finance Admin Super">Deliveries</a></li>
+>>>>>>> master
 								</ul>
 							</div>
 						</li>
@@ -213,10 +245,18 @@
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="fa fa-dollar"></i> <span>Payments</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
+<<<<<<< HEAD
                                     <li><a href="{{url('payments')}}" class="roledlink Cashier Finance Admin Super">Payments</a></li>
 
 									<li><a href="{{url('transactions')}}" class="roledlink Cashier Finance Admin Super">Transactions</a></li>
 									<li><a href="{{url('expenditures')}}" class="roledlink Cashier Finance Admin Super">Expenditures</a></li>
+=======
+									<li><a href="{{url('transactions')}}" class="roledlink Cashier Finance Admin Super">All Transactions</a></li>
+                                    <li><a href="{{url('payments')}}" class="roledlink Cashier Finance Admin Super">Payments</a></li>
+									{{-- <li><a href="{{url('expenditures')}}" class="roledlink Cashier Finance Admin Super">Expenditures</a></li> --}}
+                                    <li><a href="{{url('account-heads')}}" class="roledlink Cashier Finance Admin Super">Account Heads</a></li>
+
+>>>>>>> master
 								</ul>
 							</div>
 						</li>
@@ -250,6 +290,7 @@
 									<li><a href="{{url('personnels')}}" class="roledlink Admin Super">Personnel</a></li>
 									<li><a href="{{url('users')}}" class="roledlink Admin Super">Users</a></li>
 									<li><a href="{{url('backup')}}" class="roledlink Admin Finance Front-Desk  Super">Backup</a></li>
+<<<<<<< HEAD
 									<li class="roledlink Admin Super">
 										<form method="POST" action="http://server:89/customlogin" target="_blank">
 													<!-- {{$login_user->email}} -->
@@ -258,6 +299,8 @@
 													<button type="submit">Spare Parts ERP</button>
 										</form>
 									</li>
+=======
+>>>>>>> master
 								</ul>
 							</div>
 						</li>
@@ -279,6 +322,16 @@
 							<i class="fa fa-check-circle"></i> {!!Session::get('message')!!}
 						</div>
 					@endif
+<<<<<<< HEAD
+=======
+
+                    @if (Session::get('error'))
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+							<i class="fa fa-check-circle"></i> {!!Session::get('error')!!}
+						</div>
+					@endif
+>>>>>>> master
 					@yield('content')
 
 					<!----------------------------END YIELD PAGE CONTENT -->
@@ -290,7 +343,11 @@
 		<div class="clearfix"></div>
 		<footer>
 			<div class="container-fluid">
+<<<<<<< HEAD
 				<p class="copyright">&copy; {{date("Y")}} <a href="https://www.kentonsolution.com" target="_blank">Kenton Solution </a>. All Rights Reserved.</p>
+=======
+				<p class="copyright">&copy; {{date("Y")}} <a href="https://www.gintecservices.com.ng" target="_blank">Gintec Global Services </a>. All Rights Reserved.</p>
+>>>>>>> master
 			</div>
 		</footer>
 	</div>
@@ -303,7 +360,11 @@
 	<script src="{{asset('/assets/scripts/jquery-ui.js')}}"></script>
 	<script>
 		$( function() {
+<<<<<<< HEAD
 		  $( "#date,#from,#to,#dob,.date" ).datepicker({dateFormat: "yy/mm/dd"});
+=======
+		  $( "#date,#from,#to,#dob,.date" ).datepicker({dateFormat: "yy-mm-dd"});
+>>>>>>> master
 
 		  $(".ui-datepicker, .ui-widget").draggable().selectable();
 		});
@@ -664,6 +725,7 @@
 
         function updateId(pnid){
             var val = $('#pn'+pnid).val();
+<<<<<<< HEAD
             var pid = $('#parts option').filter(function() {
                 return this.value == val;
             }).data('pid');
@@ -673,6 +735,17 @@
             }).data('instock');
 
             var price = $('#parts option').filter(function() {
+=======
+            var pid = $('#productslist option').filter(function() {
+                return this.value == val;
+            }).data('pid');
+
+            var instock = $('#productslist option').filter(function() {
+                return this.value == val;
+            }).data('instock');
+
+            var price = $('#productslist option').filter(function() {
+>>>>>>> master
                 return this.value == val;
             }).data('price');
 
@@ -685,15 +758,59 @@
             $("#a"+pnid).val(price);
         };
 
+<<<<<<< HEAD
+=======
+        function getServiceCost(serviceid){
+            var val = $('#sn'+serviceid).val();
+
+            var samount = $('#servicelist option').filter(function() {
+                return this.value == val;
+            }).data('servicecost');
+
+            if (!$.isNumeric(samount)) {
+                samount = 0;
+            }
+
+
+            $("#labour").val(samount);
+        };
+
+>>>>>>> master
 		function addPl(){
 			// plid=plid+1;
 
 			$(this).text("+ Add More Parts");
 			var plid = $('div .partslist:last').attr('id');
+<<<<<<< HEAD
 			var newid = parseInt(plid);
 			newid+=1;
 
 			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="partslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
+=======
+
+            if(plid==null){
+                plid = 0;
+            }
+			var newid = parseInt(plid);
+			newid+=1;
+
+			$("#parts").append('<div class="row form-row partslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="productslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
+		}
+
+        function addService(){
+			// plid=plid+1;
+
+			$(this).text("+ Add More Service");
+			var slid = $('div .serviceslist:last').attr('id');
+
+            if(slid==null){
+                slid = 0;
+            }
+			var newsid = parseInt(slid);
+			newsid+=1;
+
+			$("#services").append('<div class="row form-row serviceslist" id="'+newsid+'"><div class="form-group col-md-6"><div><input list="servicelist" value="Routine Maintenance" placeholder="Routine Maintenance" name="servicename[]" class="form-control"  id="sn'+newsid+'"  onchange="getServiceCost('+newsid+')"></div></div><div class="form-group col-md-5"><div><input type="text" placeholder="Description" name="description[]" class="form-control" ></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removeSl('+newsid+')">Remove</span></div></div>');
+>>>>>>> master
 		}
 
 		// REMOVE PARTS LIST
@@ -701,6 +818,29 @@
 			$('#'+plid).remove();
 		}
 
+<<<<<<< HEAD
+=======
+        // REMOVE SERVICE
+        function removeSl(slid){
+			$('#sl'+slid).remove();
+		}
+
+        function addPr(){
+			// plid=plid+1;
+			$(this).text("+ Add More Products");
+			var plid = $('div .productslist:last').attr('id');
+			var newid = parseInt(plid);
+			newid+=1;
+
+			$("#productsales").append('<div class="row form-row productslist" id="'+newid+'"><div class="form-group col-md-4"><div class="form-group"><input list="productslist" class="form-control partname" name="partname[]" placeholder="Part Name"  id="pn'+newid+'" onchange="updateId('+newid+')"><input type="hidden" name="pnid[]" id="pnid'+newid+'"><span><small id="instock'+newid+'"></small></span></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" class="form-control quantity" name="quantity[]" id="q'+newid+'" value="1"></div></div><div class="form-group col-md-2"><div class="form-group"><input type="number" step="0.01" class="form-control rate" name="rate[]" id="r'+newid+'" value="1"></div></div><div class="form-group col-md-3"><div class="form-group"><input type="number" step="0.01" class="form-control amount" name="amount[]"  id="a'+newid+'" value="0"></div></div><div class="form-group col-md-1"><span class="btn btn-xs btn-primary premover" onclick="removePl('+newid+')">Remove</span></div></div>');
+		}
+
+		// REMOVE PARTS LIST
+		function removePr(plid){
+			$('#'+plid).remove();
+		}
+
+>>>>>>> master
 
 		// GO TO DIAGNOSIS TAB
 
@@ -849,10 +989,35 @@
 
 			if(option.val()){
 				// alert(option+"Found")
+<<<<<<< HEAD
 				var ask = window.confirm("The name '"+option.val()+"' that you entered already exists. Go to this Customer's Vehicles instead to continue?");
 				if (ask) {
 					// window.alert("This post was successfully deleted.");
 					window.location.href = "/customer-vehicles/"+option.data('customerid');
+=======
+				var ask = window.confirm("The name: "+option.val()+"-"+ option.data('customerid')+" that you entered already exists. Go to this Customer's Vehicles instead to continue?");
+				if (ask) {
+					// window.alert("This post was successfully deleted.");
+					window.location.href = "/awh/customer-vehicles/"+option.data('customerid');
+				}
+			}
+
+		});
+
+        $("#nameTrigger").on('blur',function(e){
+			var option = $('#names option').filter(function() {
+				return this.value === $("#nameTrigger").val();
+
+			});
+
+			if(option.val()){
+				// alert(option+"Found")
+
+				var ask = window.confirm("The name: "+option.val()+"-"+ option.data('customerid')+" that you entered already exists. Select Products for sale instead?");
+				if (ask) {
+                    $("#customerid").val(option.data('customerid'));
+                    $('.nav-tabs > .active').next('li').find('a').trigger('click');
+>>>>>>> master
 				}
 			}
 

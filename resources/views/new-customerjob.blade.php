@@ -1,6 +1,7 @@
 @extends('layouts.theme')
 
 @section('content')
+<<<<<<< HEAD
     <h3 class="page-title">Help | <small style="color: green">Need Help</small></h3>
     <div class="row">
             <div class="panel">
@@ -9,6 +10,16 @@
                         <h4>New Customer</h4>
                     
                     
+=======
+    <h3 class="page-title">Job | <small style="color: green">Create/Edit Job</small></h3>
+    <div class="row">
+            <div class="panel">
+                <div class="panel-heading">
+
+                        <h4>New Job for Customer: {{$contact->name}}</h4>
+
+
+>>>>>>> master
                 </div>
                 <div class="panel-body">
                     @php
@@ -17,15 +28,21 @@
                                 }
 
                             if(!isset($job)){
+<<<<<<< HEAD
                                 $job = \App\Models\jobs::where('id',9008)->first();
                                 
                                 if($job->id==9008){
                                     $job->id = 0;
+=======
+                                $job = $new_job;
+
+>>>>>>> master
                                     if(isset($vehicleinfo)){
                                         $vehicle=$vehicleinfo;
                                     }else{
                                         $vehicle=[];
                                     }
+<<<<<<< HEAD
                                 }
                             }
                         
@@ -33,28 +50,48 @@
 
                        <form method="POST" action="{{ route('addnewcustomer') }}">
                         
+=======
+
+                            }
+                    @endphp
+
+                       <form method="POST" action="{{ route('addnewcustomer') }}">
+
+>>>>>>> master
                             <input type="hidden" name="id" value="{{$job->id}}">
                             <input type="hidden" name="jobno" value="{{$jobno}}">
                             <input type="hidden" name="editjobno" value="{{$editjobno}}">
                             <input type="hidden" name="jobid" value="">
                             <input type="hidden" name="newcjob" value="newcjob">
 
+<<<<<<< HEAD
 
                         
                         @csrf
                         <ul class="nav nav-tabs" id="jobordertabs">
                             <li class="active"><a href="#tab2" data-toggle="tab">Vehicle Details</a></li>
                             <li><a href="#tab3" data-toggle="tab">Routine Maintenance</a></li>
+=======
+                        @csrf
+                        <ul class="nav nav-tabs" id="jobordertabs">
+                            <li class="active"><a href="#tab2" data-toggle="tab">Vehicle Details</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Service</a></li>
+>>>>>>> master
                             <li><a href="#tab4" data-toggle="tab">Vehicle  Diagnosis</a></li>
                             <li><a href="#tab5" data-toggle="tab">Parts / Cost</a></li>
                             <li><a href="#tab6" data-toggle="tab">Additional Confirmations</a></li>
                         </ul>
                         <div class="tab-content">
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
                             <div class="tab-pane active" id="tab2">
                                 <div class="row form-row">
                                     <div class="form-group col-md-4">
                                         <label for="customerid">Customer ID</label>
+<<<<<<< HEAD
                                         <input type="text" name="customerid" id="customerid" class="form-control" placeholder="Customer ID" value="{{$contact->customerid}}" readonly>                                  
                                     </div>
                                     <div class="form-group col-md-4">
@@ -64,6 +101,17 @@
                                     <div class="form-group col-md-4">
                                         <label for="regdate">Vehicle Reg. Date</label>
                                         <input type="text" name="regdate" id="regdate" class="form-control date" placeholder="First Visit Date" value="{{$vehicle ? $vehicle->regdate:''}}">                                  
+=======
+                                        <input type="text" name="customerid" id="customerid" class="form-control" placeholder="Customer ID" value="{{$contact->customerid}}" readonly>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="vregno">Vehicle Registration No</label>
+                                        <input type="text" name="vregno" id="vregno" class="form-control" placeholder="Vehicle Registration No" value="{{$vehicle ? $vehicle->vregno:''}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="regdate">Vehicle Reg. Date</label>
+                                        <input type="text" name="regdate" id="regdate" class="form-control date" placeholder="First Visit Date" value="{{$vehicle ? $vehicle->regdate:''}}">
+>>>>>>> master
                                     </div>
                                 </div>
 
@@ -85,7 +133,11 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <div class="form-group">
+<<<<<<< HEAD
                                           <label for="frameno">Frame Number</label>
+=======
+                                          <label for="frameno">Chasis Number</label>
+>>>>>>> master
                                           <input type="text"
                                             class="form-control" name="frameno" id="frameno" placeholder="Frame Number" value="{{$vehicle ? $vehicle->frameno:''}}">
                                         </div>
@@ -102,12 +154,20 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
+<<<<<<< HEAD
                                           <label for="chasisno">Chasis/VIN Number</label>
+=======
+                                          <label for="chasisno">VIN Number</label>
+>>>>>>> master
                                           <input type="text"
                                             class="form-control" name="chasisno" id="chasisno" placeholder="Chasis Number" value="{{$vehicle ? $vehicle->chasisno:''}}">
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> master
                                 </div>
 
                                 <div class="row form-row">
@@ -120,6 +180,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="vcondition">Vehicle Condition</label>
+<<<<<<< HEAD
                                         <input type="text" name="vcondition" id="vcondition" class="form-control" placeholder="Vehicle Condition" value="{{$vehicle ? $vehicle->vcondition:''}}">                                  
                                     </div>
                                     <div class="form-group col-md-4">
@@ -133,10 +194,26 @@
                                 
                                 <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnoses</a>
                                 
+=======
+                                        <input type="text" name="vcondition" id="vcondition" class="form-control" placeholder="Vehicle Condition" value="{{$vehicle ? $vehicle->vcondition:''}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="daterecieved">Date Recieved</label>
+                                        <input type="text" name="daterecieved" id="daterecieved" class="form-control date" placeholder="Date Recieved" value="{{$vehicle ? $vehicle->daterecieved:''}}">
+                                    </div>
+
+                                </div>
+
+                                <a class="btn btn-primary btnNext" >Service</a>
+
+                                <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnosis</a>
+
+>>>>>>> master
                             </div>
 
                             <div class="tab-pane" id="tab3">
 
+<<<<<<< HEAD
                                
                                <div class="row form-row">          
                                     <div class="form-group col-md-6">
@@ -169,19 +246,78 @@
                                         name="mileage" class="form-control" >                                                                                
                                         </div>
                                     </div>  
+=======
+                                <datalist id="servicelist">
+                                    @foreach ($services as $srv)
+                                        <option value="{{$srv->servicename}}" data-sid="{{ $srv->id }}" data-servicecost="{{$srv->amount}}">
+                                    @endforeach
+                                </datalist>
+
+                                <div id="services">
+                                    @php
+                                        $si = 1;
+                                    @endphp
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="servicename">Service Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="description">Description</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row serviceslist" id="sl{{$si}}">
+                                        <div class="form-group col-md-6">
+
+                                            <div>
+                                            <input list="servicelist" value="" placeholder="Routine Maintenance"
+                                            name="servicename[]" class="form-control"  id="sn{{$si}}" onchange="getServiceCost({{$si}})">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <div>
+                                            <input type="text" id="description" placeholder="Description"
+                                            name="description[]" class="form-control" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center !important;"><span class="btn btn-success" onclick="addService()">Add More Services</span></div>
+
+                                <div class="row form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="mileage">Service Mileage</label>
+                                        <div>
+
+                                        <input type="text" id="mileage" placeholder="mileage"
+                                        name="mileage" class="form-control" >
+                                        </div>
+                                    </div>
+>>>>>>> master
 
                                     <div class="form-group col-md-3">
                                         <label for="sdate">Service Date</label>
                                         <div>
+<<<<<<< HEAD
                                         
                                         <input type="text" id="sdate" placeholder="sdate"
                                         name="sdate" class="form-control date" >                                                                                
                                         </div>
                                     </div>  
+=======
+
+                                        <input type="text" id="sdate" placeholder="sdate"
+                                        name="sdate" class="form-control date" >
+                                        </div>
+                                    </div>
+>>>>>>> master
 
                                     <div class="form-group col-md-3">
                                         <label for="nextservicedate">Next Service Date</label>
                                         <div>
+<<<<<<< HEAD
                                         
                                         <input type="text" id="nextservicedate" placeholder="nextservicedate"
                                         name="nextservicedate" class="form-control date" >                                                                                
@@ -196,15 +332,40 @@
                                         name="sstatus" class="form-control" >                                                                                
                                         </div>
                                     </div>   
+=======
+
+                                        <input type="text" id="nextservicedate" placeholder="nextservicedate"
+                                        name="nextservicedate" class="form-control date" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="sstatus">Status</label>
+                                        <div>
+                                        <select name="sstatus" id="sstatus" class="pending">
+                                            <option value="Just Arrived">Just Arrived</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                        </div>
+                                    </div>
+>>>>>>> master
                                 </div>
 
 
 
 
                                 <a class="btn btn-warning btnPrevious" >Previous</a><a class="btn btn-primary btnNext" >Next</a>
+<<<<<<< HEAD
                                 
                             </div>
                            
+=======
+
+                            </div>
+
+>>>>>>> master
                             <div class="tab-pane" id="tab4">
                                 <h5>Vehicle Diagnosis</h5>
                                 <div class="row form-row">
@@ -221,7 +382,11 @@
                                           <textarea class="form-control" name="causes" id="causes" rows="3"></textarea>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> master
                                 </div>
 
 
@@ -229,8 +394,13 @@
 
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
+<<<<<<< HEAD
                                           <label for="requests">Customer Requests</label>
                                           <textarea class="form-control" name="requests" id="requests" rows="3"></textarea>
+=======
+                                          <label for="request">Customer Requests</label>
+                                          <textarea class="form-control" name="requests" id="request" rows="3"></textarea>
+>>>>>>> master
                                         </div>
                                     </div>
 
@@ -240,31 +410,52 @@
                                           <textarea class="form-control" name="instructions" id="instructions" rows="3"></textarea>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> master
                                 </div>
 
                                 <div class="row form-row">
                                     <div class="form-group col-md-3">
                                         <label for="ddate">Diagnosis Date</label>
                                         <div>
+<<<<<<< HEAD
                                         
                                         <input type="text" id="ddate" value="" placeholder="Date"
                                         name="ddate" class="form-control date" >                                                                                
                                         </div>
                                     </div>  
+=======
+
+                                        <input type="text" id="ddate" value="" placeholder="Date"
+                                        name="ddate" class="form-control date" >
+                                        </div>
+                                    </div>
+>>>>>>> master
 
                                     <div class="form-group col-md-3">
                                         <label for="deliverydate">Expected Delivery Date</label>
                                         <div>
+<<<<<<< HEAD
                                         
                                         <input type="text" id="diagnosis" value="" placeholder="Expected Delivery Date"
                                         name="deliverydate"  class="form-control date" >                                                                                
                                         </div>
                                     </div>  
+=======
+
+                                        <input type="text" id="diagnosis" value="" placeholder="Expected Delivery Date"
+                                        name="deliverydate"  class="form-control date" >
+                                        </div>
+                                    </div>
+>>>>>>> master
 
                                     <div class="form-group col-md-3">
                                         <label for="remarks">Remarks</label>
                                         <div>
+<<<<<<< HEAD
                                         
                                         <input type="text" id="remarks" value="" placeholder="Remarks"
                                         name="status" class="form-control" >                                                                                
@@ -283,6 +474,29 @@
 
                                 <a class="btn btn-warning btnPrevious" >Previous</a><a class="btn btn-primary btnNext" >Next</a>
                                 
+=======
+
+                                        <input type="text" id="remarks" value="" placeholder="Remarks"
+                                        name="status" class="form-control" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="status">Status</label>
+                                        <div>
+                                        <select name="status" id="status" class="pending">
+                                            <option value="Just Arrived">Just Arrived</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a class="btn btn-warning btnPrevious" >Previous</a><a class="btn btn-primary btnNext" >Next</a>
+
+>>>>>>> master
                             </div>
 
                             <div class="tab-pane" id="tab5">
@@ -301,6 +515,7 @@
                                         <div class="form-group col-md-3">
                                             <label for="amount">Amount</label>
                                         </div>
+<<<<<<< HEAD
                                         
                                     </div>
                                    
@@ -310,6 +525,24 @@
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
                                                 <input type="text" class="form-control partname" name="partname[]" placeholder="Part Name">
+=======
+
+                                    </div>
+
+                                        @php $pi = 1; @endphp
+                                        <datalist id="productslist">
+                                            @foreach ($parts as $pas)
+                                                <option value="{{$pas->part_name}}" data-pid="{{ $pas->id }}" data-price="{{$pas->selling_price}}"  data-instock="{{ $pas->stock->quantity_in_stock }}">
+                                            @endforeach
+                                        </datalist>
+                                        <div class="row form-row partslist" id="{{$pi}}">
+
+                                            <div class="form-group col-md-4">
+                                                <div class="form-group">
+                                                    <input list="productslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Product Name">
+                                                    <input type="hidden" name="pnid[]" id="pnid{{$pi}}">
+                                                    <span><small id="instock{{$pi}}"></small></span>
+>>>>>>> master
                                                 </div>
                                             </div>
 
@@ -335,6 +568,7 @@
                                                 <span class="btn btn-xs btn-primary premover" onclick="removePl({{$pi}})">Remove</span>
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                     
                                     
 
@@ -345,6 +579,18 @@
 
                                 
                                 <div class="row form-row">                                    
+=======
+
+
+
+                                </div>
+
+
+                                <div style="text-align: center !important;"><span class="btn btn-success" id="partsaddbtn" onclick="addPl()">Add Parts</span></div>
+
+
+                                <div class="row form-row">
+>>>>>>> master
 
                                     <div class="form-group col-md-9">
                                         <div class="form-group" style="text-align: right; font-weight: bold;">
@@ -352,14 +598,22 @@
                                         </div>
                                     </div>
 
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> master
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
                                         <input type="number" step="0.01" class="form-control" name="labour" id="labour" value="{{$job->labour ? $job->labour : 0}}">
                                         </div>
                                     </div>
 
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> master
                                 </div>
 
                                 <div class="row form-row">
@@ -370,7 +624,11 @@
                                             <input type="radio" id="Yes"  {{$contact ? $contact->sundry=='2500' ? 'checked':'' : '0'}}
                                             name="sundry" value="2500" class="sundry">
                                             <span for="Yes">Yes</span>
+<<<<<<< HEAD
                                         
+=======
+
+>>>>>>> master
                                             <input type="radio" id="No"  {{$contact ? $contact->sundry!='2500' ? 'checked':'' : '0'}}
                                             name="sundry" value="0" class="sundry">
                                             <span for="No">No</span>
@@ -383,7 +641,11 @@
                                             <input type="radio" id="five"  {{$contact ? $contact->vat=='5' ? 'checked':'' : '0'}}
                                             name="vat" value="5" class="vat">
                                             <span for="five">5%</span>
+<<<<<<< HEAD
                                         
+=======
+
+>>>>>>> master
                                             <input type="radio" id="sevenpointfive"  {{$contact ? $contact->vat=='7.5' ? 'checked':'' : '0'}}
                                             name="vat" value="7.5" class="vat">
                                             <span for="sevenpointfive">7.5 %</span>
@@ -402,14 +664,22 @@
                                             <input type="radio" id="Yes"  {{$contact ? $contact->credit=='Yes' ? 'checked':'' : '0'}}
                                             name="credit" value="Yes">
                                             <span for="Yes">Yes</span>
+<<<<<<< HEAD
                                         
+=======
+
+>>>>>>> master
                                             <input type="radio" id="No"  {{$contact ? $contact->credit=='No' ? 'checked':'' : '0'}}
                                             name="credit" value="No">
                                             <span for="No">No</span>
                                         </div>
                                     </div>
 
+<<<<<<< HEAD
                                 <div class="row form-row">    
+=======
+                                <div class="row form-row">
+>>>>>>> master
                                     <div class="form-group col-md-9">
                                         <div class="form-group" style="text-align: right; font-weight: bold;">
                                             Vat <span id="vatview"></span>
@@ -422,7 +692,11 @@
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="row form-row">    
+=======
+                                <div class="row form-row">
+>>>>>>> master
                                     <div class="form-group col-md-9">
                                         <div class="form-group" style="text-align: right; font-weight: bold;">
                                             Sundry
@@ -435,7 +709,11 @@
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="row form-row">    
+=======
+                                <div class="row form-row">
+>>>>>>> master
                                     <div class="form-group col-md-6">
                                         <div class="form-group" style="text-align: right; font-weight: bold;">
                                             Discount (in Percentage %)
@@ -453,7 +731,11 @@
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="row form-row">    
+=======
+                                <div class="row form-row">
+>>>>>>> master
                                     <div class="form-group col-md-9">
                                         <div class="form-group" style="text-align: right; font-weight: bold;">
                                             TOTAL AMOUNT
@@ -474,7 +756,11 @@
 
                                 <div class="row form-row">
                                     <h4>Additional Confirmations</h4>
+<<<<<<< HEAD
                                     
+=======
+
+>>>>>>> master
                                         <div class="form-check">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" name="valuables" id="valuables" value="Yes">
@@ -510,6 +796,7 @@
                                             </label>
                                         </div>
 
+<<<<<<< HEAD
                                         
                                 </div>
 
@@ -517,11 +804,26 @@
                                 
                             </div>
                             
+=======
+
+                                </div>
+
+                                <a class="btn btn-warning btnPrevious" >Previous</a><button type="submit" class="btn btn-success btnNext" >Send Order</button>
+
+                            </div>
+
+>>>>>>> master
                         </div>
 
                     </form>
                 </div>
             </div>
+<<<<<<< HEAD
         
     </div>
 @endsection
+=======
+
+    </div>
+@endsection
+>>>>>>> master

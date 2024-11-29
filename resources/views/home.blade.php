@@ -103,7 +103,16 @@ g text{
                                     <h3><span class="badge badge-pill bg-danger">{{number_format($countcustomers,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
+<<<<<<< HEAD
                                     <a href="/newjob" class="btn btn-primary">Add New</a>
+=======
+                                    @if (Auth::user()->role=="Spare-Parts")
+                                        <a href="{{ url('/customers')}}" class="btn btn-primary">View Clients</a>
+                                    @else
+                                        <a href="{{ url('/newjob')}}" class="btn btn-primary">Add New</a>
+                                    @endif
+
+>>>>>>> master
                                 </div>
                             </div>
                         </div>
@@ -120,7 +129,11 @@ g text{
                                     <h3><span class="badge badge-pill bg-warning">{{number_format($countvehicles,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
+<<<<<<< HEAD
                                     <a href="/vehicles" class="btn btn-primary">View All</a>
+=======
+                                    <a href="{{ url('/vehicles')}}" class="btn btn-primary">View All</a>
+>>>>>>> master
                                 </div>
                             </div>
                         </div>
@@ -137,7 +150,15 @@ g text{
                                     <h3><span class="badge badge-pill bg-success">{{number_format($countpjobs,0)}}</span></h3>
                                 </div>
                                 <div class="newbtn">
+<<<<<<< HEAD
                                     <a href="/newjob" class="btn btn-primary">New Job</a>
+=======
+                                    @if (Auth::user()->role=="Spare-Parts")
+                                        <a href="{{ url('/jobs')}}" class="btn btn-primary">View Jobs</a>
+                                    @else
+                                        <a href="{{ url('/newjob')}}" class="btn btn-primary">New Job</a>
+                                    @endif
+>>>>>>> master
                                 </div>
                             </div>
                         </div>
@@ -153,7 +174,11 @@ g text{
                     <div class="row form-row">
                         <div class="col-md-6">
 
+<<<<<<< HEAD
                             <h4>Schedules / Service Reminders | <small style="color: green">(+-)30 Days</small> <a class="btn btn-sm btn-primary" href="/reminders">View All Reminders</a></h4>
+=======
+                            <h4>Schedules / Service Reminders | <small style="color: green">(+-)30 Days</small> <a class="btn btn-sm btn-primary" href="{{ url('/reminders')}}">View All Reminders</a></h4>
+>>>>>>> master
                             <table class="table table-bordered responsive-table" id="products" style="font-size: 0.7em !important">
                                 <thead>
                                     <tr>
@@ -168,6 +193,7 @@ g text{
                                 <tbody>
                                     @foreach ($reminders as $rem)
                                     @php
+<<<<<<< HEAD
                                     $now = time(); // or your date as well
                                     $lasts_date = strtotime($rem->dated);
                                     $datediff = $now - $lasts_date;
@@ -186,6 +212,39 @@ g text{
                                         $due = "Due in Next ".$days." days";
                                     }
 
+=======
+                                        $now = time(); // or your date as well
+                                        $due = "";
+                                        $style = "";
+                                        if($rem->next_due!=""){
+                                            // IF NEXT DUE IS PROVIDED
+                                            $days_ahead = strtotime($rem->next_due);
+                                            $days_ahead_diff = $days_ahead-$now;
+                                            $num_days_ahead = round($days_ahead_diff / (60 * 60 * 24));
+
+                                            if($num_days_ahead<0){
+                                                $due = "Overdue By: ".$num_days_ahead." days";
+                                                $style='style="background-color: #FFD580 !important"';
+                                            }else{
+                                                $due = "Due in Next ".$num_days_ahead." days";
+                                            }
+                                        }else{
+                                            // IF NEXT DUE IS NOT PROVIDED
+                                            $lasts_date = strtotime($rem->dated);
+                                            $datediff = $now - $lasts_date;
+                                            $dayspast = round($datediff / (60 * 60 * 24));
+
+                                            if($dayspast > 90){
+                                                $days = $dayspast-90;
+                                                $due = "Overdue By: ".$days." days";
+                                                $style='style="background-color: #FFD580 !important"';
+                                            }
+                                            else if($dayspast < 90){
+                                                $days = 90-$dayspast;
+                                                $due = "Due in Next ".$days." days";
+                                            }
+                                        }
+>>>>>>> master
                                     @endphp
                                         <tr {!!$style!!}>
 
@@ -198,8 +257,13 @@ g text{
 
 
                                             <td>
+<<<<<<< HEAD
                                                 <a href="/invoice/{{$rem->jobno}}/invoice" target="_blank" class="label label-warning roledlink Super Front-Desk">View Job</a>
                                                 <a href="/psfu/{{$rem->jobno}}" target="_blank" class="label label-success">PSFU</a>
+=======
+                                                <a href="{{ url('/invoice/'.$rem->jobno.'/invoice')}}" target="_blank" class="label label-warning roledlink Super Front-Desk">View Job</a>
+                                                <a href="{{ url('/jobpsfu/'.$rem->jobno)}}" target="_blank" class="label label-success">PSFU</a>
+>>>>>>> master
                                             </td>
 
                                         </tr>
@@ -229,8 +293,13 @@ g text{
                                     @foreach ($mytasks as $task)
 
                                         <tr>
+<<<<<<< HEAD
                                             <td><a href="/tasks"><b>{{$task->title}}</b></a></td>
                                             <td>{{is_numeric($task->member)?$allcontacts->where('id',$task->member)->first()->name:$task->member}}</td>
+=======
+                                            <td><a href="{{ url('/tasks')}}"><b>{{$task->title}}</b></a></td>
+                                            <td>{{is_numeric($task->member)?$allusers->where('id',$task->member)->first()->name:$task->member}}</td>
+>>>>>>> master
                                             <td>{{$task->date}}</td>
                                             <td>{{$task->status}}</td>
                                         </tr>

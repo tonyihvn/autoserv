@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\followups;
 use App\Models\User;
 use Auth;
+<<<<<<< HEAD
+=======
+use Artisan;
+>>>>>>> master
 
 class TasksController extends Controller
 {
@@ -70,7 +74,11 @@ class TasksController extends Controller
             'member'=>$request->assigned_to
         ]);
 
+<<<<<<< HEAD
         $tasks = tasks::paginate(50);
+=======
+        $tasks = tasks::all();
+>>>>>>> master
         if($request->phone_number!=""){
 
             $recipients = $request->phone_number;
@@ -91,7 +99,11 @@ class TasksController extends Controller
 
             $message = $this->getUrl("http://www.smslive247.com/http/index.aspx?cmd=sendmsg&sessionid=".$sessionid."&message=".urlencode($body)."&sender=REMINDER&sendto=".$recipients."&msgtype=0");
         }
+<<<<<<< HEAD
         return redirect()->back()->with(['tasks'=>$tasks]);
+=======
+        return redirect()->back()->with(['tasks'=>$tasks,'message'=>'Task sent successfully!']);
+>>>>>>> master
 
     }
 
@@ -225,5 +237,24 @@ class TasksController extends Controller
 
     }
 
+<<<<<<< HEAD
+=======
+    public function Artisan1($command) {
+        $artisan = Artisan::call($command);
+        $output = Artisan::output();
+        return dd($output);
+    }
+
+    public function Artisan2($command, $param) {
+
+        $output = Artisan::call($command.":".$param);
+
+        // $artisan = Artisan::call($command,['flag'=>$param]);
+        // $output = Artisan::output();
+        return dd($output);
+    }
+
+
+>>>>>>> master
 
 }

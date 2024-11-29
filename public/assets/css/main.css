@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 /*	
 *	############################################################################################
 *	
+=======
+/*
+*	############################################################################################
+*
+>>>>>>> master
 *	KLOROFIL - Free Bootstrap Dashboard Template
 *	---------------------------------------------------------------------
 *
@@ -9,7 +15,11 @@
 *	Website: 	https://www.themeineed.com/
 *	Copyright: 	Copyright 2016 The Develovers
 *	License: 	Creative Common Attribution 4.0 https://creativecommons.org/licenses/by/4.0/
+<<<<<<< HEAD
 *	
+=======
+*
+>>>>>>> master
 *	############################################################################################
 */
 /********************
@@ -178,10 +188,19 @@ html.fullscreen-bg #wrapper {
   @media screen and (max-width: 1024px) {
     .navbar-default .brand {
       padding-left: 30px;
+<<<<<<< HEAD
       padding-right: 15px; } }
   @media screen and (max-width: 992px) {
     .navbar-default .brand {
       display: none; } }
+=======
+      padding-right: 15px;
+    padding-bottom: 2px;
+    margin-bottom: 2px; } }
+  /* @media screen and (max-width: 992px) {
+    .navbar-default .brand {
+      display: none; } } */
+>>>>>>> master
   @media screen and (max-width: 640px) {
     .navbar-default #navbar-menu {
       float: right; } }
@@ -214,8 +233,16 @@ html.fullscreen-bg #wrapper {
       width: 70%;
       margin-left: 5px;
       margin-right: 5px;
+<<<<<<< HEAD
       padding-left: 0;
       padding-right: 0; }
+=======
+      margin: 2px;
+      /* padding-left: 0;
+      padding-right: 0;  */
+      padding: 0;
+    }
+>>>>>>> master
       .navbar-form .input-group {
         width: 70%; }
       .navbar-form input[type="text"] {
@@ -1762,4 +1789,8 @@ ul.activity-timeline > li {
     width: 22px;
     border: 1px solid #CCC; }
 
+<<<<<<< HEAD
 /*# sourceMappingURL=main.css.map */
+=======
+/*# sourceMappingURL=main.css.map */
+>>>>>>> master

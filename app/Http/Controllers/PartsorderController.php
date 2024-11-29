@@ -14,7 +14,12 @@ class PartsorderController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         //
+=======
+        $sales = partsorder::orderBy('created_at','desc')->get();
+        return view('sales', compact('sales'));
+>>>>>>> master
     }
 
     /**

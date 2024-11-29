@@ -26,6 +26,22 @@ class TransactionsController extends Controller
         return view('transactions', compact('transactions','users','accountheads','jobs'));
     }
 
+<<<<<<< HEAD
+=======
+    public function filterTransactions(request $request)
+    {
+        $from = date('Y-m-d', strtotime($request->from));
+        $to = date('Y-m-d', strtotime($request->to));
+
+        $accountheads = accountheads::all();
+        $jobs = jobs::select('id','jid','customerid')->where('jid','>',0)->where('status','Pending')->get();
+        $transactions = transactions::whereBetween('dated',  [$from, $to])->orderBy('id','desc')->paginate(50);
+        $users = User::select('id','name')->get();
+
+        return view('transactions', compact('transactions','users','accountheads','jobs'));
+    }
+
+>>>>>>> master
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +66,11 @@ class TransactionsController extends Controller
                 'title' => $request->title,
                 'amount' => $request->amount,
                 'account_head' => $request->account_head,
+<<<<<<< HEAD
                 'dated'=>$request->date,
+=======
+                'dated'=>date('Y-m-d H:i:s',strtotime($request->date)),
+>>>>>>> master
                 'reference_no' => $request->reference_no." Payment",
                 'upload'=>'',
                 'detail'=>$request->detail,
@@ -67,7 +87,11 @@ class TransactionsController extends Controller
                 'title' => $request->title,
                 'amount' => $request->amount,
                 'account_head' => $request->account_head,
+<<<<<<< HEAD
                 'dated'=>$request->date,
+=======
+                'dated'=>date('Y-m-d H:i:s',strtotime($request->date)),
+>>>>>>> master
                 'reference_no' => $request->reference_no,
                 'upload'=>'',
                 'detail'=>$request->detail,

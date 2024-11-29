@@ -9,6 +9,11 @@ class diagnosis extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
+=======
+    protected $table = 'diagnosis';
+
+>>>>>>> master
     protected $guarded = [];
 
     public function jobs()

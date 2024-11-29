@@ -67,6 +67,10 @@ Route::get('/add-personnel', [App\Http\Controllers\PersonnelController::class, '
 Route::post('/newpersonnel', [App\Http\Controllers\PersonnelController::class, 'store'])->name('newpersonnel')->middleware('role:Admin,Super');
 Route::post('/psfuform', [App\Http\Controllers\HomeController::class, 'psfuForm'])->name('psfuform')->middleware('role:Admin,Super,Front-Desk');
 Route::get('/psfu', [App\Http\Controllers\HomeController::class, 'psfu'])->name('psfu')->middleware('role:Admin,Super,Front-Desk');
+<<<<<<< HEAD
+=======
+Route::get('/jobpsfu/{jobno}', [App\Http\Controllers\HomeController::class, 'jobPSFU'])->name('jobpsfu')->middleware('role:Admin,Super,Front-Desk');
+>>>>>>> master
 
 
 // PARTS
@@ -74,11 +78,28 @@ Route::get('/parts', [App\Http\Controllers\PartsController::class, 'index'])->na
 Route::get('/add-part', [App\Http\Controllers\PartsController::class, 'create'])->name('add-part');
 Route::post('save-part', [App\Http\Controllers\PartsController::class, 'store'])->name('save-part');
 Route::get('/edit-part/{partid}', [App\Http\Controllers\PartsController::class, 'edit'])->name('edit-part');
+<<<<<<< HEAD
 Route::put('/update-part', [App\Http\Controllers\PartsController::class, 'update'])->name('update-part');
 Route::delete('/delete-part/{part}', [App\Http\Controllers\PartsController::class, 'destroy'])->name('delete-part');
 
 // SUPPLIES
 Route::get('/supplies', [App\Http\Controllers\PartsController::class, 'partSupplies'])->name('supplies');
+=======
+Route::post('/update-part', [App\Http\Controllers\PartsController::class, 'update'])->name('update-part');
+Route::get('/delete-part/{part}', [App\Http\Controllers\PartsController::class, 'destroy'])->name('delete-part');
+
+// SUPPLIES
+Route::get('/supplies', [App\Http\Controllers\PartsController::class, 'partSupplies'])->name('supplies');
+Route::get('/add-supply', [App\Http\Controllers\PartsController::class, 'addSupply'])->name('add-supply');
+Route::post('save-supply', [App\Http\Controllers\PartsController::class, 'saveSupply'])->name('save-supply');
+Route::get('/delete-supply/{sid}', [App\Http\Controllers\PartsController::class, 'deleteSupply'])->name('delete-supply');
+
+
+// PART/PRODUCT SALES
+Route::get('/sales', [App\Http\Controllers\PartsorderController::class, 'index'])->name('sales');
+Route::get('/new-sales', [App\Http\Controllers\JobsController::class, 'newSales'])->name('new-sales')->middleware('role:Front-Desk,Admin,Super');
+Route::post('/add-sales', [App\Http\Controllers\JobsController::class, 'addSales'])->name('add-sales')->middleware('role:Front-Desk,Admin,Super');
+>>>>>>> master
 
 
 // CONTACTS AND JOBS
@@ -105,6 +126,7 @@ Route::get('/customer-vehicles/{customerid}', [App\Http\Controllers\VehicleContr
 Route::get('/newjob', [App\Http\Controllers\JobsController::class, 'create'])->name('newjob')->middleware('role:Front-Desk,Admin,Super');
 Route::get('/newcjob/{customerid}', [App\Http\Controllers\JobsController::class, 'newCustomerJob'])->name('newcjob')->middleware('role:Front-Desk,Admin,Super');
 Route::get('/newvjob/{customerid}/{vreg}', [App\Http\Controllers\JobsController::class, 'newVehicleJob'])->name('newvjob')->middleware('role:Front-Desk,Admin,Super');
+<<<<<<< HEAD
 Route::get('/edit-job/{jobno}', [App\Http\Controllers\JobsController::class, 'editJob'])->name('edit-job')->middleware('role:Front-Desk,Admin,Super');
 Route::post('/addnewcustomer', [App\Http\Controllers\JobsController::class, 'store'])->name('addnewcustomer')->middleware('role:Admin,Super,Front-Desk');
 Route::post('/addjobno', [App\Http\Controllers\JobsController::class, 'addJobno'])->name('addjobno')->middleware('role:Admin,Super,Front-Desk');
@@ -112,6 +134,21 @@ Route::get('/invoice/{jobno}/{type}', [App\Http\Controllers\JobsController::clas
 Route::post('/filterjobs', [App\Http\Controllers\JobsController::class, 'filterJobs'])->name('filterjobs')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
 
 
+=======
+Route::get('/edit-job/{jobno}', [App\Http\Controllers\JobsController::class, 'editJob'])->name('edit-job')->middleware('role:Front-Desk,Admin,Spare-Parts,Super');
+Route::post('/addnewcustomer', [App\Http\Controllers\JobsController::class, 'store'])->name('addnewcustomer')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
+Route::post('/addjobno', [App\Http\Controllers\JobsController::class, 'addJobno'])->name('addjobno')->middleware('role:Admin,Super,Front-Desk');
+Route::get('/invoice/{jobno}/{type}', [App\Http\Controllers\JobsController::class, 'printInvoice'])->name('invoice')->middleware('role:Front-Desk,Admin,Finance,Super,Spare-Parts');
+Route::post('/filterjobs', [App\Http\Controllers\JobsController::class, 'filterJobs'])->name('filterjobs')->middleware('role:Admin,Super,Front-Desk,Spare-Parts');
+Route::post('/filterTransactions', [App\Http\Controllers\TransactionsController::class, 'filterTransactions'])->name('filterTransactions')->middleware('role:Admin,Super,Finance');
+
+
+// DELIVERIES
+Route::resource('deliveries', App\Http\Controllers\DeliveryController::class);
+Route::post('actualDelivery',[App\Http\Controllers\DeliveryController::class,'actualDelivery'])->name('actualDelivery');
+Route::get('/delivery_note/{did}',[App\Http\Controllers\DeliveryController::class,'deliveryNote'])->name('delivery-note');
+
+>>>>>>> master
 Route::post('/changedate', [App\Http\Controllers\JobsController::class, 'changedate'])->name('changedate')->middleware('role:Admin,Super,Front-Desk');
 
 // PAYMENTS
@@ -119,3 +156,9 @@ Route::get('/payments', [App\Http\Controllers\PaymentsController::class, 'index'
 Route::get('/expenditures', [App\Http\Controllers\ExpenditureController::class, 'index'])->name('expenditures')->middleware('role:Admin,Finance,Super');
 
 Route::get('/delete/{id}/{table}', [App\Http\Controllers\JobsController::class, 'genericDelete'])->name('delete')->middleware('role:Admin,Super');
+<<<<<<< HEAD
+=======
+// ARTISAN COMMANDS
+Route::get('/artisan1/{command}', [App\Http\Controllers\TasksController::class, 'Artisan1']);
+Route::get('/artisan2/{command}/{param}', [App\Http\Controllers\TasksController::class, 'Artisan2']);
+>>>>>>> master

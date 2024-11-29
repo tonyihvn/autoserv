@@ -2,7 +2,11 @@
 
 @section('content')
 @php $pagename="namesearch"; $sn=1; @endphp
+<<<<<<< HEAD
     <h3 class="page-title">Help | <small style="color: green">Need Help</small></h3>
+=======
+    <h3 class="page-title">Job | <small style="color: green">Create / Edit Job</small></h3>
+>>>>>>> master
     <div class="row">
             <div class="panel">
                 <div class="panel-heading">
@@ -24,7 +28,11 @@
                                 $job->diagnosis = [];
                                 $job->sale = [];
 
+<<<<<<< HEAD
                             $customerid = "LACT".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
+=======
+                            $customerid = "AWHC".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
+>>>>>>> master
                         }else{
                             $jobno = $job->id;
                             if(isset($job->vehicle)){
@@ -45,7 +53,11 @@
                         <ul class="nav nav-tabs" id="jobordertabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Contact Information</a></li>
                             <li><a href="#tab2" data-toggle="tab">Vehicle Details</a></li>
+<<<<<<< HEAD
                             <li><a href="#tab3" data-toggle="tab">Routine Maintenance</a></li>
+=======
+                            <li><a href="#tab3" data-toggle="tab">Service</a></li>
+>>>>>>> master
                             <li><a href="#tab4" data-toggle="tab">Vehicle  Diagnosis</a></li>
                             <li><a href="#tab5" data-toggle="tab">Parts / Cost</a></li>
                             <li><a href="#tab6" data-toggle="tab">Additional Confirmations</a></li>
@@ -59,7 +71,11 @@
                                     <input type="text" name="name" id="name" list="names" class="form-control" placeholder="Customer Name" value="{!!$job->contact ? $job->contact->name:''!!}">
                                     <datalist id="names">
                                         @foreach ($allcontacts as $con)
+<<<<<<< HEAD
                                             <option value="{!!$con->name!!}" data-customerid="{{$con->customerid}}"">{!!$con->organization!!}</option>
+=======
+                                            <option value="{!!$con->name!!}" data-customerid="{{$con->customerid}}">{!!$con->organization!!}</option>
+>>>>>>> master
                                         @endforeach
                                     </datalist>
                                 </div>
@@ -179,9 +195,15 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <div class="form-group">
+<<<<<<< HEAD
                                           <label for="frameno">Frame Number</label>
                                           <input type="text"
                                             class="form-control" name="frameno" id="frameno" placeholder="Frame Number" value="{{$vehicle ? $vehicle->frameno:''}}">
+=======
+                                          <label for="frameno">Chasis Number</label>
+                                          <input type="text"
+                                            class="form-control" name="frameno" id="frameno" placeholder="Chasis Number" value="{{$vehicle ? $vehicle->frameno:''}}">
+>>>>>>> master
                                         </div>
                                     </div>
                                 </div>
@@ -223,14 +245,21 @@
 
                                 </div>
 
+<<<<<<< HEAD
                                 <a class="btn btn-primary btnPrevious">Previous</a><a class="btn btn-primary btnNext" >Routine Maintenance</a>
 
                                 <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnoses</a>
+=======
+                                <a class="btn btn-primary btnPrevious">Previous</a><a class="btn btn-primary btnNext" >Select Service</a>
+
+                                <a class="btn btn-warning" id="gotodiagnosis">Vehicle Diagnosis</a>
+>>>>>>> master
 
                             </div>
 
                             <div class="tab-pane" id="tab3">
 
+<<<<<<< HEAD
                                @if (null !== $job->serviceorder)
                                    @foreach ($job->serviceorder as $so)
                                    <div class="row form-row">
@@ -275,13 +304,78 @@
                                 </div>
                                @endif
 
+=======
+                                <datalist id="servicelist">
+                                    @foreach ($services as $srv)
+                                        <option value="{{$srv->servicename}}" data-sid="{{ $srv->id }}" data-servicecost="{{$srv->amount}}">
+                                    @endforeach
+                                </datalist>
+
+                               @if ($job->serviceorder!=[])
+                                   @foreach ($job->serviceorder as $so)
+                                        <div class="row form-row">
+                                            <div class="form-group col-md-6">
+                                                <input list="servicelist" value="{{$so ? $so->servicename:''}}" placeholder="Periodic Maintenance"
+                                                name="servicename[]" class="form-control" id="sn{{$so->id}}"  onchange="getServiceCost({{$so->id}})">
+
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <div>
+                                                <input type="text" value="{{$so ? $so->description:''}}" placeholder="Description"
+                                                name="description[]" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                   @endforeach
+                               @else
+                                    <div id="services">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="servicename">Service Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="description">Description</label>
+                                            </div>
+                                        </div>
+                                            @php
+                                                $si = 1;
+                                            @endphp
+                                            <div class="row form-row serviceslist" id="{{$si}}">
+                                                <div class="form-group col-md-6">
+
+                                                    <div>
+
+                                                    <input list="servicelist" value="" placeholder="Periodic Maintenance"
+                                                    name="servicename[]" class="form-control" id="sn{{$si}}"  onchange="getServiceCost({{$si}})" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <div>
+
+                                                    <input type="text" id="description" placeholder="Description"
+                                                    name="description[]" class="form-control" value="" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                               @endif
+
+                               <div style="text-align: center !important;"><span class="btn btn-success" onclick="addService()">Add More Services</span></div>
+
+>>>>>>> master
 
                                 <div class="row form-row">
                                     <div class="form-group col-md-3">
                                         <label for="mileage">Service Mileage</label>
                                         <div>
 
+<<<<<<< HEAD
                                         <input type="text" id="mileage" value="{{$job->serviceorder ? $job->serviceorder->first()->mileage:''}}" placeholder="mileage"
+=======
+                                        <input type="text" id="mileage" value="{{$job->serviceorder ? $job->serviceorder->first()->mileage : ''}}" placeholder="mileage"
+>>>>>>> master
                                         name="mileage" class="form-control" >
                                         </div>
                                     </div>
@@ -307,16 +401,29 @@
                                     <div class="form-group col-md-3">
                                         <label for="sstatus">Status</label>
                                         <div>
+<<<<<<< HEAD
 
                                         <input type="text" id="sstatus" value="{{$job->serviceorder ? $job->serviceorder->first()->status:'Pending'}}" placeholder="Completed"
                                         name="sstatus" class="form-control" >
+=======
+                                        <select name="sstatus" id="sstatus" class="pending">
+                                            <option value="{{$job->serviceorder ? $job->serviceorder->first()->status:'Pending'}}" selected>{{$job->serviceorder ? $job->serviceorder->first()->status:'Pending'}}</option>
+                                            <option value="Just Arrived">Just Arrived</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+>>>>>>> master
                                         </div>
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> master
                                 <a class="btn btn-warning btnPrevious" >Previous</a><a class="btn btn-primary btnNext" >Next</a>
 
                             </div>
@@ -325,8 +432,11 @@
                                 <h5>Vehicle Diagnosis</h5>
                                 <div class="row form-row">
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                           <label for="problems">Problems Found</label>
@@ -346,8 +456,13 @@
                                 <div class="row form-row">
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
+<<<<<<< HEAD
                                           <label for="requests">Customer Requests</label>
                                           <textarea class="form-control" name="requests" id="requests" rows="3">{{strip_tags($job->diagnosis ? $job->diagnosis->request:'')}}</textarea>
+=======
+                                          <label for="request">Customer Requests</label>
+                                          <textarea class="form-control" name="request" id="request" rows="3">{{strip_tags($job->diagnosis ? $job->diagnosis->request:'')}}</textarea>
+>>>>>>> master
                                         </div>
                                     </div>
 
@@ -392,8 +507,18 @@
                                         <label for="status">Status</label>
                                         <div>
 
+<<<<<<< HEAD
                                         <input type="text" id="status" value="{{$job->diagnosis ? $job->diagnosis->status:''}}" placeholder="Completed"
                                         name="status" class="form-control" >
+=======
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="{{$job->diagnosis ? $job->diagnosis->status:'Pending'}}" selected>{{$job->diagnosis ? $job->diagnosis->status:'Pending'}}</option>
+                                            <option value="Just Arrived">Just Arrived</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+>>>>>>> master
                                         </div>
                                     </div>
                                 </div>
@@ -420,6 +545,16 @@
                                         </div>
 
                                     </div>
+<<<<<<< HEAD
+=======
+
+                                    <datalist id="productslist">
+                                        @foreach ($parts as $pas)
+                                            <option value="{{$pas->part_name}}" data-pid="{{ $pas->id }}" data-price="{{$pas->selling_price}}"  data-instock="{{ $pas->stock->quantity_in_stock ?? 0 }}">
+                                        @endforeach
+                                    </datalist>
+
+>>>>>>> master
                                     @if(!empty($job->partsorder))
 
                                         @php $pi = 1; @endphp
@@ -432,25 +567,43 @@
 
                                                     <div class="form-group col-md-4">
                                                         <div class="form-group">
+<<<<<<< HEAD
                                                         <input type="text" class="form-control partname" name="partname[]" placeholder="Part Name" value="{{$part->partsname}} - {{$part->partno}}">
+=======
+                                                        <input type="text" class="form-control partname"  id="pn{{$pi}}" onchange="updateId({{$pi}})"  name="partname[]" placeholder="Part Name" value="{{$part->partsname}} - {{$part->partno}}">
+                                                            <input type="hidden" name="pnid[]" id="pnid{{$pi}}" value="{{$part->pid}}">
+                                                            <span><small id="instock{{$pi}}"></small></span>
+>>>>>>> master
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-2">
                                                         <div class="form-group">
+<<<<<<< HEAD
                                                         <input type="number" class="form-control quantity" step="0.01" id="q{{$pi}}"  name="quantity[]"  value="{{$part->quantity}}">
+=======
+                                                        <input type="number" class="form-control quantity" id="q{{$pi}}"  name="quantity[]"  value="{{$part->quantity}}">
+>>>>>>> master
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-2">
                                                         <div class="form-group">
+<<<<<<< HEAD
                                                         <input type="number" class="form-control rate" step="0.01" name="rate[]"  id="r{{$pi}}" value="{{$part->quantity>0 ? $part->amount/$part->quantity : 0}}">
+=======
+                                                        <input type="number" class="form-control rate" name="rate[]"  id="r{{$pi}}" value="{{$part->quantity>0 ? $part->amount/$part->quantity : 0}}">
+>>>>>>> master
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group col-md-3">
                                                         <div class="form-group">
+<<<<<<< HEAD
                                                         <input type="number" class="form-control amount" step="0.01" id="a{{$pi}}" name="amount[]" value="{{$part->amount}}">
+=======
+                                                        <input type="number" class="form-control amount" id="a{{$pi}}" name="amount[]" value="{{$part->amount}}">
+>>>>>>> master
                                                         </div>
                                                     </div>
 
@@ -463,17 +616,24 @@
                                         @endforeach
                                     @else
                                         @php $pi = 1; @endphp
+<<<<<<< HEAD
                                         <datalist id="partslist">
                                             @foreach ($parts as $pas)
                                                 <option value="{{$pas->part_name}}" data-pid="{{ $pas->id }}" data-price="{{$pas->selling_price}}"  data-instock="{{ $pas->stock->quantity_in_stock }}">
                                             @endforeach
                                         </datalist>
+=======
+>>>>>>> master
 
                                         <div class="row form-row partslist" id="{{$pi}}">
 
                                             <div class="form-group col-md-4">
                                                 <div class="form-group">
+<<<<<<< HEAD
                                                     <input list="partslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Part Name">
+=======
+                                                    <input list="productslist" id="pn{{$pi}}" onchange="updateId({{$pi}})" class="form-control partname" name="partname[]" placeholder="Part Name">
+>>>>>>> master
                                                     <input type="hidden" name="pnid[]" id="pnid{{$pi}}">
                                                     <span><small id="instock{{$pi}}"></small></span>
 
@@ -522,7 +682,11 @@
 
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
+<<<<<<< HEAD
                                         <input type="number" step="0.01" class="form-control" name="labour" id="labour" value="{{$job->labour ? $job->labour : 0}}">
+=======
+                                        <input type="number" class="form-control" name="labour" id="labour" value="{{$job->labour ? $job->labour : 0}}">
+>>>>>>> master
                                         </div>
                                     </div>
 
@@ -550,7 +714,11 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
+<<<<<<< HEAD
                                         <input type="number" step="0.01" class="form-control" name="sundrycost" id="sundrycost" value="{{$job->sundry ? $job->sundry : 0}}">
+=======
+                                        <input type="number" class="form-control" name="sundrycost" id="sundrycost" value="{{$job->sundry ? $job->sundry : 0}}">
+>>>>>>> master
                                         </div>
                                     </div>
                                 </div>
@@ -568,7 +736,11 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <div class="form-group">
+<<<<<<< HEAD
                                         <input type="number" step="0.01" class="form-control" name="discountcost" id="discountcost" value="{{$job->discount ? $job->discount : 0}}" readonly>
+=======
+                                        <input type="number" class="form-control" name="discountcost" id="discountcost" value="{{$job->discount ? $job->discount : 0}}" readonly>
+>>>>>>> master
                                         </div>
                                     </div>
                                 </div>

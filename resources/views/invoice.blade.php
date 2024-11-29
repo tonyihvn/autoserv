@@ -57,7 +57,11 @@
                                     <td>Total Amount Paid:</td>
                                     <td><del style="text-decoration-style: double;">N</del>{{number_format($job->amountpaid,2)}}</td>
                                     <td>Balance:</td>
+<<<<<<< HEAD
                                     <td><del style="text-decoration-style: double;">N</del>{{number_format($job->amount-$job->amountpaid,2)}}</td>
+=======
+                                    <td><del style="text-decoration-style: double;">N</del>{{number_format($job->amount - $job->jobs->payment->sum('amountpaid'),2)}}</td>
+>>>>>>> master
                                 </tr>
 
                                 <tr>
@@ -94,7 +98,12 @@
                                 </tr>
                                 <tr>
                                         <td colspan="4">
+<<<<<<< HEAD
                                         <img  src="{{ asset('/images/kjfooter.jpg') }}" alt="{{$settings->motto}}" style="width: 100%; height: 20px;">
+=======
+                                            <hr>
+                                        {{-- <img  src="{{ asset('/images/kjfooter.jpg') }}" alt="{{$settings->motto}}" style="width: 100%; height: 20px;"> --}}
+>>>>>>> master
                                         </td>
                                 </tr>
                             </tbody>
@@ -123,6 +132,7 @@
                         <tbody>
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Organization:</td>
+<<<<<<< HEAD
                                 <td>{{$job->contact->organization}}</td>
                                 <td style="text-align: right; font-weight: bold;"> Reg. No:</td>
                                 <td>{{$vehicle->vregno}}</td>
@@ -132,6 +142,9 @@
                                 <td>{{$vehicle ? $vehicle->chasisno : ''}}</td>
                                 <td style="text-align: right; font-weight: bold;">Odometer Reading:</td>
                                 <td>{{$job->odometer }}</td>
+=======
+                                <td colspan="3">{{$job->contact->organization}}</td>
+>>>>>>> master
                             </tr>
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Phone Number:</td>
@@ -139,17 +152,22 @@
                                 <td style="text-align: right; font-weight: bold;">E-mail:</td>
                                 <td>{{$job->contact->email}}</td>
                             </tr>
+<<<<<<< HEAD
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Vehicle Make:</td>
                                 <td>{{$vehicle->modelname}}</td>
                                 <td style="text-align: right; font-weight: bold;">Model Number:</td>
                                 <td>{{$vehicle->modelno}}</td>
                             </tr>
+=======
+
+>>>>>>> master
                             <tr>
                                 <td scope="row" style="text-align: right; font-weight: bold;">Address:</td>
                                 <td colspan="3">{{$job->contact->address}}</td>
 
                             </tr>
+<<<<<<< HEAD
                         </tbody>
                     </table>
                     <table width="100%" style="font-size: 0.9em !important; width:95%" class="table table-striped table-bordered  table-condensed" align="center">
@@ -159,6 +177,57 @@
                                 <th>Quantity</th>
                                 <th>Results</th>
                                 @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+=======
+                            @if($title!="SALES")
+                                <tr>
+                                    <td scope="row" style="text-align: right; font-weight: bold;">Vin/Chasis No:</td>
+                                    <td>{{$vehicle ? $vehicle->chasisno : ''}}</td>
+                                    <td style="text-align: right; font-weight: bold;">Odometer Reading:</td>
+                                    <td>{{$job->odometer ?? '' }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" style="text-align: right; font-weight: bold;">Vehicle Make/Model</td>
+                                    <td>{{$vehicle->modelname ?? '' }} / {{$vehicle->modelno ?? ''}}</td>
+                                    <td style="text-align: right; font-weight: bold;">Reg. No:</td>
+                                    <td>{{$vehicle->vregno ?? ''}}</td>
+                                </tr>
+                            @endif
+
+                        </tbody>
+                    </table>
+
+                    @isset($job->serviceorder)
+
+                        <table width="100%" style="font-size: 0.9em !important; width:95%" class="table table-striped table-bordered  table-condensed" align="center">
+
+                            <tr style="color: ">
+
+                                <th>Service Name</th>
+                                <th>Description</th>
+                            </tr>
+
+                            @foreach ($job->serviceorder as $service)
+
+                                <tr>
+                                    <td>{{$service->servicename}}</td>
+                                    <td>{{$service->description}}</td>
+                                </tr>
+
+                            @endforeach
+                        </table>
+
+                    @endisset
+
+
+                    <table width="100%" style="font-size: 0.9em !important; width:95%" class="table table-striped table-bordered  table-condensed" align="center">
+
+                            <tr style="color: ">
+
+                                <th>Parts Used (Decription)</th>
+                                <th>Quantity</th>
+
+                                @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
+>>>>>>> master
                                     <th>Rate</th>
                                     <th>Amount</th>
                                 @endif
@@ -172,7 +241,11 @@
                                         <td>{{$sa->quantity}}
                                         </td>
                                         <td></td>
+<<<<<<< HEAD
                                         @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+=======
+                                        @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
+>>>>>>> master
 
                                             <td>{{number_format($sa->amount/$sa->quantity,2)}}</td>
                                             <td><b>{{number_format($sa->amount,2)}}</b></td>
@@ -194,14 +267,22 @@
                                         <td>{{str_replace('-','',$po->partsname)}}  {{ $po->partsno!="-" && $po->partsno!=""  ? $po->partsno : " "}}</td>
                                         <td>{{$po->quantity}}
                                         </td>
+<<<<<<< HEAD
                                         @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+=======
+                                        @if(($title=="INVOICE") || ($title=="ESTIMATE") || ($title=="SALES"))
+>>>>>>> master
                                             <td>{{$rate}}</td>
                                             <td><b>{{number_format($po->amount,2)}}</b></td>
                                         @endif
                                     </tr>
                                 @endif
                             @endforeach
+<<<<<<< HEAD
                             @if(($title=="INVOICE") || ($title=="ESTIMATE"))
+=======
+                            @if(($title=="INVOICE") || ($title=="ESTIMATE")  || ($title=="SALES"))
+>>>>>>> master
 
                                 <tr>
                                     <td colspan="3" style="font-weight: bold;">Labour:</td>
@@ -267,6 +348,7 @@
                                     <td colspan="4">
                                         <div style="text-align: left" style="height: 100%">
                                             @if(($title=="INVOICE"))
+<<<<<<< HEAD
                                                 <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>KOJO AUTO SERVICE CENTRE LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
@@ -275,11 +357,21 @@
                                                 BANK NAME: <b>Zenith Bank</b><br>
                                                 SORT CODE: <b>057080183</b>
                                                 TIN NUMBER: <b>11190736-0001</b>
+=======
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN</b><br>
+                                                <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
+                                                <b>ACCOUNT DETAILS:</b><br>
+                                                ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
+                                                ACCOUNT NUMBER: <b>5747052450</b><br>
+                                                BANK NAME: <b>MONIEPOINT MFB Bank</b>
+
+>>>>>>> master
                                             @endif
 
                                             @if(($title=="ESTIMATE"))
                                                 The above listed parts/items will be used to service the vehicle.
                                                 <hr>
+<<<<<<< HEAD
                                                 <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>KOJO AUTO SERVICE CENTRE LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
@@ -288,6 +380,18 @@
                                                 BANK NAME: <b>Zenith Bank</b><br>
                                                 SORT CODE: <b>057080183</b>
                                                 TIN NUMBER: <b>11190736-0001</b>
+=======
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN LTD</b><br>
+                                                <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
+                                                <b>ACCOUNT DETAILS (1):</b><br>
+                                                ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
+                                                ACCOUNT NUMBER: <b>5747052450</b><br>
+                                                BANK NAME: <b>MONIEPOINT MFB Bank</b> <br>
+                                                <b>ACCOUNT DETAILS (2):</b><br>
+                                                ACCOUNT NAME: <b>AUTO WELLNESS HAVEN</b><br>
+                                                ACCOUNT NUMBER: <b>6104066909</b><br>
+                                                BANK NAME: <b>OPAY</b>
+>>>>>>> master
                                             @endif
 
                                             @if(($title=="JOB INSTRUCTION"))
@@ -303,6 +407,25 @@
                     </table>
 
                     @if(($title=="JOB INSTRUCTION"))
+<<<<<<< HEAD
+=======
+
+                        <table width="100%" style="font-size:9px !important; width:95%" class="table table-condensed" align="center" border="1">
+                            <tr>
+                                <td>
+                                    {{$job->description}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Problems</b>: ".$job->diagnosis->problems."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Causes</b>: ".$job->diagnosis->causes."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Owner's Request</b>: ".$job->diagnosis->request."</p>" : '' !!}
+                                    {!! $job->diagnosis!="" ? "<p style='border-bottom: solid 1px grey'><b>Instructions</b>: ".$job->diagnosis->instructions."</p>" : '' !!}
+                                </td>
+                            </tr>
+                        </table>
+>>>>>>> master
                         <table width="100%" style="font-size:9px !important; width:95%" class="table table-condensed" align="center" border="1">
                             <tr>
                                 <td colspan="2"><img src="{{ asset('/images/v.jpg') }}" alt="VEHICLE" width="200" height="120"></td>

@@ -5,10 +5,17 @@
     <h3 class="page-title">Help | <small style="color: green">Need Help</small></h3>
     <div class="row">
             <div class="panel">
+<<<<<<< HEAD
                 <div class="panel-heading">   
                 </div>
                 <div class="panel-body">
                     
+=======
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+
+>>>>>>> master
 
                     <form method="POST" action="{{ route('newpersonnel') }}">
                         @csrf
@@ -38,7 +45,11 @@
                                 <input name="othernames" type="text" class="form-control" placeholder="othernames" value="{{$personnel ? $personnel->othernames : ''}}" maxlength="50">
                             </div>
                         </div>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
                             <div class="row form-group">
                                 <div class="col-lg-4">
                                 <label class="control-label col-lg-12" for="content">Date of Birth: </label>
@@ -97,7 +108,11 @@
                                 </select>
                             </div>
                             </div>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
                             <div class="row center"><h4>Contact Information</h4></div>
                             <div class="row form-group">
                                 <div class="col-lg-6">
@@ -109,14 +124,22 @@
                                     <input name="email" type="email" class="form-control" id="titLe" maxlength="100" placeholder="E-mail" value="{{$personnel ? $personnel->email : ''}}">
                                 </div>
                             </div>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
                             <div class="row form-group">
                                 <div class="col-lg-12">
                                     <label class="control-label col-lg-12" for="content">Address: </label>
                                     <input name="address" type="text" class="form-control" placeholder="Address" maxlength="100" value="{{$personnel ? $personnel->address : ''}}">
                                 </div>
                             </div>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
                             <div class="row form-group">
                                 <div class="col-lg-12">
                                     <label class="control-label col-lg-12" for="content">Guarantor's Name / Phone Number <small>Seperate with Comma</small>: </label>
@@ -171,7 +194,11 @@
                                 </div>
                             -->
                             </div>
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
                             <div class="row center"><h4>Official Information</h4><hr></div>
                             <div class="row form-group">
                                 <div class="col-lg-3">
@@ -181,6 +208,7 @@
                                 <div class="col-lg-3">
                                     <label class="control-label col-lg-12" for="content">Department:</label>
                                     <select name="department" class="form-control">
+<<<<<<< HEAD
                                         <option  value="{{$personnel ? $personnel->department : ''}}">{{$personnel ? $personnel->department : ''}}</option>                                        
                                         <option value="Admin">Admin</option>
                                         <option value="Front-Desk">Front Desk</option>
@@ -191,6 +219,18 @@
                                         <option value="Finance">Finance</option>  
                                     </select>
                                 
+=======
+                                        <option  value="{{$personnel ? $personnel->department : ''}}">{{$personnel ? $personnel->department : ''}}</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Front-Desk">Front Desk</option>
+                                        <option value="Spare-Parts">Spare Parts / Store</option>
+                                        <option value="Workshop">Workshop</option>
+                                        <option value="Security">Security</option>
+                                        <option value="Body Work">Body Work</option>
+                                        <option value="Finance">Finance</option>
+                                    </select>
+
+>>>>>>> master
                                 </div>
                                 <div class="col-lg-3">
                                     <label class="control-label col-lg-12" for="content">Unit/Designation: </label>
@@ -221,8 +261,13 @@
                                     <label class="control-label col-lg-12" for="content">Basic Salary: </label>
                                     <input name="salary" type="number" class="form-control" placeholder="salary" value="{{$personnel ? $personnel->salary : ''}}" maxlength="30">
                                 </div>
+<<<<<<< HEAD
                             </div> 
                             
+=======
+                            </div>
+
+>>>>>>> master
                             <div class="row form-group">
                                 <div class="col-lg-4">
                                     <label class="control-label col-lg-12" for="content">Passport: </label>
@@ -236,8 +281,13 @@
                                     <label class="control-label col-lg-12" for="content">Password: </label>
                                     <input name="spassword" type="password" class="form-control" placeholder="Password" maxlength="50">
                                 </div>
+<<<<<<< HEAD
                             </div> 
                             
+=======
+                            </div>
+
+>>>>>>> master
                             <div class="row form-group" style="margin-top:20px !important;">
                                 <div class="col-lg-6">
                                 <label class="control-label col-lg-12" for="content">. </label>
@@ -247,6 +297,7 @@
                                 <input name="save1" type="submit" value="Save Personnel Record" class="btn btn-primary" />
                             </div>
                             </div>
+<<<<<<< HEAD
                             
                     </form>
                 </div>
@@ -254,3 +305,12 @@
         
     </div>
 @endsection
+=======
+
+                    </form>
+                </div>
+            </div>
+
+    </div>
+@endsection
+>>>>>>> master

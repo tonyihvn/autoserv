@@ -13,11 +13,35 @@
     <h3 class="page-title">Financial | <small style="color: green">Transactions</small></h3>
     <div class="row">
             <div class="panel" style="width:100% !important; position: relative;">
+<<<<<<< HEAD
                 <div class="panel-heading" style="text-align: center">
 
                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#transaction"> <i class="fa fa-plus"></i> Add New</a>
 
 
+=======
+
+                <h6>Filter Transactions by Duration</h6>
+                <form method="POST" action="{{ route('filterTransactions') }}" class="row" style="width: 50%; margin: auto;">
+                    @csrf
+
+                        <div class="col-md-4">
+                            <label for="from">From</label>
+                            <input name="from" id="from" class="form-control" type="text" placeholder="Choose Date">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="to">To</label>
+                            <input name="to" id="to" class="form-control" type="text" placeholder="Choose Date">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">.</label>
+                            <button class="form-control btn btn-success" type="submit">Filter Transactions</button>
+                        </div>
+                </form>
+
+                <div class="panel-heading" style="text-align: center">
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#transaction"> <i class="fa fa-plus"></i> Add New Transaction</a>
+>>>>>>> master
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped" style="width: 100%;" id="products">
@@ -44,7 +68,12 @@
                                     <td>{{$transact->id}}</td>
                                     <td>{{$transact->title}}</td>
                                     <td>{{number_format($transact->amount,2)}}</td>
+<<<<<<< HEAD
                                     <td>{{$transact->accounthead->title}} <br> <small><i>{{$transact->accounthead->category}}</i></small></td>
+=======
+                                    <td></td>
+                                    <td>{{$transact->accounthead->title ?? ''}} <br> <small><i>{{$transact->accounthead->category ?? ''}}</i></small></td>
+>>>>>>> master
                                     <td>{{$transact->dated}}</td>
                                     <td>{{strtoupper($transact->reference_no)}}</td>
                                     <td>{{$transact->detail}}</td>
@@ -66,6 +95,10 @@
                                 <td>#</td>
                                 <td>Title</td>
                                 <td>Amount</td>
+<<<<<<< HEAD
+=======
+                                <td></td>
+>>>>>>> master
                                 <td>Account Head</td>
                                 <td>Date</td>
                                 <td>Invoice No</td>
@@ -155,8 +188,13 @@
                         <label for="from"  class="control-label">From/Sender</label>
 
                         <select class="form-control" name="from" id="from">
+<<<<<<< HEAD
                             <option value="Gubabi">Gubabi Management</option>
                             <option value="Others">Others</option>
+=======
+                            <option value="1">AWH Management</option>
+                            <option value="2">Others</option>
+>>>>>>> master
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
@@ -166,8 +204,13 @@
                     <div class="form-group col-md-6">
                         <label for="to"  class="control-label">To/Receiver</label>
                         <select class="form-control" name="to" id="to">
+<<<<<<< HEAD
                             <option value="Gubabi">Gubabi Management</option>
                             <option value="Others">Others</option>
+=======
+                            <option value="1">AWH Management</option>
+                            <option value="2">Others</option>
+>>>>>>> master
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
@@ -180,8 +223,13 @@
                         <label for="approved_by"  class="control-label">Approved By</label>
 
                         <select class="form-control" name="approved_by" id="approved_by">
+<<<<<<< HEAD
                             <option value="Gubabi">Gubabi Management</option>
                             <option value="Others">Others</option>
+=======
+                            <option value="1">AWH Management</option>
+                            <option value="2">Others</option>
+>>>>>>> master
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
@@ -191,8 +239,13 @@
                     <div class="form-group col-md-6">
                         <label for="recorded_by"  class="control-label">Delivered / Recorded By</label>
                         <select class="form-control" name="recorded_by" id="recorded_by">
+<<<<<<< HEAD
                             <option value="Gubabi">Gubabi Management</option>
                             <option value="Others">Others</option>
+=======
+                            <option value="1">AWH Management</option>
+                            <option value="2">Others</option>
+>>>>>>> master
                             @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach

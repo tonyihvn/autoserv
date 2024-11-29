@@ -5,7 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreatePsfusTable extends Migration
+<<<<<<< HEAD
 {    
+=======
+{
+>>>>>>> master
     /**
      * Run the migrations.
      *
@@ -22,6 +26,19 @@ class CreatePsfusTable extends Migration
             $table->string('discussion')->nullable();
             $table->string('outcome')->nullable();
             $table->string('status')->nullable();
+<<<<<<< HEAD
+=======
+
+            $table->string('satisfied',50)->nullable(); // String for Yes/No values
+            $table->string('treatment',50)->nullable(); // String for Friendly/Neutral/Impersonal
+            $table->string('waitedlong',50)->nullable(); // String for No/Maybe/Yes
+            $table->string('explained',50)->nullable(); // String for Yes/Not Really/No
+            $table->string('ready',50)->nullable(); // String for Yes/No
+            $table->string('timescore',50)->nullable(); // String for On Time/Not On Time
+            $table->string('impressed',50)->nullable(); // String for Yes/Partially/No
+            $table->string('recommend',50)->nullable(); // String for Yes/No
+
+>>>>>>> master
             $table->foreign('customerid')->references('customerid')->on('contacts')->onDelete('cascade');
             $table->foreign('jobno')->references('jobno')->on('jobs')->onDelete('cascade');
 

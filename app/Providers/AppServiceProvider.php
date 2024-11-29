@@ -41,9 +41,15 @@ class AppServiceProvider extends ServiceProvider
             {
                 $view->with('login_user', Auth::user());
                 $view->with('mytasks', tasks::where('assigned_to',Auth::user()->id)->where('status','!=','Completed')->paginate(10));
+<<<<<<< HEAD
                 $view->with('allcontacts', contacts::select('id','name','organization')->get());
 
                 // $users = User::select('name','id')->get();
+=======
+                $view->with('allcontacts', contacts::select('id','name','customerid','organization')->get());
+
+                $view->with('allusers', User::select('name','id')->get());
+>>>>>>> master
                 // $view->with('hmembers', User::select('status')->get());
 
             }

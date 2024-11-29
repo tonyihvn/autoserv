@@ -40,14 +40,22 @@ class JobsController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $jobs = jobs::where('status','Pending')->with('payment')->orderBy('dated','desc')->orderBy('status','desc')->paginate(400);
+=======
+        $jobs = jobs::where('status','!=','Done')->orderBy('dated','desc')->paginate(400);
+>>>>>>> master
         $lastinvoiceno = jobs::max('jid');
         return view('jobs', compact('jobs','lastinvoiceno'));
     }
 
     public function completedJobs()
     {
+<<<<<<< HEAD
         $jobs = jobs::where('status','Done')->with('payment')->orderBy('dated','desc')->orderBy('status','desc')->paginate(400);
+=======
+        $jobs = jobs::where('status','Done')->orderBy('dated','desc')->paginate(400);
+>>>>>>> master
         $lastinvoiceno = jobs::max('jid');
         return view('jobs', compact('jobs','lastinvoiceno'));
     }
@@ -74,7 +82,13 @@ class JobsController extends Controller
 
         $jobno = $job->jobno;
         $editjobno = $job->jobno;
+<<<<<<< HEAD
         return view('new-customer', compact('job','vehicle','jobno','contacts','editjobno'));
+=======
+        $parts = parts::select('id','part_name','selling_price')->with('stock')->get();
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->orderBy('id', 'desc')->get()->unique('servicename');
+        return view('new-customer', compact('job','vehicle','jobno','contacts','editjobno','parts','services'));
+>>>>>>> master
     }
 
     /**
@@ -85,6 +99,7 @@ class JobsController extends Controller
 
     public function create()
     {
+<<<<<<< HEAD
         $jobno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
         $parts = parts::select('id','part_name','selling_price')->get();
         /*$clist = "";
@@ -96,23 +111,153 @@ class JobsController extends Controller
         $jobno=$jobno+1;
         $new_job = new Job();
         return view('new-customer', compact('jobno','new_job','parts'));
+=======
+        $jobno = jobs::select('jobno')->orderBy('id','desc')->first();
+        if($jobno==null){
+            $jobno = 0;
+        }else{
+            $jobno=$jobno->jobno+1;
+        }
+        $parts = parts::select('id','part_name','selling_price')->get();
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->orderBy('id', 'desc')->get()->unique('servicename');
+        $new_job = new Job();
+        return view('new-customer', compact('jobno','new_job','parts','services'));
+    }
+
+    public function newSales()
+    {
+        $parts = parts::select('id','part_name','selling_price')->with('stock')->get();
+        $vehicles = vehicle::select('id','vregno')->get();
+        return view('new-sales', compact('parts','vehicles'));
+    }
+
+    public function addSales(Request $request)
+    {
+
+        if($request->customerid=="New"){
+            $customerid = "AWHS".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
+            contacts::create([
+                'name'=>$request->name,
+                'organization'=>$request->organixation,
+                'telephoneno'=>$request->telephoneno,
+                'email'=>$request->email,
+                'sundry'=>$request->sundry,
+                'vat'=>$request->vat,
+                'credit'=>$request->credit,
+                'remarks'=>$request->remarks,
+                'customerid'=>$customerid
+            ]);
+        }else{
+            $customerid = $request->customerid;
+        }
+
+        $jno = jobs::select('jobno')->orderBy('id','desc')->first();
+
+        if($jno==null){
+            $jobno = 0;
+        }else{
+            $jobno = $jno->jobno+1;
+        }
+
+        $job =  jobs::create([
+            'jobno'=>$jobno,
+            'customerid'=>$customerid,
+            'vregno'=>$request->veregno,
+            'status'=>'Pending',
+            'description'=>'SALES',
+            'dated'=>$request->dated,
+            'jid'=>$request->jid,
+            'odometer'=>$request->vin,
+            'next_due'=>$request->nextservicedate
+        ]);
+
+        $totalamount = 0;
+
+        for ($i=0; $i < count($request->partname); $i++) {
+
+            if($request->pnid[$i]==""){
+                $part = parts::create([
+                    'part_name'=>$request->partname[$i],
+                    'selling_price'=>$request->amount[$i]/$request->quantity[$i],
+                ]);
+                $partid = $part->id;
+
+                stock::create(['part_id'=>$partid,'quantity_in_stock'=>0]);
+            }else{
+                $partid = $request->pnid[$i];
+            }
+
+
+            partsorder::updateOrCreate(['jobno'=>$request->jobno, 'partsname'=>$request->partname[$i]],[
+            'customerid'=>$customerid,
+            'jobno'=>$jobno,
+            'partsname'=>$request->partname[$i],
+            'quantity'=>$request->quantity[$i],
+            'pdate'=>date('Y-m-d'),
+            'amount'=>$request->amount[$i],
+            'pid'=>$partid
+            ]);
+
+            $totalamount+=$request->amount[$i];
+        }
+
+        $job->amount = $totalamount;
+        $job->save();
+
+        parts::select('id','part_name','selling_price')->get();
+
+        return redirect()->route('sales')->with(['message'=>'The Product Sales was success, please, proceed to payment']);
+>>>>>>> master
     }
 
     public function newCustomerJob($customerid)
     {
+<<<<<<< HEAD
         $jobno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
         $contact = contacts::select('customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
         $jobno=$jobno+1;
         return view('new-customerjob', compact('jobno','customerid','contact'));
+=======
+        $jobcheck = jobs::select('jobno')->orderBy('id','desc')->get();
+        if($jobcheck->count()==0){
+            $jobno = 0;
+        }else{
+            $jobno = $jobcheck->first()->jobno;
+        }
+        $contact = contacts::select('name','customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
+        $parts = parts::select('id','part_name','selling_price')->get();
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->orderBy('id', 'desc')->get()->unique('servicename');
+
+        $jobno=$jobno+1;
+        $new_job = new Job();
+        return view('new-customerjob', compact('jobno','customerid','contact','new_job','parts','services'));
+>>>>>>> master
     }
 
     public function newVehicleJob($customerid,$vid)
     {
+<<<<<<< HEAD
         $jobno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
         $vehicleinfo = vehicle::where('id',$vid)->first();
         $contact = contacts::select('customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
         $jobno=$jobno+1;
         return view('new-customerjob', compact('jobno','customerid','contact','vehicleinfo'));
+=======
+        $jobcheck = jobs::select('jobno')->orderBy('id','desc')->get();
+        if(count($jobcheck)==0){
+            $jobno = 0;
+        }else{
+            $jobno = $jobcheck->first()->jobno;
+        }
+        $vehicleinfo = vehicle::where('id',$vid)->first();
+        $parts = parts::select('id','part_name','selling_price')->get();
+        $services = serviceorder::select('id','servicename','amount')->distinct('servicename')->orderBy('id', 'desc')->get()->unique('servicename');
+
+        $new_job = new Job();
+        $contact = contacts::select('customerid','vat','sundry','credit')->where('customerid',$customerid)->first();
+        $jobno=$jobno+1;
+        return view('new-customerjob', compact('jobno','customerid','contact','vehicleinfo','new_job','parts','services'));
+>>>>>>> master
     }
 
     /**
@@ -123,12 +268,21 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
 
         $jno = jobs::select('jobno')->orderBy('id','desc')->first()->jobno;
 
         $jobno = $jno+1;
 
 
+=======
+        $jno = jobs::select('jobno')->orderBy('id','desc')->first();
+        if($jno==null){
+            $jobno = 0;
+        }else{
+            $jobno = $jno->jobno+1;
+        }
+>>>>>>> master
 
         if($request->editjobno!=''){
             $jobno = $request->editjobno;
@@ -174,6 +328,7 @@ class JobsController extends Controller
             // 'jobno',
         ));
 
+<<<<<<< HEAD
         if($request->servicename!==null){
             $description = $request->servicename[0];
             $status = "Pending";
@@ -182,6 +337,17 @@ class JobsController extends Controller
             $description = $request->diagnosis;
             $status = "Pending";
             $dated = date('Y-m-d');
+=======
+
+        if($request->servicename!==null){
+            $description = $request->servicename[0];
+            $status = $request->sstatus;
+            $dated = $request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate));
+        }else{
+            $description = $request->diagnosis;
+            $status = $request->status;
+            $dated = $request->ddate!="" ? date('Y-m-d', strtotime($request->ddate)) : date('Y-m-d', strtotime($request->sdate));
+>>>>>>> master
         }
         $job->vregno = $request->vregno;
         $job->description = $description;
@@ -193,10 +359,15 @@ class JobsController extends Controller
         $job->sundry = $request->sundrycost;
         $job->discount = $request->discountcost;
         $job->jobno = $jobno;
+<<<<<<< HEAD
+=======
+        $job->jid = 0;
+>>>>>>> master
         $job->odometer = $request->vin;
         $job->save();
 
         if($request->servicename==""){
+<<<<<<< HEAD
             serviceorder::updateOrCreate(['jobno'=>$jobno],[
                 'customerid'=>$request->customerid,
                 'jobno'=>$jobno,
@@ -239,6 +410,66 @@ class JobsController extends Controller
             ]);
 
 
+=======
+            $servicedate = $request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate));
+            serviceorder::updateOrCreate(['jobno'=>$jobno],[
+                'customerid'=>$request->customerid,
+                'jobno'=>$jobno,
+                'servicename'=>$request->diagnosis,
+                'description'=>$description,
+                'mileage'=>$request->vin,
+                'amount'=>$request->labour,
+                'sdate'=>$servicedate,
+                'nextservicedate'=>date('Y-m-d', strtotime($request->ddate. ' + 90 days')),
+                'status'=>$status
+            ]);
+        }else{
+            $servicedate = $request->sdate!="" ? date('Y-m-d', strtotime($request->sdate)) : date('Y-m-d', strtotime($request->ddate));
+
+            foreach($request->servicename as $key => $srv){
+                serviceorder::updateOrCreate(['jobno'=>$jobno],[
+                    'customerid'=>$request->customerid,
+                    'jobno'=>$jobno,
+                    'servicename'=>$request->servicename[$key],
+                    'description'=>$request->description[$key],
+                    'mileage'=>$request->mileage,
+                    'amount'=>$request->labour,
+                    'sdate'=>$servicedate,
+                    'nextservicedate'=>date('Y-m-d',strtotime($request->nextservicedate)),
+                    'status'=>$status
+                ]);
+            }
+        }
+        if($request->partname!==null){
+
+            partsorder::where('jobno',$jobno)->delete();
+
+            for ($i=0; $i < count($request->partname); $i++) {
+
+                if($request->partname[$i]!=""){
+                    if($request->pnid[$i]==""){
+                        $part = parts::create([
+                            'part_name'=>$request->partname[$i],
+                            'selling_price'=>$request->amount[$i]/$request->quantity[$i],
+                        ]);
+                        $partid = $part->id;
+
+                        stock::create(['part_id'=>$partid,'quantity_in_stock'=>0]);
+                    }else{
+                        $partid = $request->pnid[$i];
+                    }
+                    partsorder::updateOrCreate(['jobno'=>$jobno, 'partsname'=>$request->partname[$i]],[
+                    'customerid'=>$request->customerid,
+                    'jobno'=>$jobno,
+                    'partsname'=>$request->partname[$i],
+                    'quantity'=>$request->quantity[$i],
+                    'pdate'=>date('Y-m-d'),
+                    'amount'=>$request->amount[$i],
+                    'pid'=>$partid
+                    ]);
+                }
+            }
+>>>>>>> master
         }
 
         $diag = diagnosis::updateOrCreate(['jobno'=>$jobno],$request->only(
@@ -257,16 +488,28 @@ class JobsController extends Controller
         $diag->jobno = $jobno;
         $diag->save();
 
+<<<<<<< HEAD
         return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/invoice/'.$jobno.'/estimate" class="btn btn-primary">Print Job Estimate</a> OR <br> <a href="/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
 
 
+=======
+        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/awh/invoice/'.$jobno.'/estimate" class="btn btn-success">Print Job Estimate</a> OR <a href="/awh/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
+>>>>>>> master
     }
 
     public function addJobno(Request $request)
     {
+<<<<<<< HEAD
         $jexist = jobs::where('jid', '=', $request->jid)->first();
         if ($jexist === null) {
             $job = jobs::where('id',$request->id)->update(['jid'=>$request->jid]);
+=======
+        $jexist = jobs::where('jid', '=', $request->jid)->get()->first();
+        if (!isset($jexist->partsorder)) {
+            jobs::where('id',$request->id)->update(['jid'=>$request->jid]);
+
+            $job = jobs::where('id',$request->id)->first();
+>>>>>>> master
 
             foreach($job->partsorder as $part){
                 $part->stock()->decrement('quantity_in_stock', $part->quantity);
@@ -398,6 +641,7 @@ class JobsController extends Controller
 
         $job = jobs::where('jobno',$jobno)->first();
         $vregno = $job->vregno;
+<<<<<<< HEAD
 
         if(strlen($vregno)<2){
             $vcheck = diagnosis::select('remarks')->where('jobno',$jobno)->first();
@@ -412,6 +656,27 @@ class JobsController extends Controller
         $vehicle = vehicle::where('vregno',$vregno)->orderBy('updated_at','desc')->first();
 
         // dd($vehicle->vregno);
+=======
+        $jobtype = $job->description;
+
+        // if(strlen($vregno)!="NA"){
+        //     $vcheck = diagnosis::select('remarks')->where('jobno',$jobno)->first();
+        //     $vregno = $vcheck->remarks;
+        // }
+
+        if($type=="receipt"){
+
+            $job = payments::where('jobno',$jobno)->orderBy('id','desc')->first();
+
+            $vregno = "";
+        }
+
+        if(strlen($vregno)!="NA"){
+            $vehicle = vehicle::where('vregno',$vregno)->orderBy('updated_at','desc')->first();
+        }else{
+            $vehicle = [];
+        }
+>>>>>>> master
 
         if($type=='invoice'){
             $title = "INVOICE";
@@ -421,6 +686,11 @@ class JobsController extends Controller
             $title = "ESTIMATE";
         }else if($type=='instruction'){
             $title = "JOB INSTRUCTION";
+<<<<<<< HEAD
+=======
+        }else if($type=='sales'){
+            $title = "SALES";
+>>>>>>> master
         }
 
             $pdf_doc = \PDF::loadView('invoice', compact('job','vehicle','title'));
