@@ -14,15 +14,15 @@
                             <div class="row form-row">
                                 <div class="form-group col-md-4">
                                     <label for="customerid">Customer ID</label>
-                                    <input type="text" name="customerid" id="customerid" class="form-control" placeholder="Customer ID" value="{{$vehicle->customerid}}" readonly>                                  
+                                    <input type="text" name="customerid" id="customerid" class="form-control" placeholder="Customer ID" value="{{$vehicle->customerid}}" readonly>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="vregno">Vehicle Registration No:</label>
-                                    <input type="text" name="vregno" id="vregno" class="form-control" placeholder="Vehicle Registration No" value="{{$vehicle->vregno ? $vehicle->vregno:''}}">                                  
+                                    <input type="text" name="vregno" id="vregno" class="form-control" placeholder="Vehicle Registration No" value="{{$vehicle->vregno ? $vehicle->vregno:''}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="regdate">Vehicle Reg. Date</label>
-                                    <input type="text" name="regdate" id="regdate" class="form-control date" placeholder="First Visit Date" value="{{$vehicle->regdate ? $vehicle->regdate:''}}">                                  
+                                    <input type="text" name="regdate" id="regdate" class="form-control date" placeholder="First Visit Date" value="{{$vehicle->regdate ? $vehicle->regdate:''}}">
                                 </div>
                             </div>
 
@@ -54,7 +54,7 @@
                             <div class="row form-row">
                                 <div class="form-group col-md-6">
                                     <div class="form-group">
-                                      <label for="vin">Odometer Reading</label>
+                                      <label for="vin">Mileage Reading</label>
                                       <input type="text"
                                         class="form-control" name="vin" id="vin" placeholder="Vin Number" value="{{$vehicle ? $vehicle->vin:''}}">
                                     </div>
@@ -66,7 +66,7 @@
                                         class="form-control" name="chasisno" id="chasisno" placeholder="Chasis Number" value="{{$vehicle ? $vehicle->chasisno:''}}">
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div class="row form-row">
@@ -79,13 +79,13 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="vcondition">Vehicle Condition</label>
-                                    <input type="text" name="vcondition" id="vcondition" class="form-control" placeholder="Vehicle Condition" value="{{$vehicle ? $vehicle->vcondition:''}}">                                  
+                                    <input type="text" name="vcondition" id="vcondition" class="form-control" placeholder="Vehicle Condition" value="{{$vehicle ? $vehicle->vcondition:''}}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="daterecieved">Date Recieved</label>
-                                    <input type="text" name="daterecieved" id="daterecieved" class="form-control date" placeholder="Date Recieved" value="{{$vehicle ? $vehicle->daterecieved:''}}">                                  
+                                    <input type="text" name="daterecieved" id="daterecieved" class="form-control date" placeholder="Date Recieved" value="{{$vehicle ? $vehicle->daterecieved:''}}">
                                 </div>
-                                
+
                             </div>
                             <div style="text-align: right;">
                                 <button type="submit" class="btn btn-primary">Update</button>
@@ -93,6 +93,6 @@
 
                         </form>
                 </div>
-            </div>        
+            </div>
     </div>
 @endsection
