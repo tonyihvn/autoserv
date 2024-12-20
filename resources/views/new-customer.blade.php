@@ -296,7 +296,7 @@
                                         <label for="mileage">Service Mileage</label>
                                         <div>
 
-                                        <input type="text" id="mileage" value="{{$job->serviceorder ? $job->serviceorder->first()->mileage : ''}}" placeholder="mileage"
+                                        <input type="text" id="mileage" value="{{$job->serviceorder ? $job->serviceorder->first()->mileage ?? '' : ''}}" placeholder="mileage"
                                         name="mileage" class="form-control" >
                                         </div>
                                     </div>
