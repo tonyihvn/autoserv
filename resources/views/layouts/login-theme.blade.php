@@ -19,6 +19,11 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/assets/img/apple-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('public/assets/img/favicon.png')}}">
+    <style>
+        .btn-primary{
+            background-color: #0c62dc !important;
+        }
+    </style>
 </head>
 
 <body>
