@@ -88,7 +88,7 @@
         }
 
         .btn-primary{
-            background-color: #0c62dc !important;
+            background-colot: #032f69 !important;
         }
 	</style>
 </head>
