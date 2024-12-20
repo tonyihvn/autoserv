@@ -295,7 +295,7 @@
                                     <td colspan="4">
                                         <div style="text-align: left" style="height: 100%">
                                             @if(($title=="INVOICE"))
-                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN</b><br>
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>LAC AUTOS-SPARES LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS:</b><br>
                                                 ACCOUNT NAME: <b>LAC AUTOS-SPARES LTD</b><br>
