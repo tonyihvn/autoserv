@@ -323,7 +323,7 @@
                                         <label for="sstatus">Status</label>
                                         <div>
                                         <select name="sstatus" id="sstatus" class="pending">
-                                            <option value="{{$job->serviceorder ? $job->serviceorder->first()->status:'Pending'}}" selected>{{$job->serviceorder ? $job->serviceorder->first()->status:'Pending'}}</option>
+                                            <option value="{{$job->serviceorder ? $job->serviceorder->first()->status:'Pending'}}" selected>{{$job->serviceorder ? $job->serviceorder->first()->status ?? '':'Pending'}}</option>
                                             <option value="Just Arrived">Just Arrived</option>
                                             <option value="Pending">Pending</option>
                                             <option value="In Progress">In Progress</option>
