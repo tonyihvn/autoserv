@@ -110,7 +110,7 @@ class JobsController extends Controller
     {
 
         if($request->customerid=="New"){
-            $customerid = "AWHS".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
+            $customerid = "LACS".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
             contacts::create([
                 'name'=>$request->name,
                 'organization'=>$request->organixation,
@@ -379,7 +379,7 @@ class JobsController extends Controller
         $diag->jobno = $jobno;
         $diag->save();
 
-        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/awh/invoice/'.$jobno.'/estimate" class="btn btn-success">Print Job Estimate</a> OR <a href="/awh/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
+        return redirect()->route('newjob')->with(['message'=>'Order Saved Successfully! <br> <a href="/invoice/'.$jobno.'/estimate" class="btn btn-success">Print Job Estimate</a> OR <a href="/invoice/'.$jobno.'/instruction" class="btn btn-primary">Print Job Instruction</a>']);
     }
 
     public function addJobno(Request $request)

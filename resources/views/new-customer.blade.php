@@ -24,7 +24,7 @@
                                 $job->diagnosis = [];
                                 $job->sale = [];
 
-                            $customerid = "AWHC".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
+                            $customerid = "LAC".strtoupper(substr(md5(uniqid(rand(1,6))), 0, 7));
                         }else{
                             $jobno = $job->id;
                             if(isset($job->vehicle)){
