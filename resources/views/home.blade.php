@@ -77,6 +77,10 @@ g text{
     background: url("{{asset('public/images/bghome.jpg')}}") no-repeat center;
     background-size: cover
 }
+
+.bg-primary{
+    background-color: #0c62dc !important;
+}
 </style>
     @php $pagename="dashboard"; @endphp
 

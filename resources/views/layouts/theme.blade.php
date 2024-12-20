@@ -86,6 +86,10 @@
         .btn-success{
             background-colot: #032f69 !important;
         }
+
+        .btn-primary{
+            background-color: #0c62dc !important;
+        }
 	</style>
 </head>
 

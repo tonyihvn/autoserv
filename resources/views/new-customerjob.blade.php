@@ -90,7 +90,7 @@
                                 <div class="row form-row">
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
-                                          <label for="vin">Current Odometer Reading</label>
+                                          <label for="vin">Current Mileage Reading</label>
                                           <input type="text"
                                             class="form-control" name="vin" id="vin" placeholder="Vin Number" value="{{$vehicle ? $vehicle->vin:''}}">
                                         </div>

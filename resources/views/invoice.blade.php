@@ -142,7 +142,7 @@
                                 <tr>
                                     <td scope="row" style="text-align: right; font-weight: bold;">Vin/Chasis No:</td>
                                     <td>{{$vehicle ? $vehicle->chasisno : ''}}</td>
-                                    <td style="text-align: right; font-weight: bold;">Odometer Reading:</td>
+                                    <td style="text-align: right; font-weight: bold;">Mileage Reading:</td>
                                     <td>{{$job->odometer ?? '' }}</td>
                                 </tr>
                                 <tr>
