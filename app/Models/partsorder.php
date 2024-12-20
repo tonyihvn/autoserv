@@ -28,6 +28,6 @@ class partsorder extends Model
 
     public function stock()
     {
-        return $this->hasOne(Stock::class,'part_id','pid');
+        return $this->hasOne(stock::class,'part_id','pid');
     }
 }
