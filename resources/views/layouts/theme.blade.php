@@ -82,6 +82,10 @@
 		.btnNext{
 			float: right;
 		}
+
+        .btn-success{
+            background-colot: #032f69 !important;
+        }
 	</style>
 </head>
 
