@@ -74,7 +74,8 @@ g text{
 }
 
 .justify-content-md-center{
-    background: url("{{asset('/images/toyota_SUV.png')}}") no-repeat;
+    background: url("{{asset('/images/bghome.jpg')}}") no-repeat center;
+    background-size: cover
 }
 </style>
     @php $pagename="dashboard"; @endphp
