@@ -305,7 +305,7 @@
                                         <label for="sdate">Service Date</label>
                                         <div>
 
-                                        <input type="text" id="sdate" value="{{$job->serviceorder ? $job->serviceorder->first()->sdate:''}}" placeholder="sdate"
+                                        <input type="text" id="sdate" value="{{$job->serviceorder ? $job->serviceorder->first()->sdate ?? '':''}}" placeholder="sdate"
                                         name="sdate" class="form-control date" >
                                         </div>
                                     </div>
@@ -314,7 +314,7 @@
                                         <label for="nextservicedate">Next Service Date</label>
                                         <div>
 
-                                        <input type="text" id="nextservicedate" value="{{$job->serviceorder ? $job->serviceorder->first()->nextservicedate:''}}" placeholder="nextservicedate"
+                                        <input type="text" id="nextservicedate" value="{{$job->serviceorder ? $job->serviceorder->first()->nextservicedate ?? '':''}}" placeholder="nextservicedate"
                                         name="nextservicedate" class="form-control date" >
                                         </div>
                                     </div>
