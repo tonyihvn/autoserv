@@ -307,7 +307,7 @@
                                             @if(($title=="ESTIMATE"))
                                                 The above listed parts/items will be used to service the vehicle.
                                                 <hr>
-                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>AUTO WELLNESS HAVEN LTD</b><br>
+                                                <b>TERMS OF PAYMENT: </b>CASH OR CHEQUE/DRAFT IN FAVOUR OF <b>LAC AUTOS-SPARES LTD</b><br>
                                                 <b>VALIDITY: </b>THIS INVOICE/ESTIMATE IS VALID FOR <b>7 DAYS</b> FROM DATE OF RECEIPT<br>
                                                 <b>ACCOUNT DETAILS (1):</b><br>
                                                 ACCOUNT NAME: <b>LAC AUTOS-SPARES LTD</b><br>
