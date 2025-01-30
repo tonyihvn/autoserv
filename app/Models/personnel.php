@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class personnel extends Model
 {
-    protected $guarded = [];
+
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function attendances()
+    {
+        return $this->hasMany(attendances::class, 'personnel_id', 'id');
+    }
 }
