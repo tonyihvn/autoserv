@@ -58,21 +58,34 @@ class PersonnelController extends Controller
             'department',
             'salary',
             'highestcert',
-            
+
             'guarantor',
-            'staffid',                    
+            'staffid',
             'dob',
             'stateoforigin',
             'maritalstatus',
-            'empdate'            
+            'empdate'
         ));
 
         $newpassword = Hash::make($request->spassword);
 
-        if($request->id > 0){
+        if($request->id !=0){
             // FOR UPDATES
             if($newpassword != $request->oldpassword){
                 $personnel->password = $newpassword;
+
+                // UPDATE USER TABLE WHERE EMAIL IS SAME
+                User::where('email',$request->email)->update([
+                    'name'=>$request->surname." ".$request->firstname." ".$request->othernames,
+                    'phone_number'=>$request->phoneno,
+                    'email'=>$request->email,
+                    'state'=>$request->stateoforigin,
+                    'status'=>"Active",
+                    'password'=>$newpassword,
+                    'role'=>$request->department
+                ]);
+            }else{
+                $personnel->password = $request->oldpassword;
             }
         }else{
             // FOR NEW PERSONNEL
@@ -93,20 +106,20 @@ class PersonnelController extends Controller
             'picture'=>'image|mimes:jpg,png,jpeg,gif,svg',
             'cv'=>'image|mimes:jpg,png,jpeg,gif,svg,doc,docx,pdf'
         ]);
-        
+
         if(!empty($request->file('picture'))){
-         
+
             $picture = time().'.'.$request->picture->extension();
-          
+
             $request->picture->move(\public_path('images'),$picture);
         }else{
             $picture = $request->oldpicture;
         }
-   
+
         if(!empty($request->file('cv'))){
-            
+
             $cv = time().'.'.$request->cv->extension();
-            
+
             $request->cv->move(\public_path('images'),$cv);
         }else{
             $cv = $request->oldcv;
@@ -117,7 +130,7 @@ class PersonnelController extends Controller
 
         $personnel->save();
 
-        
+
 
         return redirect()->back()->with(['message'=>'The Personnel Record was saved successfully!']);
 
