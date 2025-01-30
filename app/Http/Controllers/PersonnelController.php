@@ -132,7 +132,7 @@ class PersonnelController extends Controller
 
 
 
-        return redirect()->back()->with(['message'=>'The Personnel Record was saved successfully!']);
+        return redirect()->route('personnels')->with(['message'=>'The Personnel Record was saved successfully!']);
 
     }
 
